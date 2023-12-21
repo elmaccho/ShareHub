@@ -1,0 +1,83 @@
+.navbar-wrapper{
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar-wrapper > *{
+    transition: 0.3s;
+}
+.brand-wrapper{
+    display: flex;
+    background-color: transparent;
+}
+.brand-logo{
+    width: 70px;
+}
+.brand-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.brand-main, .brand-slogan{
+    line-height: 20px;
+}
+.brand-main{
+    margin: 0;
+    color: #0E1E4A;
+}
+.brand-slogan{
+    margin: 0;
+}
+
+.btn-main{
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 20px 55px;
+    height: 40px;
+    border-radius: 15px;
+    max-width: 200px;
+}
+.new-dropdown-menu{
+    border: none;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.routes-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+.route-btn{
+    text-decoration: none;
+    font-size: 32px;
+    color: #0E1E4A;
+}
+.user-auth-route{
+    display: none;
+}
+
+@media screen and (max-width: 700px) {
+    .auth-user{
+        display: none;
+    }
+    .user-auth-route{
+        display: block;
+    }
+    .navbar-wrapper{
+        flex-direction: column;
+    }
+    .routes-wrapper{
+        width: 100%;
+    }
+}
+@media screen and (max-width: 420px) {
+    .routes-wrapper{
+        position: fixed;
+        background-color: white;
+        bottom: 0;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+}
