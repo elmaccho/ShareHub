@@ -19,6 +19,7 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/css/app.css', 'resources/js/app.js'])
     @vite('resources/css/nav.css')
+
 </head>
 <body>
     <div id="app">

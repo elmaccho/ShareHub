@@ -1,5 +1,5 @@
 <nav class="navbar-wrapper">
-    <a class="navbar-brand brand-wrapper" href="{{ url('/') }}">
+    <a class="navbar-brand brand-wrapper" href="{{ url('/home') }}">
         <img class="brand-logo" src="{{ asset('images/sharehub.png') }}" alt="">
         <div class="brand-info">
             <h1 class="brand-main">{{ config('app.name', 'Laravel') }}</h1>

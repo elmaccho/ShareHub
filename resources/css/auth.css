@@ -1,0 +1,121 @@
+.container{
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    justify-content: space-around;
+    max-width: unset !important;
+}
+.logo-brand-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.logo-brand-wrapper .brand-logo{
+    width: 400px;
+}
+.brand-main{
+    font-size: 72px;
+    line-height: 70px;
+}
+.brand-slogan{
+    font-size: 32px;
+}
+.brand-main, .brand-slogan{
+    font-weight: 900;
+}
+.form-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    width: 500px;
+    border-radius: 23px;
+    padding: 40px 35px 30px;
+}
+.form-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form-row{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.form-input{
+    background-color:#F3F3F3;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border: none;
+    outline: none;
+    height: 40px;
+    width: 100%;
+    text-indent: 15px;
+    border-radius: 8px;
+}
+.h1{
+    font-weight: 600;
+    font-size: 46px;
+    color: #0E1E4A;
+}
+.form-btn{
+    padding: 5px 45px;
+    border: none;
+    outline: none;
+    background-color: #0076FF;
+    color: white;
+    border-radius: 8px;
+}
+.sur-name-wrapper{
+    display: flex;
+    gap: 25px;
+    width: 100%;
+}
+.form-sett{
+    display: flex;
+    align-items: center;
+}
+@media screen and (max-width: 992px) {
+    .container{
+        gap: 25px;
+    }
+    .logo-brand-wrapper .brand-logo{
+        width: 80%;
+    }
+}
+@media screen and (max-width: 700px) {
+    .container{
+        flex-direction: column;
+        justify-content: center;
+        gap: 30px;
+    }
+    .logo-brand-wrapper{
+        flex-direction: row;
+    }
+    .brand-main{
+        font-size: 32px;
+        line-height: 30px;
+    }
+    .brand-slogan{
+        font-size: 16px;
+    }
+    .logo-brand-wrapper .brand-logo{
+        width: 150px;
+    }
+    .form-wrapper{
+        width: 90%;
+    }
+    .form-body{
+        width: 100%;
+    }
+    .sur-name-wrapper{
+        flex-direction: column;
+    }
+    .py-4{
+        padding: unset !important;
+    }
+    .form-sett{
+        flex-direction: column;
+    }
+}
