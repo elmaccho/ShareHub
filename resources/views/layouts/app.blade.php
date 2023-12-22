@@ -13,9 +13,6 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-    {{-- Icons --}}
-    <script src="https://kit.fontawesome.com/4798a03daf.js" crossorigin="anonymous"></script>
-
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/css/app.css', 'resources/js/app.js'])
     @vite('resources/css/nav.css')

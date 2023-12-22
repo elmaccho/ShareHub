@@ -22,7 +22,7 @@
         <a class="route-btn" href="#">
             <i class="fa-solid fa-bell"></i>
         </a>
-        <a class="route-btn" href="#">
+        <a class="route-btn" href="/profile">
             <i class="fa-solid fa-user"></i>
         </a>
         <a class="route-btn user-auth-route" href="#"  href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
