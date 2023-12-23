@@ -1,5 +1,5 @@
 <nav class="navbar-wrapper">
-    <a class="navbar-brand brand-wrapper" href="{{ url('/home') }}">
+    <a class="navbar-brand brand-wrapper" href="{{ route('home') }}">
         <img class="brand-logo" src="{{ asset('images/sharehub.png') }}" alt="">
         <div class="brand-info">
             <h1 class="brand-main">{{ config('app.name', 'Laravel') }}</h1>
@@ -10,7 +10,7 @@
     @guest
         @else
     <div class="routes-wrapper col-4">
-        <a class="route-btn" href="#">
+        <a class="route-btn" href="{{ route('home') }}">
             <i class="fa-solid fa-house-chimney"></i>
         </a>
         <a class="route-btn" href="#">
@@ -22,14 +22,18 @@
         <a class="route-btn" href="#">
             <i class="fa-solid fa-bell"></i>
         </a>
-        <a class="route-btn" href="/profile">
+        <a class="route-btn" href="{{ route('profile.index') }}">
             <i class="fa-solid fa-user"></i>
         </a>
         <a class="route-btn user-auth-route" href="#"  href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-            <i class="fa-regular fa-user"></i>
+            @if (!is_null(Auth::user()->profile_image_path))
+                    <img class="user-image" src="{{ asset('storage/'. Auth::user()->profile_image_path) }}" alt="">
+                @else
+                    <img class="user-image" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="">
+            @endif
         </a>
         <div class="dropdown-menu dropdown-menu-end new-dropdown-menu mobiledropdown" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="{{ route('profile.index') }}">
                 Profile
             </a>
 
@@ -51,7 +55,7 @@
         </a>
 
         <div class="dropdown-menu dropdown-menu-end new-dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="{{ route('profile.index') }}">
                 Profile
             </a>
 
