@@ -18,9 +18,9 @@
             <div class="profile-image col-3">
                 <div class="inner-layer">
                     @if (!is_null($user->profile_image_path))
-                            <img class="user-image" src="{{ asset('storage/'. $user->profile_image_path) }}" alt="">
+                            <img class="user-image" src="{{ asset('storage/'. $user->profile_image_path) }}" alt="{{ $user->name }} {{ $user->surname }}">
                         @else
-                            <img class="user-image" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="">
+                            <img class="user-image" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="{{ $user->name }} {{ $user->surname }}">
                     @endif
                 </div>
                 <button class="upload-profile-btn" data-bs-toggle="modal" data-bs-target="#profileImage">
