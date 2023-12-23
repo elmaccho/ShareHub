@@ -4,9 +4,6 @@
     align-items: center;
     justify-content: space-between;
 }
-.navbar-wrapper > *{
-    transition: 0.3s;
-}
 .brand-wrapper{
     display: flex;
     background-color: transparent;
@@ -48,6 +45,7 @@
 .routes-wrapper{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .route-btn{
     text-decoration: none;
@@ -71,7 +69,7 @@
         display: none;
     }
     .user-auth-route{
-        display: block;
+        display: flex;
     }
     .navbar-wrapper{
         flex-direction: column;

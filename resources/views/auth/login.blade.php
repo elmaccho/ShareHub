@@ -2,13 +2,13 @@
 
 @section('content')
 <div class="container">
-    <div class="logo-brand-wrapper">
+    <a href="#" class="logo-brand-wrapper">
         <img src="{{ asset('images/sharehub.png') }}" alt="Brand Logo" class="brand-logo">
         <div class="brand-info">
             <h1 class="brand-main">{{ config('app.name', 'Laravel') }}</h1>
             <p class="brand-slogan">Share Inspire Connect</p>
         </div>
-    </div>
+    </a>
     <div class="form-wrapper">
         <div class="form-header mb-5">
             <span class="h1">Login</span>
@@ -59,9 +59,14 @@
                             Log in
                         </button>
                 </div>
+
+                <div class="form-row mt-4">
+                    <span>Not a member? <a class="btn-link text-decoration-none" href="{{ route('register') }}"><strong>Register now!</strong></a></span>
+                </div>
             </form>
         </div>
     </div>
 </div>
 @vite('resources/css/auth.css')
 @endsection
+ 

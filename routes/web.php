@@ -24,6 +24,8 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::put('/profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('profile/{user}/background-image', [ProfileController::class, 'deleteBackgroundImage'])->name('profile.deleteBackgroundImage');
+    Route::delete('profile/{user}/profile-image', [ProfileController::class, 'deleteProfileImage'])->name('profile.deleteProfileImage');    
 });
 
 Auth::routes();

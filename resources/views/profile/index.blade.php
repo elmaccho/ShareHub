@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ Auth::user()->name }} - profile</title>
-    @vite(['resources/sass/app.scss', 'resources/css/app.css', 'resources/js/app.js'])
-    @vite('resources/css/nav.css')
-    @vite('resources/css/profile.css')
-</head>
-<body>
-    @include('layouts.nav')
-    <div class="content">
+@extends('layouts.app')
+@section('title', $user->name . ' ' . $user->surname . ' Profile')
+@section('content')  
+@include('helpers.flash-messages') 
+    <div class="profile-container">
         <div class="user-info">
             <div class="background-image">
                 @if (!is_null($user->background_image_path))
@@ -85,6 +76,13 @@
                             <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                     </form>
+                    @if (!is_null($user->profile_image_path))                        
+                        <form action="{{ route('profile.deleteProfileImage', $user) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-danger">Delete Profile Image</button>
+                        </form>
+                    @endif
                 </div>
             </div>
         </div>
@@ -109,9 +107,16 @@
                             <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                     </form>
+                    @if (!is_null($user->background_image_path))                        
+                        <form action="{{ route('profile.deleteBackgroundImage', $user) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-danger">Delete Profile Image</button>
+                        </form>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
-</body>
-</html>
+    @vite('resources/css/profile.css')
+@endsection

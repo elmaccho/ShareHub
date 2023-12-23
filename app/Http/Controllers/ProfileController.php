@@ -31,7 +31,26 @@ class ProfileController extends Controller
     
         $user->save();
     
-        return redirect()->back()->with('success', 'Zaktualizowano zdjęcia pomyślnie');
+        return redirect(route('profile.index'))->with('status', 'Image uploaded successfully!');
+    }
+
+    public function deleteProfileImage(User $user)
+    {
+        if($user->profile_image_path){
+            $user->update(['profile_image_path' => null]);
+        }
+
+        return redirect(route('profile.index'))->with('status', 'Profile image deleted successfully!');
+
+    }
+
+    public function deleteBackgroundImage(User $user)
+    {
+        if($user->background_image_path){
+            $user->update(['background_image_path' => null]);
+        }
+
+        return redirect(route('profile.index'))->with('status', 'Background image deleted successfully!');
     }
     
 }
