@@ -1,11 +1,16 @@
 <nav class="navbar-wrapper">
-    <a class="navbar-brand brand-wrapper" href="{{ route('home') }}">
-        <img class="brand-logo" src="{{ asset('images/sharehub.png') }}" alt="">
-        <div class="brand-info">
-            <h1 class="brand-main">{{ config('app.name', 'Laravel') }}</h1>
-            <p class="brand-slogan">Share Inspire Connect</p>
-        </div>
-    </a>
+    <span class="nav-wrapper">
+        <a class="navbar-brand brand-wrapper" href="{{ route('home') }}">
+            <img class="brand-logo" src="{{ asset('images/sharehub.png') }}" alt="">
+            <div class="brand-info">
+                <h1 class="brand-main">{{ config('app.name', 'Laravel') }}</h1>
+                <p class="brand-slogan">Share Inspire Connect</p>
+            </div>
+        </a>
+        <button class="open-side-menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </span>
 
     @guest
         @else

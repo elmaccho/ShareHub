@@ -1,3 +1,20 @@
+.close-side-menu, .open-side-menu{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 36px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 35px;
+    width: 35px;
+
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+
 .main-container{
     padding: 0 35px;
 }
@@ -37,4 +54,57 @@
     text-decoration: none;
     color: #232323;
     font-weight: 600;
+}
+.side-menu{
+    position: relative;
+    transition: 0.3s;
+    transform: unset;
+}
+
+
+.post-container{
+    width: 100%;
+}
+@media screen and (max-width: 700px) {
+    .side-menu{
+        background: rgb(255, 255, 255);
+        background: linear-gradient(76deg, rgb(255, 255, 255) 50%, rgb(243, 248, 255) 100%);
+
+        position: fixed;
+        z-index: 2;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        padding-top: 55px;
+        transform: translateY(-100%);
+        
+        
+    }
+    .sm-active{
+        transform: translateY(0);
+    }
+    .buttons-wrapper{
+        flex-direction: row !important;
+        align-items: flex-start !important;
+    }
+    .close-side-menu, .open-side-menu{
+        display: flex;
+    }
+}
+@media screen and (max-width: 525px) {
+    .welcome-message{
+        font-size: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+    .main-container{
+        padding: 0 20px;
+    }
+}
+@media screen and (max-width: 400px){
+    .buttons-wrapper{
+        flex-direction: column !important;
+    }
 }
