@@ -7,9 +7,11 @@
                 <p class="brand-slogan">Share Inspire Connect</p>
             </div>
         </a>
-        <button class="open-side-menu">
-            <i class="fa-solid fa-bars"></i>
-        </button>
+        @if(Request::is('home'))
+            <button class="open-side-menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        @endif
     </span>
 
     @guest
