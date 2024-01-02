@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -28,12 +29,13 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $posts = Post::all();
-        // $posts = Post::with('user', 'comments', 'likes', 'saves')->get();
+        $comments = Comment::all();
 
 
         return view('home', compact(
             'user',
-            'posts'
+            'posts',
+            'comments'
         ));
     }
 }

@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="post-container d-flex align-items-center flex-column gap-5">
-            <div class="sh-section d-flex align-items-center sh-pointer" data-bs-toggle="modal" data-bs-target="#TTTEST">
+            <div class="sh-section d-flex align-items-center sh-pointer" data-bs-toggle="modal" data-bs-target="#createPost">
                 <div class="d-flex align-items-center gap-2">
                     <div class="user-profile-image">
                         @if (!is_null($user->profile_image_path))
@@ -65,19 +65,38 @@
                     <div class="post-social-actions mb-3">
                         <button class="like-btn sh-post-btn">
                             <i class="fa-solid fa-heart"></i> 
-                            {{ $post->likes }} Likes
+                            Likes
                         </button>
                         <button class="comment-btn sh-post-btn">
                             <i class="fa-solid fa-comment"></i> 
-                            {{ $post->comments }} Comments
+                            Comments
                         </button>
                         <button class="saves-btn sh-post-btn">
                             <i class="fa-solid fa-bookmark"></i> 
-                            {{ $post->saves }} Saves
+                            Saves
                         </button>
                     </div>
-                    <div class="post-comments-section">
-
+                    <div class="post-comments-section mb-3">
+                        @foreach ($post->comments as $comment)
+                            <div class="card mb-2">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        @if (!is_null($comment->user->profile_image_path))
+                                                <img class="user-profile-image" src="{{ asset('storage/'. $comment->user->profile_image_path) }}" alt="{{ $comment->user->name }} {{ $comment->user->surname }}">
+                                            @else
+                                                <img class="user-profile-image" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="{{ $comment->user->name }} {{ $comment->user->surname }}">
+                                        @endif
+                                        <div>
+                                        <h5 class="card-title mb-0"><strong>{{ $comment->user->name }} {{ $comment->user->surname }}</strong></h5>
+                                        <small class="text-muted">{{ $comment->created_at }}</small>
+                                        </div>
+                                    </div>
+                                    <p class="card-text mt-3">
+                                        {{ $comment->content }}
+                                    </p>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                     <div class="post-add-comment d-flex align-items-center gap-2">
                         @if (!is_null($user->profile_image_path))
@@ -86,8 +105,9 @@
                                 <img class="user-profile-image" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="{{ $user->name }} {{ $user->surname }}">
                         @endif
 
-                        <form action="" method="post">
-                            <input class="sh-input" type="text" name="" id="" placeholder="Write your comment...">
+                        <form action="{{ route('comment.store', $post->id) }}" method="post">
+                            @csrf
+                            <input class="sh-input" type="text" name="comment" id="" placeholder="Write your comment...">
                         </form>
                     </div>
                 </div>
@@ -95,11 +115,11 @@
         </div>
     </div>
 
-    <div class="modal fade" id="TTTEST" tabindex="-1" aria-labelledby="TTTESTLabel" aria-hidden="true">
+    <div class="modal fade" id="createPost" tabindex="-1" aria-labelledby="createPostLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="TTTESTLabel">Create</h5>
+                    <h5 class="modal-title" id="createPostLabel">Create</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
                 </div>
                 <div class="modal-body">

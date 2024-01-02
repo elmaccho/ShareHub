@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
@@ -29,6 +31,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::delete('profile/{user}/profile-image', [ProfileController::class, 'deleteProfileImage'])->name('profile.deleteProfileImage');  
     
     Route::post('home', [PostController::class, 'store'])->name('post.store');
+    Route::post('home/{post}/comments', [CommentController::class, 'store'])->name('comment.store');
 });
 
 Auth::routes();

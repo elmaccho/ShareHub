@@ -15,10 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
-            $table->integer('likes')->default(0);
-            $table->integer('comments')->default(0);
-            $table->integer('saves')->default(0);
-
 
             $table->foreignId('user_id')->constrained();
             $table->timestamps();

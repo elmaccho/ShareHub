@@ -28,12 +28,4 @@ class Post extends Model
     {
         return $this->HasMany(Comment::class);
     }
-    public function likes(): HasMany
-    {
-        return $this->hasMany(Like::class);
-    }
-    public function saves(): HasMany
-    {
-        return $this->hasMany(Save::class);
-    }
 }
