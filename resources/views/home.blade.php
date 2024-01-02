@@ -1,4 +1,5 @@
 @extends('layouts.app')    
+@include('helpers.flash-messages') 
     @section('content')
     <div class="main-container d-flex justify-content-between align-items-start gap-5">
         <div class="side-menu col-4 d-flex flex-column gap-4">
@@ -21,10 +22,14 @@
             </div>
         </div>
         <div class="post-container d-flex align-items-center flex-column gap-5">
-            <div class="sh-section d-flex align-items-center">
+            <div class="sh-section d-flex align-items-center sh-pointer" data-bs-toggle="modal" data-bs-target="#TTTEST">
                 <div class="d-flex align-items-center gap-2">
                     <div class="user-profile-image">
-                        <img src="{{ asset('storage/'. $user->profile_image_path) }}" alt="">
+                        @if (!is_null($user->profile_image_path))
+                                <img class="user-profile-image" src="{{ asset('storage/'. $user->profile_image_path) }}" alt="{{ $user->name }} {{$user->surname}}">
+                            @else
+                                <img class="user-profile-image" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="{{ $user->name }} {{ $user->surname }}">
+                        @endif
                     </div>
                     <p class="h3 m-0 welcome-message"><span class="inner-message">Hi {{ $user->name }}!</span> What's on your mind?</p>
                 </div>
@@ -33,46 +38,86 @@
                 </span>
             </div>
 
-            <div class="sh-section d-flex flex-column">
-                <div class="author-info">
-                    <img class="user-profile-image" src="{{ asset('storage/' . $user->profile_image_path) }}" alt="">
-                    <div class="post-info">
-                        <div class="author-sur-name">
-                            Maciej Chojnacki
-                        </div>
-                        <div class="post-date">
-                            20.12.2023 at 22:14
+            @foreach ($posts as $post)
+                <div class="sh-section d-flex flex-column">
+                    <div class="author-info">
+                        @if (!is_null($post->user->profile_image_path))
+                                <img class="user-profile-image" src="{{ asset('storage/'. $post->user->profile_image_path) }}" alt="{{ $post->user->name }} {{$post->user->surname}}">
+                            @else
+                                <img class="user-profile-image" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="{{ $post->user->name }} {{ $post->user->surname }}">
+                        @endif
+                        <div class="post-info">
+                            <div class="author-sur-name">
+                                {{ $post->user->name }}
+                                {{ $post->user->surname }}
+                            </div>
+                            <div class="post-date">
+                                {{ $post->created_at }}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="post-title">
-                    My first post!
-                </div>
-                <div class="post-description mb-3">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto itaque accusamus maiores inventore neque deleniti corporis facere repellat nesciunt excepturi dolorum illum perferendis ea fugiat consectetur assumenda sunt, alias recusandae commodi veritatis totam quam! Nesciunt nihil officia, nobis laborum error voluptas ea laboriosam quasi! Maxime nesciunt est error nostrum aspernatur deleniti maiores vero, debitis autem cupiditate. Repudiandae pariatur possimus quod hic nobis quo molestiae omnis et praesentium ea ad nihil odit, provident enim laborum ex iure dolore aut minus quia. Consectetur facere fugiat adipisci consequuntur architecto quia quibusdam ullam amet?
-                </div>
-                <div class="post-social-actions mb-3">
-                    <button class="like-btn sh-post-btn">
-                        <i class="fa-solid fa-heart"></i> 
-                        1 Likes
-                    </button>
-                    <button class="comment-btn sh-post-btn">
-                        <i class="fa-solid fa-comment"></i> 
-                        0 Comments
-                    </button>
-                    <button class="saves-btn sh-post-btn">
-                        <i class="fa-solid fa-bookmark"></i> 
-                        0 Saves
-                    </button>
-                </div>
-                <div class="post-comments-section">
+                    <div class="post-title">
+                        {{ $post->title }}
+                    </div>
+                    <div class="post-description mb-3">
+                        {{ $post->content }}
+                    </div>
+                    <div class="post-social-actions mb-3">
+                        <button class="like-btn sh-post-btn">
+                            <i class="fa-solid fa-heart"></i> 
+                            {{ $post->likes }} Likes
+                        </button>
+                        <button class="comment-btn sh-post-btn">
+                            <i class="fa-solid fa-comment"></i> 
+                            {{ $post->comments }} Comments
+                        </button>
+                        <button class="saves-btn sh-post-btn">
+                            <i class="fa-solid fa-bookmark"></i> 
+                            {{ $post->saves }} Saves
+                        </button>
+                    </div>
+                    <div class="post-comments-section">
 
-                </div>
-                <div class="post-add-comment d-flex align-items-center gap-2">
-                    <img class="user-profile-image" src="{{ asset('storage/' . $user->profile_image_path) }}" alt="">
+                    </div>
+                    <div class="post-add-comment d-flex align-items-center gap-2">
+                        @if (!is_null($user->profile_image_path))
+                                <img class="user-profile-image" src="{{ asset('storage/'. $user->profile_image_path) }}" alt="{{ $user->name }} {{$user->surname}}">
+                            @else
+                                <img class="user-profile-image" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="{{ $user->name }} {{ $user->surname }}">
+                        @endif
 
-                    <form action="" method="post">
-                        <input class="sh-input" type="text" name="" id="" placeholder="Write your comment...">
+                        <form action="" method="post">
+                            <input class="sh-input" type="text" name="" id="" placeholder="Write your comment...">
+                        </form>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
+    <div class="modal fade" id="TTTEST" tabindex="-1" aria-labelledby="TTTESTLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="TTTESTLabel">Create</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('post.store') }}" method="post">
+                        @csrf
+                        <div class="mb-3">
+                          <input type="text" class="form-control" id="title" name="title" placeholder="Title..." required>
+                        </div>
+                        <div class="mb-3">
+                          <textarea class="form-control" id="content" name="content" rows="4" placeholder="Content..."></textarea>
+                        </div>
+                        <div class="mb-3 d-flex justify-content-between">
+                            <button type="submit" class="btn btn-primary">Post</button>
+                            <label for="image-upload" id="upload-icon" class="form-label sh-pointer">
+                                <i class="fa-solid fa-image"></i>
+                            </label>
+                            <input type="file" class="form-control d-none" id="image-upload" name="image" accept="image/*">
+                        </div>
                     </form>
                 </div>
             </div>
