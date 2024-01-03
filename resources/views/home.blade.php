@@ -40,6 +40,16 @@
 
             @foreach ($posts as $post)
                 <div class="sh-section d-flex flex-column">
+                    <div class="dropdown comment-action">
+                        <button class="btn btn-link text-dark" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-ellipsis comment-action-btn"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <li><a class="dropdown-item" href="#">Report</a></li>
+                          <li><a class="dropdown-item" href="#">Edit</a></li>
+                          <li><button class="dropdown-item delete-post-btn" data-post-id={{ $post->id }}>Delete</button></li>
+                        </ul>
+                    </div>
                     <div class="author-info">
                         @if (!is_null($post->user->profile_image_path))
                                 <img class="user-profile-image" src="{{ asset('storage/'. $post->user->profile_image_path) }}" alt="{{ $post->user->name }} {{$post->user->surname}}">
@@ -79,6 +89,17 @@
                     <div class="post-comments-section mb-3">
                         @foreach ($post->comments as $comment)
                             <div class="card mb-2">
+                                <div class="dropdown comment-action">
+                                    <button class="btn btn-link text-dark" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa-solid fa-ellipsis comment-action-btn"></i>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <li><a class="dropdown-item" href="#">Report</a></li>
+                                      <li><a class="dropdown-item" href="#">Edit</a></li>
+                                      <li><button class="dropdown-item delete-comment-btn" data-comment-id={{ $comment->id }}>Delete</button></li>
+                                    </ul>
+                                </div>
+
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         @if (!is_null($comment->user->profile_image_path))
@@ -105,9 +126,9 @@
                                 <img class="user-profile-image" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="{{ $user->name }} {{ $user->surname }}">
                         @endif
 
-                        <form action="{{ route('comment.store', $post->id) }}" method="post">
+                        <form action="{{ route('comment.store', $post->id) }}" method="post" class="commentForm">
                             @csrf
-                            <input class="sh-input" type="text" name="comment" id="" placeholder="Write your comment...">
+                            <input class="sh-input" type="text" name="comment" placeholder="Write your comment...">
                         </form>
                     </div>
                 </div>
@@ -145,4 +166,6 @@
     </div>
     @vite('resources/css/home.css')
     @vite('resources/js/side_menu.js')
+    @vite('resources/js/comment.js')
+    @vite('resources/js/post.js')
 @endsection
