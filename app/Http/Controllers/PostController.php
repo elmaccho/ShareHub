@@ -40,4 +40,17 @@ class PostController extends Controller
             ])->setStatusCode(500);
         }
     }
+    public function edit(Post $post)
+    {
+        return view('home.edit', compact(
+            'post'
+        ));
+    }
+    public function update(PostRequest $request, Post $post)
+    {
+        $validatedData = $request->validated();
+        $post->update($validatedData);
+
+        return redirect(route("home"))->with('status', 'Post updated!');
+    }
 }

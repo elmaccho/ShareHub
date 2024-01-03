@@ -32,7 +32,7 @@ class HomeController extends Controller
         $comments = Comment::all();
 
 
-        return view('home', compact(
+        return view('home.home', compact(
             'user',
             'posts',
             'comments'

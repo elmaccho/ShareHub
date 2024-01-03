@@ -31,6 +31,8 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::delete('profile/{user}/profile-image', [ProfileController::class, 'deleteProfileImage'])->name('profile.deleteProfileImage');  
     
     Route::post('home/posts', [PostController::class, 'store'])->name('post.store');
+    Route::get('home/post/edit/{post}', [PostController::class, 'edit'])->name('post.edit');
+    Route::post('home/post/edit/{post}', [PostController::class, 'update'])->name('post.update');
     Route::delete('home/{post}', [PostController::class, 'destroy'])->name('post.destroy');
     Route::post('home/{post}/comments', [CommentController::class, 'store'])->name('comment.store');
     Route::delete('home/comment/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');

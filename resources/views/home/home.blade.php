@@ -1,6 +1,6 @@
 @extends('layouts.app')    
+@section('content')
 @include('helpers.flash-messages') 
-    @section('content')
     <div class="main-container d-flex justify-content-between align-items-start gap-5">
         <div class="side-menu col-4 d-flex flex-column gap-4">
             <button class="close-side-menu"><i class="fa-solid fa-xmark"></i></button>
@@ -45,8 +45,8 @@
                             <i class="fa-solid fa-ellipsis comment-action-btn"></i>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <li><a class="dropdown-item" href="#">Report</a></li>
-                          <li><a class="dropdown-item" href="#">Edit</a></li>
+                          <li><button class="dropdown-item">Report</button></li>
+                          <li><a href="{{ route('post.edit', $post->id) }}"><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#EditPost">Edit</button></a></li>
                           <li><button class="dropdown-item delete-post-btn" data-post-id={{ $post->id }}>Delete</button></li>
                         </ul>
                     </div>
@@ -88,15 +88,15 @@
                     </div>
                     <div class="post-comments-section mb-3">
                         @foreach ($post->comments as $comment)
-                            <div class="card mb-2">
+                            <div class="card mb-2 comment-body">
                                 <div class="dropdown comment-action">
                                     <button class="btn btn-link text-dark" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="fa-solid fa-ellipsis comment-action-btn"></i>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                      <li><a class="dropdown-item" href="#">Report</a></li>
-                                      <li><a class="dropdown-item" href="#">Edit</a></li>
-                                      <li><button class="dropdown-item delete-comment-btn" data-comment-id={{ $comment->id }}>Delete</button></li>
+                                      <li><button type="button" class="dropdown-item">Report</button></li>
+                                      <li><button type="button" class="dropdown-item">Edit</button></li>
+                                      <li><button type="button" class="dropdown-item delete-comment-btn" data-comment-id={{ $comment->id }}>Delete</button></li>
                                     </ul>
                                 </div>
 
@@ -141,7 +141,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="createPostLabel">Create</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('post.store') }}" method="post">
@@ -164,6 +164,36 @@
             </div>
         </div>
     </div>
+    {{-- <div class="modal fade" id="EditPost" tabindex="-1" aria-labelledby="EditPostLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="EditPostLabel">Edit Post</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('post.store') }}" method="post">
+                        @csrf
+                        <div class="mb-3">
+                          <input type="text" class="form-control" id="title" name="title" placeholder="Title..." required value="{{ $post->title }}">
+                        </div>
+                        <div class="mb-3">
+                          <textarea class="form-control" id="content" name="content" rows="4" placeholder="Content...">
+
+                          </textarea>
+                        </div>
+                        <div class="mb-3 d-flex justify-content-between">
+                            <button type="submit" class="btn btn-primary">Post</button>
+                            <label for="image-upload" id="upload-icon" class="form-label sh-pointer">
+                                <i class="fa-solid fa-image"></i>
+                            </label>
+                            <input type="file" class="form-control d-none" id="image-upload" name="image" accept="image/*">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> --}}
     @vite('resources/css/home.css')
     @vite('resources/js/side_menu.js')
     @vite('resources/js/comment.js')
