@@ -62,7 +62,7 @@
                                 {{ $post->user->surname }}
                             </div>
                             <div class="post-date">
-                                {{ $post->created_at }}
+                                <i class="fa-solid fa-clock"></i> {{ $post->created_at }}
                             </div>
                         </div>
                     </div>
@@ -73,10 +73,23 @@
                         {{ $post->content }}
                     </div>
                     <div class="post-social-actions mb-3">
-                        <button class="like-btn sh-post-btn">
-                            <i class="fa-solid fa-heart"></i> 
-                            Likes
-                        </button>
+                        @if (Auth::user()->likesPost($post))
+                            <form action="{{ route('post.unlike', $post->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="like-btn sh-post-btn">
+                                    <i class="fa-solid fa-heart"></i>
+                                    {{ $post->likes()->count() }} Unlike
+                                </button>
+                            </form>
+                        @else
+                            <form action="{{ route('post.like', $post->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="like-btn sh-post-btn">
+                                    <i class="fa-regular fa-heart"></i>
+                                    {{ $post->likes()->count() }} Like
+                                </button>
+                            </form>
+                        @endif
                         <button class="comment-btn sh-post-btn">
                             <i class="fa-solid fa-comment"></i> 
                             {{ $post->comments->count() }} Comments
@@ -87,7 +100,7 @@
                         </button>
                     </div>
                     <div class="post-comments-section mb-3">
-                        @foreach ($post->comments as $comment)
+                        @forelse ($post->comments as $comment)
                             <div class="card mb-2 comment-body">
                                 <div class="dropdown comment-action">
                                     <button class="btn btn-link text-dark" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -117,7 +130,9 @@
                                     </p>
                                 </div>
                             </div>
-                        @endforeach
+                            @empty
+                            <p class="card-text mt-3">No Comments Found</p>
+                        @endforelse
                     </div>
                     <div class="post-add-comment d-flex align-items-center gap-2">
                         @if (!is_null($user->profile_image_path))
@@ -140,7 +155,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="createPostLabel">Create</h5>
+                    <h5 class="modal-title" id="createPostLabel">Create Post</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -164,36 +179,6 @@
             </div>
         </div>
     </div>
-    {{-- <div class="modal fade" id="EditPost" tabindex="-1" aria-labelledby="EditPostLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="EditPostLabel">Edit Post</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('post.store') }}" method="post">
-                        @csrf
-                        <div class="mb-3">
-                          <input type="text" class="form-control" id="title" name="title" placeholder="Title..." required value="{{ $post->title }}">
-                        </div>
-                        <div class="mb-3">
-                          <textarea class="form-control" id="content" name="content" rows="4" placeholder="Content...">
-
-                          </textarea>
-                        </div>
-                        <div class="mb-3 d-flex justify-content-between">
-                            <button type="submit" class="btn btn-primary">Post</button>
-                            <label for="image-upload" id="upload-icon" class="form-label sh-pointer">
-                                <i class="fa-solid fa-image"></i>
-                            </label>
-                            <input type="file" class="form-control d-none" id="image-upload" name="image" accept="image/*">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div> --}}
     @vite('resources/css/home.css')
     @vite('resources/js/side_menu.js')
     @vite('resources/js/comment.js')

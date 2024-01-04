@@ -28,7 +28,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $posts = Post::all();
+        $posts = Post::orderBy('created_at', 'desc')->get();
         $comments = Comment::all();
 
 
@@ -37,5 +37,9 @@ class HomeController extends Controller
             'posts',
             'comments'
         ));
+    }
+    public function create()
+    {
+        return view('home.create');
     }
 }

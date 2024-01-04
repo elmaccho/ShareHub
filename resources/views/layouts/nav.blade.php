@@ -23,7 +23,7 @@
         <a class="route-btn" href="#">
             <i class="fa-solid fa-message"></i>
         </a>
-        <a class="route-btn" href="#">
+        <a class="route-btn" href="{{ route('post.create') }}">
             <i class="fa-solid fa-plus"></i>
         </a>
         <a class="route-btn" href="#">

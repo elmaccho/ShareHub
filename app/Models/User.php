@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -54,6 +55,14 @@ class User extends Authenticatable
     public function comment():HasMany
     {
         return $this->hasMany(Comment::class);
+    }
+    public function likes():BelongsToMany
+    {
+        return $this->BelongsToMany(Post::class, 'post_like')->withTimestamps();
+    }
+    public function likesPost(Post $post)
+    {
+        return $this->likes()->where('post_id', $post->id)->exists();
     }
     
 }
