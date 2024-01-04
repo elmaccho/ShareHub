@@ -10,9 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    public function index(): View
+    public function index(User $user): View
     {
-        $user = Auth::user();
 
         return view('profile.index', compact(
             'user'
@@ -21,36 +20,48 @@ class ProfileController extends Controller
 
     public function update(UserImageRequest $request, User $user)
     {
-        if ($request->hasFile("user_profile_image") && $request->file("user_profile_image")->isValid()) {
-            $user->profile_image_path = $request->file("user_profile_image")->store("user_profile");
+        if($user->id == Auth::user()->id){
+            if ($request->hasFile("user_profile_image") && $request->file("user_profile_image")->isValid()) {
+                $user->profile_image_path = $request->file("user_profile_image")->store("user_profile");
+            }
+        
+            if ($request->hasFile("user_background_image") && $request->file("user_background_image")->isValid()) {
+                $user->background_image_path = $request->file("user_background_image")->store("user_background");
+            }
+        
+            $user->save();
+            return redirect(route('profile.index', $user->id))->with('status', 'Image uploaded successfully!');
+        } else {
+            abort(401, "Nope... Do not try that!");
         }
-    
-        if ($request->hasFile("user_background_image") && $request->file("user_background_image")->isValid()) {
-            $user->background_image_path = $request->file("user_background_image")->store("user_background");
-        }
-    
-        $user->save();
-    
-        return redirect(route('profile.index'))->with('status', 'Image uploaded successfully!');
+
     }
 
     public function deleteProfileImage(User $user)
     {
-        if($user->profile_image_path){
-            $user->update(['profile_image_path' => null]);
+        if($user->id == Auth::user()->id){
+            if($user->profile_image_path){
+                $user->update(['profile_image_path' => null]);
+            }
+    
+            return redirect(route('profile.index', $user->id))->with('status', 'Profile image deleted successfully!');
+
+        } else {
+            abort(401);
         }
-
-        return redirect(route('profile.index'))->with('status', 'Profile image deleted successfully!');
-
     }
 
     public function deleteBackgroundImage(User $user)
     {
-        if($user->background_image_path){
-            $user->update(['background_image_path' => null]);
+        if($user->id == Auth::user()->id){
+            if($user->background_image_path){
+                $user->update(['background_image_path' => null]);
+            }
+            
+            return redirect(route('profile.index', $user->id))->with('status', 'Background image deleted successfully!');
+        } else {
+            abort(401);
         }
-
-        return redirect(route('profile.index'))->with('status', 'Background image deleted successfully!');
     }
     
 }

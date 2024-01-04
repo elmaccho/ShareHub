@@ -51,11 +51,13 @@
                         </ul>
                     </div>
                     <div class="author-info">
-                        @if (!is_null($post->user->profile_image_path))
-                                <img class="user-profile-image" src="{{ asset('storage/'. $post->user->profile_image_path) }}" alt="{{ $post->user->name }} {{$post->user->surname}}">
-                            @else
-                                <img class="user-profile-image" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="{{ $post->user->name }} {{ $post->user->surname }}">
-                        @endif
+                        <a href="{{ route('profile.index', $post->user->id) }}">
+                            @if (!is_null($post->user->profile_image_path))
+                                    <img class="user-profile-image" src="{{ asset('storage/'. $post->user->profile_image_path) }}" alt="{{ $post->user->name }} {{$post->user->surname}}">
+                                @else
+                                    <img class="user-profile-image" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="{{ $post->user->name }} {{ $post->user->surname }}">
+                            @endif
+                        </a>
                         <div class="post-info">
                             <div class="author-sur-name">
                                 {{ $post->user->name }}
@@ -115,11 +117,13 @@
 
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
+                                        <a href="{{ route('profile.index', $comment->user->id) }}">
                                         @if (!is_null($comment->user->profile_image_path))
                                                 <img class="user-profile-image" src="{{ asset('storage/'. $comment->user->profile_image_path) }}" alt="{{ $comment->user->name }} {{ $comment->user->surname }}">
                                             @else
                                                 <img class="user-profile-image" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="{{ $comment->user->name }} {{ $comment->user->surname }}">
                                         @endif
+                                        </a>
                                         <div>
                                         <h5 class="card-title mb-0"><strong>{{ $comment->user->name }} {{ $comment->user->surname }}</strong></h5>
                                         <small class="text-muted">{{ $comment->created_at }}</small>
@@ -135,11 +139,13 @@
                         @endforelse
                     </div>
                     <div class="post-add-comment d-flex align-items-center gap-2">
-                        @if (!is_null($user->profile_image_path))
-                                <img class="user-profile-image" src="{{ asset('storage/'. $user->profile_image_path) }}" alt="{{ $user->name }} {{$user->surname}}">
-                            @else
-                                <img class="user-profile-image" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="{{ $user->name }} {{ $user->surname }}">
-                        @endif
+                        <a href="{{ route('profile.index', $user->id) }}">
+                            @if (!is_null($user->profile_image_path))
+                                    <img class="user-profile-image" src="{{ asset('storage/'. $user->profile_image_path) }}" alt="{{ $user->name }} {{$user->surname}}">
+                                @else
+                                    <img class="user-profile-image" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="{{ $user->name }} {{ $user->surname }}">
+                            @endif
+                        </a>
 
                         <form action="{{ route('comment.store', $post->id) }}" method="post" class="commentForm">
                             @csrf

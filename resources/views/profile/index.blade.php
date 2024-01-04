@@ -9,9 +9,11 @@
                         <img class="background-user-image" src="{{ asset('storage/'. $user->background_image_path) }}" alt="">
                     @else
                 @endif
-                <button class="upload-background-btn" data-bs-toggle="modal" data-bs-target="#backgroundImage">
-                    <i class="fa-solid fa-camera"></i>
-                </button>
+                @if (($user->id == Auth::user()->id))
+                    <button class="upload-background-btn" data-bs-toggle="modal" data-bs-target="#backgroundImage">
+                        <i class="fa-solid fa-camera"></i>
+                    </button>
+                @endif
             </div>
         </div>
         <div class="user-row">
@@ -23,9 +25,11 @@
                             <img class="user-image" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="{{ $user->name }} {{ $user->surname }}">
                     @endif
                 </div>
-                <button class="upload-profile-btn" data-bs-toggle="modal" data-bs-target="#profileImage">
-                    <i class="fa-solid fa-camera"></i>
-                </button>
+                @if (($user->id == Auth::user()->id))
+                    <button class="upload-profile-btn" data-bs-toggle="modal" data-bs-target="#profileImage">
+                        <i class="fa-solid fa-camera"></i>
+                    </button>
+                @endif
             </div>
 
             <div class="user-data col-6">
@@ -35,17 +39,19 @@
                         {{ $user->surname }}
                     </p>
                 </span>
-                <div class="user-links">
-                    <a class="sh-link d-flex align-items-center" href="#">
-                        <p class="m-0"><i class="fa-solid fa-location-dot"></i> Add address</p>
-                    </a>
-                    <a class="sh-link d-flex align-items-center" href="#">
-                        <p class="m-0"><i class="fa-brands fa-facebook-f"></i> Add links</p>
-                    </a>
-                    <a class="sh-link d-flex align-items-center" href="#">
-                        <p class="m-0"><i class="fa-solid fa-info"></i> Add more information</p>
-                    </a>
-                </div>
+                @if ($user->id == Auth::user()->id)
+                    <div class="user-links">
+                        <a class="sh-link d-flex align-items-center" href="#">
+                            <p class="m-0"><i class="fa-solid fa-location-dot"></i> Add address</p>
+                        </a>
+                        <a class="sh-link d-flex align-items-center" href="#">
+                            <p class="m-0"><i class="fa-brands fa-facebook-f"></i> Add links</p>
+                        </a>
+                        <a class="sh-link d-flex align-items-center" href="#">
+                            <p class="m-0"><i class="fa-solid fa-info"></i> Add more information</p>
+                        </a>
+                    </div>
+                @endif
             </div>
 
             <div class="user-action">
@@ -64,7 +70,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('profile.update', auth()->user()) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('profile.update', $user->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">
@@ -77,7 +83,7 @@
                         </div>
                     </form>
                     @if (!is_null($user->profile_image_path))                        
-                        <form action="{{ route('profile.deleteProfileImage', $user) }}" method="post">
+                        <form action="{{ route('profile.deleteProfileImage', $user->id) }}" method="post">
                             @csrf
                             @method('delete')
                             <button type="submit" class="btn btn-danger">Delete Profile Image</button>
@@ -95,7 +101,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('profile.update', auth()->user()) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('profile.update', $user->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">
@@ -111,7 +117,7 @@
                         <form action="{{ route('profile.deleteBackgroundImage', $user) }}" method="post">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-danger">Delete Profile Image</button>
+                            <button type="submit" class="btn btn-danger">Delete Background Image</button>
                         </form>
                     @endif
                 </div>

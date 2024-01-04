@@ -29,7 +29,7 @@
         <a class="route-btn" href="#">
             <i class="fa-solid fa-bell"></i>
         </a>
-        <a class="route-btn" href="{{ route('profile.index') }}">
+        <a class="route-btn" href="{{ route('profile.index', Auth::user()->id) }}">
             <i class="fa-solid fa-user"></i>
         </a>
         <a class="route-btn user-auth-route" href="#"  href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -40,7 +40,7 @@
             @endif
         </a>
         <div class="dropdown-menu dropdown-menu-end new-dropdown-menu mobiledropdown" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{ route('profile.index') }}">
+            <a class="dropdown-item" href="{{ route('profile.index', Auth::user()->id) }}">
                 Profile
             </a>
 
@@ -62,7 +62,7 @@
         </a>
 
         <div class="dropdown-menu dropdown-menu-end new-dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{ route('profile.index') }}">
+            <a class="dropdown-item" href="{{ route('profile.index', Auth::user()->id) }}">
                 Profile
             </a>
 
