@@ -79,7 +79,7 @@
                         </button>
                         <button class="comment-btn sh-post-btn">
                             <i class="fa-solid fa-comment"></i> 
-                            Comments
+                            {{ $post->comments->count() }} Comments
                         </button>
                         <button class="saves-btn sh-post-btn">
                             <i class="fa-solid fa-bookmark"></i> 
