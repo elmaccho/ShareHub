@@ -6,6 +6,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostLikeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::put('/profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('profile/{user}/background-image', [ProfileController::class, 'deleteBackgroundImage'])->name('profile.deleteBackgroundImage');
     Route::delete('profile/{user}/profile-image', [ProfileController::class, 'deleteProfileImage'])->name('profile.deleteProfileImage');  
+    Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
     
     Route::post('home/posts', [PostController::class, 'store'])->name('post.store');
     Route::get('home/post/edit/{post}', [PostController::class, 'edit'])->name('post.edit');

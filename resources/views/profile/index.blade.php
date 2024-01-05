@@ -41,13 +41,13 @@
                 </span>
                 @if ($user->id == Auth::user()->id)
                     <div class="user-links">
-                        <a class="sh-link d-flex align-items-center" href="#">
+                        <a class="sh-link d-flex align-items-center" href="{{ route('settings.index') }}">
                             <p class="m-0"><i class="fa-solid fa-location-dot"></i> Add address</p>
                         </a>
-                        <a class="sh-link d-flex align-items-center" href="#">
+                        <a class="sh-link d-flex align-items-center" href="{{ route('settings.index') }}">
                             <p class="m-0"><i class="fa-brands fa-facebook-f"></i> Add links</p>
                         </a>
-                        <a class="sh-link d-flex align-items-center" href="#">
+                        <a class="sh-link d-flex align-items-center" href="{{ route('settings.index') }}">
                             <p class="m-0"><i class="fa-solid fa-info"></i> Add more information</p>
                         </a>
                     </div>
