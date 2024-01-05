@@ -12,7 +12,7 @@ class PostLikeController extends Controller
         $liker = auth()->user();
         $liker->likes()->attach($post->id);
 
-        return redirect(route("home"))->with('status', 'Boink!');
+        return back()->with('status', 'Boink!');
     }
     public function unlike(Post $post)
     {
@@ -20,6 +20,6 @@ class PostLikeController extends Controller
 
         $liker->likes()->detach($post->id);
 
-        return redirect(route("home"))->with('status', 'Boink!');
+        return back()->with('status', 'Boink!');
     }
 }

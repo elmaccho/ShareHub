@@ -22,7 +22,7 @@ class PostController extends Controller
             return response()->json(['status' => 'success', 'message' => 'Post created!']);
         }
 
-        return redirect(route("home"))->with('status', 'Post created!');
+        return back()->with('status', 'Post created!');
     }
     public function destroy(Post $post)
     {
@@ -51,6 +51,6 @@ class PostController extends Controller
         $validatedData = $request->validated();
         $post->update($validatedData);
 
-        return redirect(route("home"))->with('status', 'Post updated!');
+        return back()->with('status', 'Post updated!');
     }
 }

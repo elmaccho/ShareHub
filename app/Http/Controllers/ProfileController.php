@@ -12,9 +12,11 @@ class ProfileController extends Controller
 {
     public function index(User $user): View
     {
+        $posts = $user->post;
 
         return view('profile.index', compact(
-            'user'
+            'user',
+            'posts'
         ));
     }
 

@@ -40,7 +40,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('home/post/create', [HomeController::class, 'create'])->name('post.create');
     
     Route::post('home/{post}/comments', [CommentController::class, 'store'])->name('comment.store');
-    Route::delete('home/comment/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
+    Route::delete('comment/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
 
     Route::post('home/post/{post}/like', [PostLikeController::class, 'like'])->name('post.like');
     Route::post('home/post/{post}/unlike', [PostLikeController::class, 'unlike'])->name('post.unlike');

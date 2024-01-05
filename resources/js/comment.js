@@ -10,7 +10,7 @@ $(function(){
             if (result.isConfirmed) {
                 $.ajax({
                     method: "DELETE",
-                    url: 'home/comment/' + $(this).data("comment-id"),
+                    url: deleteUrl + $(this).data("comment-id"),
                   })
                     .done(function( data ) {
                         window.location.reload()

@@ -25,18 +25,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
-        $posts = Post::orderBy('created_at', 'desc')->get();
+        $posts = Post::latest()->paginate(4);
         $comments = Comment::all();
 
-
-        return view('home.home', compact(
-            'user',
-            'posts',
-            'comments'
-        ));
+        return view('home.home', compact('user', 'posts', 'comments'));
     }
     public function create()
     {
