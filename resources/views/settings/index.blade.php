@@ -10,13 +10,18 @@
                 <div class="col-md-4 mb-3">
                   <div class="card">
                     <div class="card-body">
-                      <div class="d-flex flex-column align-items-center text-center">
+                      <div class="d-flex flex-column align-items-center text-center gap-3">
                         @if (!is_null($user->profile_image_path))
-                                <img class="rounded-circle" width="150" height="150" src="{{ asset('storage/'. $user->profile_image_path) }}" alt="{{ $user->name }} {{ $user->surname }}">
-                            @else
-                                <img class="rounded-circle" width="150" height="150" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="{{ $user->name }} {{ $user->surname }}">
+                              <img id="preview-image" class="rounded-circle" width="150" height="150" src="{{ asset('storage/'. $user->profile_image_path) }}" alt="{{ $user->name }} {{ $user->surname }}">
+                          @else
+                              <img id="preview-image" class="rounded-circle" width="150" height="150" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="{{ $user->name }} {{ $user->surname }}">
                         @endif
-                      </div>
+                        
+                        <label for="image-upload" class="form-label sh-pointer">
+                            <div type="button" class="btn btn-primary">Change Profile Image</div>
+                        </label>
+                        <input type="file" class="form-control d-none" id="image-upload" name="image" accept="image/*">
+                    </div>
                     </div>
                   </div>
                   <div class="card mt-3">
@@ -125,3 +130,4 @@
 @endsection
 @vite('resources/css/settings.css')
 @vite('resources/js/length_counter_about_bio.js')
+@vite('resources/js/updatePreview.js')

@@ -41,6 +41,21 @@
                 </span>
                 @if ($user->id == Auth::user()->id)
                     <div class="user-links">
+                        @if (!is_null($user->website_link))
+                            <a class="sh-link" target="_blank" href="{{ $user->website_link }}"><i class="icon-settings fa-solid fa-globe"></i> Website</a>
+                        @endif
+                        @if (!is_null($user->github_link))
+                            <a class="sh-link" target="_blank" href="{{ $user->github_link }}"><i class="icon-settings fa-brands fa-github"></i> Github</a>
+                        @endif
+                        @if (!is_null($user->youtube_link))
+                            <a class="sh-link" target="_blank" href="{{ $user->youtube_link }}"><i class="icon-settings fa-brands fa-youtube"></i> Youtube</a>
+                        @endif
+                        @if (!is_null($user->instagram_link))
+                            <a class="sh-link" target="_blank" href="{{ $user->instagram_link }}"><i class="icon-settings fa-brands fa-instagram"></i> Instagram</a>
+                        @endif
+                        @if (!is_null($user->facebook_link))
+                            <a class="sh-link" target="_blank" href="{{ $user->facebook_link }}"><i class="icon-settings fa-brands fa-facebook"></i> Facebook</a>
+                        @endif
                         <a class="sh-link d-flex align-items-center" href="{{ route('settings.index') }}">
                             <p class="m-0">Complete your profile information</p>
                         </a>
@@ -56,7 +71,9 @@
         </div>
         <div class="user-content">
             <div class="sh-section bio-container">
-                Bio
+                <p class="mb-0"><strong>About me</strong></p>
+                <hr class="m-0 mb-3">
+                <p class="mb-1">{{ $user->about }}</p>
             </div>
             <div class="post-container d-flex align-items-center flex-column gap-3">
     
@@ -244,8 +261,8 @@
             </div>
         </div>
     </div>
-    @vite('resources/css/home.css')
-    @vite('resources/css/profile.css')
+@vite('resources/css/home.css')
+@vite('resources/css/profile.css')
 @endsection
 @section('javascript')
     const deleteUrl = "{{ url('comment') }}/"
