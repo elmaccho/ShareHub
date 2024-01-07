@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserSettingsRequest;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -21,25 +22,9 @@ class SettingsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
     {
         //
     }
@@ -55,9 +40,14 @@ class SettingsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserSettingsRequest $request, User $user)
     {
-        //
+        $dataValidated = $request->validated()['settings'];
+
+        $user->update($dataValidated);
+
+
+        return redirect(route('profile.index', $user->id))->with('status', 'The profile has been updated!');
     }
 
     /**

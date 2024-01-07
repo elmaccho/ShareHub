@@ -33,8 +33,10 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::put('/profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('profile/{user}/background-image', [ProfileController::class, 'deleteBackgroundImage'])->name('profile.deleteBackgroundImage');
     Route::delete('profile/{user}/profile-image', [ProfileController::class, 'deleteProfileImage'])->name('profile.deleteProfileImage');  
+
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
-    
+    Route::post('/settings/edit/{user}', [SettingsController::class, 'update'])->name('settings.update');
+
     Route::post('home/posts', [PostController::class, 'store'])->name('post.store');
     Route::get('home/post/edit/{post}', [PostController::class, 'edit'])->name('post.edit');
     Route::post('home/post/edit/{post}', [PostController::class, 'update'])->name('post.update');

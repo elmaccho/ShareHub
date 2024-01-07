@@ -25,7 +25,15 @@ class User extends Authenticatable
         'email',
         'password',
         'profile_image_path',
-        'background_image_path'
+        'background_image_path',
+        'website_link',
+        'github_link',
+        'youtube_link',
+        'instagram_link',
+        'facebook_link',
+        'phone_number',
+        'address',
+        'about'
     ];
 
     /**

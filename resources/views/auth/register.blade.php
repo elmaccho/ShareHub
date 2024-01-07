@@ -64,10 +64,14 @@
                 </div>
 
 
-                <div class="form-row">
+                <div class="form-row mb-5">
                     <button type="submit" class="form-btn">
                         Register
                     </button>
+                </div>
+
+                <div class="form-row">
+                    <p>Already have account? <strong><a class="btn-link text-decoration-none" href="{{ route('login') }}">Login now!</a></strong></p>
                 </div>
             </form>
         </div>

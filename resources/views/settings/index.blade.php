@@ -1,9 +1,10 @@
 @extends('layouts.app')
 @section('title', $user->name . ' ' . $user->surname . ' Profile')
 @section('content')  
-@include('helpers.flash-messages')
 <div class="container">
-    <form action="" method="post" enctype="multipart/form-data">
+  @include('helpers.flash-messages')
+    <form action="{{ route('settings.update', $user->id) }}" method="post" enctype="multipart/form-data">
+      @csrf
         <div class="main-body">    
             <div class="row gutters-sm">
                 <div class="col-md-4 mb-3">
@@ -22,23 +23,23 @@
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap gap-2">
                         <h6 class="mb-0 d-flex align-items-center gap-1"><i class="icon-settings fa-solid fa-globe"></i> Website</h6>
-                        <input type="text" class="form-control" name="" id="">
+                        <input type="text" class="form-control" name="settings[website_link]" value="{{ $user->website_link }}">
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap gap-2">
                         <h6 class="mb-0 d-flex align-items-center gap-1"><i class="icon-settings fa-brands fa-github"></i> Github</h6>
-                        <input type="text" class="form-control" name="" id="">
+                        <input type="text" class="form-control" name="settings[github_link]" value="{{ $user->github_link }}">
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap gap-2">
                         <h6 class="mb-0 d-flex align-items-center gap-1"><i class="icon-settings fa-brands fa-youtube"></i> YouTube</h6>
-                        <input type="text" class="form-control" name="" id="">
+                        <input type="text" class="form-control" name="settings[youtube_link]" value="{{ $user->youtube_link }}">
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap gap-2">
                         <h6 class="mb-0 d-flex align-items-center gap-1"><i class="icon-settings fa-brands fa-instagram"></i> Instagram</h6>
-                        <input type="text" class="form-control" name="" id="">
+                        <input type="text" class="form-control" name="settings[instagram_link]" value="{{ $user->instagram_link }}">
                       </li>
                       <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap gap-2">
                         <h6 class="mb-0 d-flex align-items-center gap-1"><i class="icon-settings fa-brands fa-facebook"></i> Facebook</h6>
-                        <input type="text" class="form-control" name="" id="">
+                        <input type="text" class="form-control" name="settings[facebook_link]" value="{{ $user->facebook_link }}">
                       </li>
                     </ul>
                   </div>
@@ -54,7 +55,7 @@
                             <h6 class="mb-0">Name</h6>
                           </div>
                           <div class="col-sm-9 text-secondary">
-                            <input type="text" class="form-control" name="settings[name]" id="" value="{{ $user->name }}">
+                            <input type="text" class="form-control" name="settings[name]" id="" value="{{ $user->name }}" required>
                           </div>
                         </div>
                         <hr>
@@ -63,7 +64,7 @@
                               <h6 class="mb-0">Surname</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <input type="text" class="form-control" name="settings[surname]" id="" value="{{ $user->surname }}">
+                                <input type="text" class="form-control" name="settings[surname]" id="" value="{{ $user->surname }}" required>
                             </div>
                         </div>
                         <hr>
@@ -81,18 +82,21 @@
                             <h6 class="mb-0">Phone</h6>
                           </div>
                           <div class="col-sm-9 text-secondary">
-                            <input type="text" class="form-control" name="settings[phone_number]" id="">
+                            <input type="text" class="form-control" name="settings[phone_number]" id="" value="{{ $user->phone_number }}">
                           </div>
                         </div>
                         <hr>
                         <div class="row d-flex align-items-center">
                           <div class="col-sm-3">
-                            <h6 class="mb-0">Address</h6>
+                              <h6 class="mb-0">Address</h6>
                           </div>
                           <div class="col-sm-9 text-secondary">
-                            <input type="text" class="form-control" name="settings[address]" id="">
+                              <input type="text" class="form-control @error('address') is-invalid @enderror" name="settings[address]" value="{{ $user->address }}" id="">
+                              @error('settings.address')
+                                  <span class="text-danger">{{ $message }}</span>
+                              @enderror
                           </div>
-                        </div>
+                      </div>
                       </div>
                     </div>
                     <div class="card mb-3">
@@ -102,7 +106,7 @@
                                   <h6 class="mb-0">About</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary d-flex flex-column align-items-end position-relative">
-                                  <textarea class="form-control about-bio" name="" id="" cols="30" rows="10" maxlength="1000"></textarea>
+                                  <textarea class="form-control about-bio" name="settings[about]" id="" cols="30" rows="10" maxlength="1000">{{ $user->about }}</textarea>
                                   <div class="length-counter">
                                     <span class="words">0</span>/1000
                                   </div>
