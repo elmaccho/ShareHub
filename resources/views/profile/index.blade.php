@@ -41,6 +41,34 @@
                 </span>
                 @if ($user->id == Auth::user()->id)
                     <div class="user-links">
+
+                        <a class="sh-link d-flex align-items-center" href="{{ route('settings.index') }}">
+                            <p class="m-0">Complete your profile information</p>
+                        </a>
+                    </div>
+                @endif
+            </div>
+
+            <div class="user-action">
+                <button class="user-action-btn bg-transparent border-0">
+                    <i class="fa-solid fa-ellipsis"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="user-content">
+            <div class="user-info-section">
+                @if (!is_null($user->about))
+                    <div class="sh-section bio-container">
+                        <p class="mb-0"><strong>About Me</strong></p>
+                        <hr class="m-0 mb-3">
+                        <p class="mb-1">{{ $user->about }}</p>
+                    </div>
+                @endif
+                @if ($user->hasSocialLinks())
+                    <div class="sh-section d-flex flex-column">
+                        <p class="mb-0"><strong>Social Links</strong></p>
+                        <hr class="m-0 mb-3">
                         @if (!is_null($user->website_link))
                             <a class="sh-link" target="_blank" href="{{ $user->website_link }}"><i class="icon-settings fa-solid fa-globe"></i> Website</a>
                         @endif
@@ -56,25 +84,10 @@
                         @if (!is_null($user->facebook_link))
                             <a class="sh-link" target="_blank" href="{{ $user->facebook_link }}"><i class="icon-settings fa-brands fa-facebook"></i> Facebook</a>
                         @endif
-                        <a class="sh-link d-flex align-items-center" href="{{ route('settings.index') }}">
-                            <p class="m-0">Complete your profile information</p>
-                        </a>
                     </div>
                 @endif
             </div>
-
-            <div class="user-action">
-                <button class="user-action-btn bg-transparent border-0">
-                    <i class="fa-solid fa-ellipsis"></i>
-                </button>
-            </div>
-        </div>
-        <div class="user-content">
-            <div class="sh-section bio-container">
-                <p class="mb-0"><strong>About me</strong></p>
-                <hr class="m-0 mb-3">
-                <p class="mb-1">{{ $user->about }}</p>
-            </div>
+            
             <div class="post-container d-flex align-items-center flex-column gap-3">
     
                 {{ $user->name }}'s Posts

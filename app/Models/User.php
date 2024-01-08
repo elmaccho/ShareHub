@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use PhpParser\Node\Expr\Cast\Bool_;
 
 class User extends Authenticatable
 {
@@ -72,5 +73,16 @@ class User extends Authenticatable
     {
         return $this->likes()->where('post_id', $post->id)->exists();
     }
-    
+    public function hasSocialLinks()
+    {
+        $socialPlatforms = ['website_link', 'github_link', 'youtube_link', 'instagram_link', 'facebook_link'];
+
+        foreach($socialPlatforms as $socialPlatform){
+            if(!empty($this->$socialPlatform)){
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
