@@ -93,15 +93,39 @@
                         <hr>
                         <div class="row d-flex align-items-center">
                           <div class="col-sm-3">
-                              <h6 class="mb-0">Address</h6>
+                            <h6 class="mb-2">Location</h6>
                           </div>
-                          <div class="col-sm-9 text-secondary">
-                              <input type="text" class="form-control @error('address') is-invalid @enderror" name="settings[address]" value="{{ $user->address }}" id="">
-                              @error('settings.address')
-                                  <span class="text-danger">{{ $message }}</span>
-                              @enderror
+                          <div class="col-sm-9 text-secondary d-flex flex-column gap-2">
+                            <label for="countryList">Country</label>
+                            <select name="settings[country]" class="form-select mb-2" id="countryList">
+                              @if (!is_null($user->country))
+                                <option value="{{ $user->country }}">{{ $user->country }}</option>
+                              @endif
+                                <option value="">---</option>
+                                <option value="Poland">Poland</option>
+                            </select>
+
+                            <label for="stateList">State</label>
+                            <select name="settings[state]" class="form-select mb-2" id="stateList">
+                              @if (!is_null($user->state))
+                                <option value="{{ $user->state }}">{{ $user->state }}</option>
+                              @endif
+                                <option value="">---</option>
+                                <option value="Mazowieckie">Mazowieckie</option>
+                                <option value="Pomorskie">Pomorskie</option>
+                            </select>
+
+                            <label for="cityList">City</label>
+                            <select name="settings[city]"class="form-select mb-2" id="cityList">
+                              @if (!is_null($user->city))
+                                <option value="{{ $user->city }}">{{ $user->city }}</option>
+                              @endif
+                                <option value="">---</option>
+                                <option value="Radom">Radom</option>
+                                <option value="Gdynia">Gdynia</option>
+                            </select>
                           </div>
-                      </div>
+                        </div>
                       </div>
                     </div>
                     <div class="card mb-3">
@@ -131,3 +155,4 @@
 @vite('resources/css/settings.css')
 @vite('resources/js/length_counter_about_bio.js')
 @vite('resources/js/updatePreview.js')
+@vite('resources/js/locationApi.js')

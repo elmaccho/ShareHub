@@ -30,8 +30,10 @@ class UserSettingsRequest extends FormRequest
             'settings.instagram_link' => 'nullable|max:255',
             'settings.facebook_link' => 'nullable|max:255',
             'settings.phone_number' => 'nullable|regex:/^[0-9]{9,15}$/',
-            'settings.address' => 'nullable|regex:/^[A-Za-z0-9\s\-\,\.\']+$/|max:255',
-            'settings.about' => 'nullable|max:1000'
+            'settings.about' => 'nullable|max:1000',
+            'settings.country' => 'nullable|max:255',
+            'settings.state' => 'nullable|max:255',
+            'settings.city' => 'nullable|max:255',
         ];
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -33,8 +34,10 @@ class User extends Authenticatable
         'instagram_link',
         'facebook_link',
         'phone_number',
-        'address',
-        'about'
+        'about',
+        'country',
+        'state',
+        'city'
     ];
 
     /**
@@ -84,5 +87,17 @@ class User extends Authenticatable
         }
 
         return false;
+    }
+    public function country(): BelongsTo
+    {
+        return $this->belongsTo(Country::class);
+    }
+    public function state(): BelongsTo
+    {
+        return $this->belongsTo(State::class);
+    }
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class);
     }
 }

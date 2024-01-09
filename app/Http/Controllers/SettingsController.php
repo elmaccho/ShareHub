@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserSettingsRequest;
 use App\Models\User;
+use App\Services\LocationService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,6 +46,8 @@ class SettingsController extends Controller
         $dataValidated = $request->validated()['settings'];
 
         $user->update($dataValidated);
+
+        // dd($dataValidated);
 
 
         return redirect(route('profile.index', $user->id))->with('status', 'The profile has been updated!');
