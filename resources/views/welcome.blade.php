@@ -136,5 +136,9 @@
                 </div>
             </div>
         </div>
+
+        @livewire('messages')
+
+        
     </body>
 </html>

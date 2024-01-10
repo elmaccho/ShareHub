@@ -2,11 +2,11 @@
 
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostLikeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
+use App\Livewire\Messages;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -48,6 +48,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
 
     Route::post('home/post/{post}/like', [PostLikeController::class, 'like'])->name('post.like');
     Route::post('home/post/{post}/unlike', [PostLikeController::class, 'unlike'])->name('post.unlike');
+
 });
 
 Auth::routes();
