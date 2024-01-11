@@ -43,12 +43,12 @@ class SettingsController extends Controller
      */
     public function update(UserSettingsRequest $request, User $user)
     {
+        
         $dataValidated = $request->validated()['settings'];
-
+        if ($request->fails()) {
+            return redirect()->back()->withErrors($request)->withInput();
+        }
         $user->update($dataValidated);
-
-        // dd($dataValidated);
-
 
         return redirect(route('profile.index', $user->id))->with('status', 'The profile has been updated!');
     }

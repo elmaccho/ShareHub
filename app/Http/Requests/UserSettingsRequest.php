@@ -34,6 +34,7 @@ class UserSettingsRequest extends FormRequest
             'settings.country' => 'nullable|max:255',
             'settings.state' => 'nullable|max:255',
             'settings.city' => 'nullable|max:255',
+            'settings.image' => 'nullable|image',
         ];
     }
 }

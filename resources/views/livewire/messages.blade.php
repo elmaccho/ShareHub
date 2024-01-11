@@ -4,17 +4,17 @@
     @endif
 
     <form wire:submit="createNewUser" action="">
-        <input wire:model="name" type="text" placeholder="name">
+        <input class="form-control" wire:model="name" type="text" placeholder="name">
         @error('name')
             <span class="text-danger">{{ $message }}</span>
         @enderror<br>
 
-        <input wire:model="surname" type="text" placeholder="surname">
+        <input class="form-control" wire:model="surname" type="text" placeholder="surname">
         @error('surname')
             <span class="text-danger">{{ $message }}</span>
         @enderror<br>
 
-        <input wire:model="email" type="email" placeholder="email">
+        <input class="form-control" wire:model="email" type="email" placeholder="email">
         @error('email')
             <span class="text-danger">{{ $message }}</span>
         @enderror<br>
@@ -32,4 +32,6 @@
     @foreach ($users as $user)
         <p>{{ $user->name }}</p>
     @endforeach
+
+    {{ $users->links() }}
 </div>

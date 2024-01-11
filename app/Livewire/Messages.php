@@ -5,9 +5,14 @@ namespace App\Livewire;
 use App\Models\User;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Messages extends Component
 {
+    use WithPagination;
+
+    protected $paginationTheme = 'bootstrap';
+
     #[Rule('required|min:2|max:50')]
     public $name;
 
@@ -25,7 +30,7 @@ class Messages extends Component
 
     public function createNewUser(){
 
-        $this->validate();
+        $validated = $this->validate();
 
         User::create([
             'name' => $this->name,
@@ -39,7 +44,7 @@ class Messages extends Component
     }
     public function render()
     {
-        $users = User::all();
+        $users = User::paginate(5);
 
         return view('livewire.messages', compact(
             'users'

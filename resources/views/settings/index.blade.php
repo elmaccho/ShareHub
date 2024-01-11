@@ -20,7 +20,11 @@
                         <label for="image-upload" class="form-label sh-pointer">
                             <div type="button" class="btn btn-primary">Change Profile Image</div>
                         </label>
-                        <input type="file" class="form-control d-none" id="image-upload" name="image" accept="image/*">
+                        <input type="file" class="form-control d-none" id="image-upload" name="settings[image]" accept="image/*">
+
+                        @error('settings.image')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     </div>
                   </div>

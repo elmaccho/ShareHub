@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container d-flex gap-3 p-0 m-0">
+    <div class="messages-container d-flex gap-3">
         <div class="sh-section col-md-3 users-list">
             <form class="user-search" action="">
                 @csrf
@@ -9,16 +9,16 @@
             </form>
             <div class="user-list d-flex flex-column">
                 @foreach ($users as $user)
-                    <a class="text-decoration-none text-dark user-card" href="#{{ $user->id }}" data-user-id="{{ $user->id }}">
+                    <a class="text-decoration-none text-dark user-card d-flex align-items-center gap-2" href="#{{ $user->id }}" data-user-id="{{ $user->id }}">
                         @if (!is_null($user->profile_image_path))
                                 <img class="user-profile-image" src="{{ asset('storage/'. $user->profile_image_path) }}" alt="{{ $user->name }} {{$user->surname}}">
                             @else
                                 <img class="user-profile-image" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="{{ $user->name }} {{ $user->surname }}">
                         @endif
-                        <strong>
+                        <div class="user-info">
                             {{ $user->name }}
                             {{ $user->surname }}
-                        </strong>
+                        </div>
                     </a>
                 @endforeach
             </div>
