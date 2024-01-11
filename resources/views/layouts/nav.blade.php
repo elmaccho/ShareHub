@@ -20,7 +20,7 @@
         <a class="route-btn" href="{{ route('home') }}">
             <i class="fa-solid fa-house-chimney"></i>
         </a>
-        <a class="route-btn" href="#">
+        <a class="route-btn" href="{{ route('messages.index') }}">
             <i class="fa-solid fa-message"></i>
         </a>
         <a class="route-btn" href="{{ route('post.create') }}">
