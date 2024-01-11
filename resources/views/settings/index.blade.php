@@ -106,7 +106,6 @@
                                 <option value="{{ $user->country }}">{{ $user->country }}</option>
                               @endif
                                 <option value="">---</option>
-                                <option value="Poland">Poland</option>
                             </select>
 
                             <label for="stateList">State</label>
@@ -115,8 +114,6 @@
                                 <option value="{{ $user->state }}">{{ $user->state }}</option>
                               @endif
                                 <option value="">---</option>
-                                <option value="Mazowieckie">Mazowieckie</option>
-                                <option value="Pomorskie">Pomorskie</option>
                             </select>
 
                             <label for="cityList">City</label>
@@ -125,8 +122,6 @@
                                 <option value="{{ $user->city }}">{{ $user->city }}</option>
                               @endif
                                 <option value="">---</option>
-                                <option value="Radom">Radom</option>
-                                <option value="Gdynia">Gdynia</option>
                             </select>
                           </div>
                         </div>
