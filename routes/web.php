@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MessagesController;
@@ -7,7 +8,6 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostLikeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
-use App\Livewire\Messages;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -41,8 +41,8 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::post('home/posts', [PostController::class, 'store'])->name('post.store');
     Route::get('home/post/edit/{post}', [PostController::class, 'edit'])->name('post.edit');
     Route::post('home/post/edit/{post}', [PostController::class, 'update'])->name('post.update');
-    Route::delete('home/{post}', [PostController::class, 'destroy'])->name('post.destroy');
-    Route::delete('profile/{post}', [PostController::class, 'destroy'])->name('post.destroy');
+    Route::delete('home/{post}', [PostController::class, 'destroy'])->name('home.post.destroy');
+    Route::delete('profile/{post}', [PostController::class, 'destroy'])->name('profile.post.destroy');
     Route::get('home/post/create', [HomeController::class, 'create'])->name('post.create');
     
     Route::delete('comment/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
@@ -51,6 +51,10 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::post('home/post/{post}/unlike', [PostLikeController::class, 'unlike'])->name('post.unlike');
 
     Route::get('/messages', [MessagesController::class, 'index'])->name('messages.index');
+
+    Route::middleware(['can:isAdmin'])->group(function(){
+        Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+    });
 });
 
 Auth::routes();

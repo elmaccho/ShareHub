@@ -4,7 +4,9 @@
             <i class="fa-solid fa-ellipsis comment-action-btn"></i>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <li><button class="dropdown-item">Report</button></li>
+            @if (!$loggedUser->IsOwnerOfPost($post))
+                <li><button class="dropdown-item">Report</button></li>
+            @endif
           @if ($loggedUser->isAdmin() || $loggedUser->isModerator() || $loggedUser->isOwnerOfPost($post))
             <li><a href="{{ route('post.edit', $post->id) }}"><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#EditPost">Edit</button></a></li>
             <li><button class="dropdown-item delete-post-btn" data-post-id={{ $post->id }}>Delete</button></li>

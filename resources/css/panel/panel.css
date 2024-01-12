@@ -1,0 +1,14 @@
+body{
+    background: rgb(242,242,242);
+    background: linear-gradient(76deg, rgba(242,242,242,1) 50%, rgba(223,236,255,1) 100%);
+    background-size: cover;
+}
+main{
+    width: 100%;
+    padding: 45px;
+}
+.panel-container{
+    min-height: 100vh;
+
+    display: flex;
+}
