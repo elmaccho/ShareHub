@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use PhpParser\Node\Expr\Cast\Bool_;
+use App\Enums\UserRole as UserRoles;
 
 class User extends Authenticatable
 {
@@ -37,7 +37,8 @@ class User extends Authenticatable
         'about',
         'country',
         'state',
-        'city'
+        'city',
+        'role'
     ];
 
     /**
@@ -99,5 +100,19 @@ class User extends Authenticatable
     public function city(): BelongsTo
     {
         return $this->belongsTo(City::class);
+    }
+    public function isAdmin()
+    {
+        return $this->role === UserRoles::ADMIN;
+    }
+
+    public function isModerator()
+    {
+        return $this->role === UserRoles::MODERATOR;
+    }
+
+    public function isOwnerOfPost(Post $post)
+    {
+        return $this->id === $post->user_id;
     }
 }

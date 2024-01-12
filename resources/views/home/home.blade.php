@@ -46,8 +46,10 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                           <li><button class="dropdown-item">Report</button></li>
-                          <li><a href="{{ route('post.edit', $post->id) }}"><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#EditPost">Edit</button></a></li>
-                          <li><button class="dropdown-item delete-post-btn" data-post-id={{ $post->id }}>Delete</button></li>
+                          @if ($user->isAdmin() || $user->isModerator() || $user->isOwnerOfPost($post))
+                            <li><a href="{{ route('post.edit', $post->id) }}"><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#EditPost">Edit</button></a></li>
+                            <li><button class="dropdown-item delete-post-btn" data-post-id={{ $post->id }}>Delete</button></li>
+                          @endif
                         </ul>
                     </div>
                     <div class="author-info">
