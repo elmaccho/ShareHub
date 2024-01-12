@@ -26,7 +26,7 @@ class AddComment extends Component
 
         $this->reset(['comment']);
         $this->dispatch('commentAdded');
-        request()->session()->flash('success', 'User Created Successfully!');
+        // request()->session()->flash('success', 'User Created Successfully!');
     }
 
     public function render()

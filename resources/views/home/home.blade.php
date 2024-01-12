@@ -153,7 +153,8 @@
     @vite('resources/js/post.js')
 @endsection
 @section('javascript')
-    const deleteUrl = "{{ url('comment') }}/";
+    const commentDeleteUrl = "{{ url('comment') }}/";
+    const postdeleteUrl = "{{ url('home') }}/"
 @endsection
 @section('js-files')
     @vite('resources/js/comment.js');
