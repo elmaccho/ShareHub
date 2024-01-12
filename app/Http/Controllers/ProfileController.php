@@ -13,9 +13,11 @@ class ProfileController extends Controller
     public function index(User $user): View
     {
         $posts = $user->post;
+        $loggedUser = Auth::user();
 
         return view('profile.index', compact(
             'user',
+            'loggedUser',
             'posts'
         ));
     }

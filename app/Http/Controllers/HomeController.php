@@ -27,11 +27,11 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $user = Auth::user();
+        $loggedUser = Auth::user();
         $posts = Post::latest()->paginate(4);
         $comments = Comment::all();
 
-        return view('home.home', compact('user', 'posts', 'comments'));
+        return view('home.home', compact('loggedUser', 'posts', 'comments'));
     }
     public function create()
     {

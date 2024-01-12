@@ -93,7 +93,7 @@
                 {{ $user->name }}'s Posts
 
                 @foreach ($posts as $post)
-                <div class="sh-section d-flex flex-column">
+                {{-- <div class="sh-section d-flex flex-column">
                     <div class="dropdown comment-action">
                         <button class="btn btn-link text-dark" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-ellipsis comment-action-btn"></i>
@@ -167,7 +167,10 @@
 
                         @livewire('add-comment', ['postId' => $post->id])
                     </div>
-                </div>
+                </div> --}}
+
+                @include('layouts.post')
+
             @endforeach
             </div>
         </div>
