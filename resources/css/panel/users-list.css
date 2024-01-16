@@ -27,3 +27,16 @@
 .action-buttons > button{
     width: 30px;
 }
+.image-row{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.image-row > img{
+    width: 200px;
+    height: 200px;
+}
+.modal-body{
+    overflow-y: scroll;
+    max-height: 600px;
+}
