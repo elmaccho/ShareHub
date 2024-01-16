@@ -27,7 +27,7 @@
                 <i class="fa-solid fa-gavel"></i>
             </button>
 
-            <button class="btn btn-success btn-sm">
+            <button class="btn btn-success btn-sm" wire:click="mount({{ $user->id }})" data-bs-toggle="modal" data-bs-target="#edit-modal-{{ $user->id }}">
                 <i class="fa-solid fa-pencil"></i>
             </button>
 
@@ -37,6 +37,7 @@
         </div>
     </div>
     @livewire('admin.user-details', ['userId' => $user->id])
+    @livewire('admin.user-edit', ['userId' => $user->id])
 @endforeach
 
 </div>

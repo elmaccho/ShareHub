@@ -10,6 +10,11 @@ class Country extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'short_code'
+    ];
+
     public function users(): HasMany
     {
         return $this->hasMany(User::class);
