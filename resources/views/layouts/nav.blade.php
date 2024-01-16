@@ -40,6 +40,12 @@
             @endif
         </a>
         <div class="dropdown-menu dropdown-menu-end new-dropdown-menu mobiledropdown" aria-labelledby="navbarDropdown">
+            @if (Auth::user()->isAdmin())
+                <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
+                    Admin Panel
+                </a>
+            @endif
+
             <a class="dropdown-item" href="{{ route('profile.index', Auth::user()->id) }}">
                 Profile
             </a>

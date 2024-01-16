@@ -5,32 +5,29 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li>
-        <button class="nav-link text-white" data-bs-toggle="collapse" data-bs-target="#usersCollapse" aria-expanded="false">
+        <a href="{{ route('admin.dashboard.showusers') }}" id="usersCollapseBtn" class="nav-link text-white" >
           <i class="fa-solid fa-users"></i>
           Users
-        </button>
+        </a>
         <div class="collapse ms-4" id="usersCollapse">
-          <!-- Put your content for Users here -->
           Content for Users
         </div>
       </li>
       <li>
-        <button class="nav-link text-white" data-bs-toggle="collapse" data-bs-target="#postsCollapse" aria-expanded="false">
+        <button id="postsCollapseBtn" class="nav-link text-white" data-bs-toggle="collapse" data-bs-target="#postsCollapse" aria-expanded="false">
           <i class="fa-solid fa-box"></i>
           Posts
         </button>
         <div class="collapse ms-4" id="postsCollapse">
-          <!-- Put your content for Posts here -->
           Content for Posts
         </div>
       </li>
       <li>
-        <button class="nav-link text-white" data-bs-toggle="collapse" data-bs-target="#reportsCollapse" aria-expanded="false">
+        <button id="reportsCollapseBtn" class="nav-link text-white" data-bs-toggle="collapse" data-bs-target="#reportsCollapse" aria-expanded="false">
           <i class="fa-solid fa-bullhorn"></i>
           Reports
         </button>
         <div class="collapse ms-4" id="reportsCollapse">
-          <!-- Put your content for Reports here -->
           Content for Reports
         </div>
       </li>
@@ -44,8 +41,8 @@
     <hr>
     <div class="dropdown">
       <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="{{ asset('storage/' . $loggedUser->profile_image_path) }}" alt="" width="32" height="32" class="rounded-circle me-2">
-        <strong>{{ $loggedUser->name }} {{ $loggedUser->surname }}</strong>
+        <img src="{{ asset('storage/' . Auth::user()->profile_image_path) }}" alt="" width="32" height="32" class="rounded-circle me-2">
+        <strong>{{ Auth::user()->name }} {{ Auth::user()->surname }}</strong>
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
         {{-- <li><a class="dropdown-item" href="#">New project...</a></li>

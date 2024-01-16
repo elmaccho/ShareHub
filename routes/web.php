@@ -54,6 +54,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
 
     Route::middleware(['can:isAdmin'])->group(function(){
         Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+        Route::get('/admin/users', [AdminDashboardController::class, 'showUsers'])->name('admin.dashboard.showusers');
     });
 });
 
