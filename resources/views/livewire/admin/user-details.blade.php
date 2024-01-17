@@ -22,9 +22,9 @@
 
                     <hr>
                     <h5>Address</h5>
-                    <p>Country: {{ $user->country ?? 'Unknown' }}</p>
-                    <p>State: {{ $user->state ?? 'Unknown' }}</p>
-                    <p>City: {{ $user->city ?? 'Unknown' }}</p>
+                    <p>Country: {{ $user->country->name ?? 'Unknown' }}</p>
+                    <p>State: {{ $user->state->name ?? 'Unknown' }}</p>
+                    <p>City: {{ $user->city->name ?? 'Unknown' }}</p>
 
                     <hr>
                     <h5>Activity</h5>

@@ -7,7 +7,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
+                    <form action="" wire:submit.prevent="update">
                         <div class="image-row mb-4 d-flex flex-column">
                             @if (!is_null($user->profile_image_path))
                                     <img class="profile-image mb-3" src="{{ asset('storage/'. $user->profile_image_path) }}" alt="">
@@ -21,11 +21,11 @@
                             <input type="file" class="form-control d-none" id="image-upload" name="settings[image]" accept="image/*">
                         </div>
     
-                        <p>Name: <input class="form-control" type="text" name="" id="" value="{{ $user->name }}"></p>
-                        <p>Surname: <input class="form-control" type="text" name="" id="" value="{{ $user->surname }}"></p>
+                        <p>Name: <input class="form-control" type="text" name="" id="" value="{{ $user->name }}" wire:model="name"></p>
+                        <p>Surname: <input class="form-control" type="text" name="" id="" value="{{ $user->surname }}" wire:model="surname"></p>
                         <p>Email: <input class="form-control" type="text" name="" id="" value="{{ $user->email }}"></p>
                         <p>Role: 
-                            <select class="form-select" name="user_role" id="user_role">
+                            <select class="form-select" name="user_role" id="user_role" wire:model="role">
                                 @foreach (App\Enums\UserRole::TYPES as $role)
                                     <option value="{{ $role }}">{{ $role }}</option>
                                 @endforeach
@@ -35,19 +35,32 @@
                         <hr>
                         <h5>Address</h5>
                             <label for="countryList">Country:</label>
-                            <select name="country" class="form-select mb-2" id="countryList">
+                            <select name="country" class="form-select mb-2" id="countryList_{{ $loop->index }}" wire:model="country_id">
+                                @if (!is_null($user->country))
+                                    <option value="{{ $user->country->id }}" selected>{{ $user->country->name }}</option>
+                                @endif
                                 @foreach ($countries as $country)
                                     <option value="{{ $country->id }}">{{ $country->name }}</option>
                                 @endforeach
                             </select>
 
                             <label for="stateList">State:</label>
-                            <select name="state" class="form-select mb-2" id="stateList">
+                            <select name="state" class="form-select mb-2" id="stateList_{{ $loop->index }}" wire:model="state_id">
+                                @if (!is_null($user->state))
+                                    <option value="{{ $user->state->id }}" selected>{{ $user->state->name }}</option>
+                                @endif
                             </select>
 
                             <label for="cityList">City:</label>
-                            <select name="city"class="form-select mb-2" id="cityList">
+                            <select name="city"class="form-select mb-2" id="cityList_{{ $loop->index }}" wire:model="city_id">
+                                @if (!is_null($user->city))
+                                    <option value="{{ $user->city->id }}" >{{ $user->city->name }}</option>
+                                @endif
                             </select>
+
+                            <div class="row m-0 mt-5">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
                     </form>
 
                 </div>
@@ -55,3 +68,4 @@
         </div>
     </div>
 </div>
+@vite('resources/js/location_picker.js')

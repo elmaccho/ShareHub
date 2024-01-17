@@ -35,9 +35,9 @@ class User extends Authenticatable
         'facebook_link',
         'phone_number',
         'about',
-        'country',
-        'state',
-        'city',
+        'country_id',
+        'state_id',
+        'city_id',
         'role'
     ];
 

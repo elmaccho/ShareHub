@@ -14,11 +14,46 @@ class UserEdit extends Component
     public $user;
     public $countries, $states;
 
+    public $name;
+    public $surname;
+    public $role;
+    public $country_id, $state_id, $city_id;
+
+
+
     public function mount($userId)
     {
         $this->userId = $userId;
         $this->user = User::find($userId);
         $this->countries = Country::all();
+        $this->name = $this->user->name;
+        $this->surname = $this->user->surname;
+        $this->role = $this->user->role;
+        $this->country_id = $this->user->country_id; // Poprawione
+        $this->state_id = $this->user->state_id; // Poprawione
+        $this->city_id = $this->user->city_id; // Poprawione
+    }
+    
+    public function update()
+    {
+        $this->user->update([
+            'name' => $this->name,
+            'surname' => $this->surname,
+            'role' => $this->role,
+            'country_id' => $this->country_id,
+            'state_id' => $this->state_id,
+            'city_id' => $this->city_id,
+        ]);
+        
+        // dd(
+        //     $this->userId,
+        //     $this->name,
+        //     $this->surname,
+        //     $this->role,
+        //     $this->country_id,
+        //     $this->state_id,
+        //     $this->city_id,
+        // );
     }
     public function render()
     {
