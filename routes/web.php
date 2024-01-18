@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\admin\AdminPostController;
+use App\Http\Controllers\admin\AdminUserController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
@@ -54,10 +56,12 @@ Route::middleware(['auth', 'verified', 'CheckIfBanned'])->group(function(){
 
     Route::middleware(['can:isAdmin'])->group(function(){
         Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
-        Route::get('/admin/users', [AdminDashboardController::class, 'showUsers'])->name('admin.dashboard.showusers');
-        Route::get('/admin/get-states', [AdminDashboardController::class, 'getStates']);
-        Route::get('/admin/get-cities', [AdminDashboardController::class, 'getCities']);
+        Route::get('/admin/users', [AdminUserController::class, 'index'])->name('admin.users.index');
+        Route::get('/admin/get-states', [AdminUserController::class, 'getStates']);
+        Route::get('/admin/get-cities', [AdminUserController::class, 'getCities']);
         Route::delete('/admin/{post}', [PostController::class, 'destroy'])->name('admin.dashboard.deletepost');
+
+        Route::get('/admin/post', [AdminPostController::class, 'index'])->name('admin.posts.index');
     });
 });
 

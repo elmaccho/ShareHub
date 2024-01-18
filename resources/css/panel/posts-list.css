@@ -1,0 +1,15 @@
+.post-card{
+    display: flex;
+    width: 100%;
+    background-color: white;
+    flex-direction: column;
+    padding: 15px;
+    position: relative;
+}
+.action-buttons{
+    position: absolute;
+    right: 15px;
+}
+.action-buttons > button{
+    width: 30px;
+}

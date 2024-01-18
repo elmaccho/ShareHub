@@ -5,7 +5,7 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li>
-        <a href="{{ route('admin.dashboard.showusers') }}" id="usersCollapseBtn" class="nav-link text-white" >
+        <a href="{{ route('admin.users.index') }}" id="usersCollapseBtn" class="nav-link text-white" >
           <i class="fa-solid fa-users"></i>
           Users
         </a>
@@ -14,10 +14,10 @@
         </div>
       </li>
       <li>
-        <button id="postsCollapseBtn" class="nav-link text-white" data-bs-toggle="collapse" data-bs-target="#postsCollapse" aria-expanded="false">
+        <a href="{{ route('admin.posts.index') }}" id="postsCollapseBtn" class="nav-link text-white">
           <i class="fa-solid fa-box"></i>
           Posts
-        </button>
+        </a>
         <div class="collapse ms-4" id="postsCollapse">
           Content for Posts
         </div>
@@ -31,6 +31,11 @@
           Content for Reports
         </div>
       </li>
+      <li>
+        <a href="" id="usersCollapseBtn" class="nav-link text-white" >
+          <i class="fa-solid fa-gavel"></i> Banned Users
+        </a>
+      </li>
       <li class="nav-item">
         <a href="{{ route('home') }}" class="nav-link text-white" aria-current="page">
           <i class="fa-solid fa-house"></i>
@@ -41,8 +46,8 @@
     <hr>
     <div class="dropdown">
       <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="{{ asset('storage/' . Auth::user()->profile_image_path) }}" alt="" width="32" height="32" class="rounded-circle me-2">
-        <strong>{{ Auth::user()->name }} {{ Auth::user()->surname }}</strong>
+        <img src="{{ asset('storage/' . $loggedUser->profile_image_path) }}" alt="" width="32" height="32" class="rounded-circle me-2">
+        <strong>{{ $loggedUser->name }} {{ $loggedUser->surname }}</strong>
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
         {{-- <li><a class="dropdown-item" href="#">New project...</a></li>
@@ -50,15 +55,17 @@
         <li><a class="dropdown-item" href="#">Profile</a></li> --}}
         <li><a href="{{ route('home') }}" class="dropdown-item">Return To Home</a></li>
         <li><hr class="dropdown-divider"></li> 
-        <li>            <a class="dropdown-item" href="{{ route('logout') }}"
+        <li>            
+          <a class="dropdown-item" href="{{ route('logout') }}"
           onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
            {{ __('Logout') }}
-       </a>
+          </a>
 
-       <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-           @csrf
-       </form></li>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+          </form>
+        </li>
       </ul>
     </div>
 </div>
