@@ -21,21 +21,22 @@
                             <input type="file" class="form-control d-none" id="image-upload" name="settings[image]" accept="image/*">
                         </div>
     
-                        <p>Name: <input class="form-control" type="text" name="" id="" value="{{ $user->name }}" wire:model="name"></p>
-                        <p>Surname: <input class="form-control" type="text" name="" id="" value="{{ $user->surname }}" wire:model="surname"></p>
-                        <p>Email: <input class="form-control" type="text" name="" id="" value="{{ $user->email }}"></p>
+                        <p>Name: <input class="form-control" autocomplete="name" type="text" name="name" value="{{ $user->name }}" wire:model="name"></p>
+                        <p>Surname: <input class="form-control" autocomplete="surname" type="text" name="surname" value="{{ $user->surname }}" wire:model="surname"></p>
+                        <p>Email: <input class="form-control" autocomplete="email" type="text" name="email" value="{{ $user->email }}"></p>
                         <p>Role: 
                             <select class="form-select" name="user_role" id="user_role" wire:model="role">
                                 @foreach (App\Enums\UserRole::TYPES as $role)
-                                    <option value="{{ $role }}">{{ $role }}</option>
+                                <option value="{{ $role }}">{{ $role }}</option>
                                 @endforeach
                             </select>
                         </p>
-    
+                        
                         <hr>
                         <h5>Address</h5>
-                            <label for="countryList">Country:</label>
-                            <select name="country" class="form-select mb-2" id="countryList_{{ $loop->index }}" wire:model="country_id">
+                        <label for="countryList_{{ $loop->index }}">Country:</label>
+                        <select name="country" class="form-select mb-2" id="countryList_{{ $loop->index }}" wire:model="country_id">
+                            <option value="" selected>Select Country</option>
                                 @if (!is_null($user->country))
                                     <option value="{{ $user->country->id }}" selected>{{ $user->country->name }}</option>
                                 @endif
@@ -44,14 +45,14 @@
                                 @endforeach
                             </select>
 
-                            <label for="stateList">State:</label>
+                            <label for="stateList_{{ $loop->index }}">State:</label>
                             <select name="state" class="form-select mb-2" id="stateList_{{ $loop->index }}" wire:model="state_id">
                                 @if (!is_null($user->state))
                                     <option value="{{ $user->state->id }}" selected>{{ $user->state->name }}</option>
                                 @endif
                             </select>
 
-                            <label for="cityList">City:</label>
+                            <label for="cityList_{{ $loop->index }}">City:</label>
                             <select name="city"class="form-select mb-2" id="cityList_{{ $loop->index }}" wire:model="city_id">
                                 @if (!is_null($user->city))
                                     <option value="{{ $user->city->id }}" >{{ $user->city->name }}</option>

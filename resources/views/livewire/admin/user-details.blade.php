@@ -31,6 +31,26 @@
                     <p>Posts count: {{ $user->post->count() }}</p>
                     <p>Comments count: {{ $user->comment->count() }}</p>
                     <p>Likes count: {{ $user->likes->count() }}</p>
+
+                    <hr>
+                    <h5>Posts</h5>
+                    @forelse ($userPosts as $post)
+                        <div class="card mb-1">
+                            <div class="card-body d-flex justify-content-between">
+                                {{ $post->title }}
+
+                                <div class="action-buttons">
+                                    @if ($loggedUser->isAdmin() || $loggedUser->isModerator() || $loggedUser->isOwnerOfPost($post))
+                                        <a href="{{ route('post.edit', $post->id) }}"><button class="btn btn-success btn-sm"><i class="fa-solid fa-pencil"></i></button></a>
+                                        <button class="btn btn-danger btn-sm delete-post-btn" data-post-id={{ $post->id }}><i class="fa-regular fa-trash-can"></i></button>
+                                    @endif
+                                </div>
+                            </div>
+
+                        </div>
+                        @empty
+                            <p class="text-info"><strong>No posts</strong></p>
+                    @endforelse
                 </div>
             </div>
         </div>

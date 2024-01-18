@@ -7,9 +7,6 @@ $(document).ready(function () {
             var stateList = form.find('[name="state"]');
             var cityList = form.find('[name="city"]');
 
-            // Pozostała część skryptu pozostaje taka sama
-
-            // Ajax: Pobierz stany dla danego kraju
             $.ajax({
                 url: '/admin/get-states',
                 type: 'GET',
@@ -27,9 +24,6 @@ $(document).ready(function () {
             var stateId = $(this).val();
             var cityList = form.find('[name="city"]');
 
-            // Pozostała część skryptu pozostaje taka sama
-
-            // Ajax: Pobierz miasta dla danego stanu
             $.ajax({
                 url: '/admin/get-cities',
                 type: 'GET',

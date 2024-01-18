@@ -29,9 +29,9 @@ class UserEdit extends Component
         $this->name = $this->user->name;
         $this->surname = $this->user->surname;
         $this->role = $this->user->role;
-        $this->country_id = $this->user->country_id; // Poprawione
-        $this->state_id = $this->user->state_id; // Poprawione
-        $this->city_id = $this->user->city_id; // Poprawione
+        $this->country_id = $this->user->country_id;
+        $this->state_id = $this->user->state_id;
+        $this->city_id = $this->user->city_id;
     }
     
     public function update()

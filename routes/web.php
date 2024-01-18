@@ -57,6 +57,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::get('/admin/users', [AdminDashboardController::class, 'showUsers'])->name('admin.dashboard.showusers');
         Route::get('/admin/get-states', [AdminDashboardController::class, 'getStates']);
         Route::get('/admin/get-cities', [AdminDashboardController::class, 'getCities']);
+        Route::delete('/admin/{post}', [PostController::class, 'destroy'])->name('admin.dashboard.deletepost');
     });
 });
 

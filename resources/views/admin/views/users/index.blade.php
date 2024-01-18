@@ -23,7 +23,7 @@
         </div>
 
         <div class="action-buttons">
-            <button class="btn btn-danger btn-sm">
+            <button class="btn btn-danger btn-sm" wire:click="mount({{ $user->id }})" data-bs-toggle="modal" data-bs-target="#status-modal-{{ $user->id }}">
                 <i class="fa-solid fa-gavel"></i>
             </button>
 
@@ -38,10 +38,15 @@
     </div>
     @livewire('admin.user-details', ['userId' => $user->id])
     @livewire('admin.user-edit', ['userId' => $user->id])
+    @livewire('admin.user-status', ['userId' => $user->id])
 @endforeach
 
 </div>
 </div>
     {{ $users->links() }}
 @endsection
+@section('javascript')
+    const postdeleteUrl = "{{ url('admin/') }}/"
+@endsection
 @vite('resources/css/panel/users-list.css')
+@vite('resources/js/post.js')

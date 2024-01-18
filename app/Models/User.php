@@ -115,4 +115,9 @@ class User extends Authenticatable
     {
         return $this->id === $post->user_id;
     }
+
+    public function bans(): HasMany
+    {
+        return $this->hasMany(Ban::class);
+    }
 }
