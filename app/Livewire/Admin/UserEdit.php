@@ -44,16 +44,7 @@ class UserEdit extends Component
             'state_id' => $this->state_id,
             'city_id' => $this->city_id,
         ]);
-        
-        // dd(
-        //     $this->userId,
-        //     $this->name,
-        //     $this->surname,
-        //     $this->role,
-        //     $this->country_id,
-        //     $this->state_id,
-        //     $this->city_id,
-        // );
+        return redirect(request()->header('Referer'));
     }
     public function render()
     {

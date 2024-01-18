@@ -27,7 +27,7 @@ Route::get('/', function () {
 });
 
 
-Route::middleware(['auth', 'verified'])->group(function(){
+Route::middleware(['auth', 'verified', 'CheckIfBanned'])->group(function(){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::get('/profile/{user}', [ProfileController::class, 'index'])->name('profile.index');

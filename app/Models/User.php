@@ -120,4 +120,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Ban::class);
     }
+    public function isBanned()
+    {
+        return $this->bans()->exists();
+    }
 }

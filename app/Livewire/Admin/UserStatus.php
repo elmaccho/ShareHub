@@ -22,9 +22,11 @@ class UserStatus extends Component
     public $banDuration;
     public $startDate;
     public $endDate;
+    public $bans;
 
     public function mount($userId)
     {
+        $this->bans = Ban::find($userId);
         $this->loggedUser = Auth::user();
         $this->userId = $userId;
         $this->user = User::find($userId);
@@ -40,11 +42,11 @@ class UserStatus extends Component
             $this->endDate = Carbon::today()->addDays($this->banDuration)->format('Y-m-d');
         }
     }
-
     public function submit()
     {
         $this->calculateEndDate();
-    
+        $this->reason = empty($this->reason) ? null : $this->reason;
+
         Ban::create([
             'user_id' => $this->userId,
             'category' => $this->category,
@@ -52,6 +54,18 @@ class UserStatus extends Component
             'start_date' => $this->startDate,
             'end_date' => $this->endDate
         ]);
+
+        return redirect(request()->header('Referer'));
+    }
+
+    public function unban()
+    {
+        $ban = Ban::where('user_id', $this->userId)->first();
+
+        if($ban){
+            $ban->delete();
+        }
+        return redirect(request()->header('Referer'));
     }
     
 

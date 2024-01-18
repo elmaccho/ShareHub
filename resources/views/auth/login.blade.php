@@ -10,8 +10,14 @@
         </div>
     </a>
     <div class="form-wrapper">
-        <div class="form-header mb-5">
+        <div class="form-header mb-5 d-flex flex-column align-items-center">
             <span class="h1">Login</span>
+
+            @if (session('error'))
+            <div class="alert alert-danger m-0">
+                {{ session('error') }}
+            </div>
+         @endif
         </div>
         <div class="form-body">
             <form class="form-box" method="POST" action="{{ route('login') }}">

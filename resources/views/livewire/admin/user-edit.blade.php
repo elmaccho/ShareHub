@@ -60,7 +60,7 @@
                             </select>
 
                             <div class="row m-0 mt-5">
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="submit" class="btn btn-success">Save</button>
                             </div>
                     </form>
 
