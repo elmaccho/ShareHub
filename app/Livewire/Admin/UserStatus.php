@@ -54,23 +54,9 @@ class UserStatus extends Component
             'start_date' => $this->startDate,
             'end_date' => $this->endDate
         ]);
- 
-       
-        
 
         return redirect(request()->header('Referer'));
-    }
-
-    public function unban()
-    {
-        $ban = Ban::where('user_id', $this->userId)->first();
-
-        if($ban){
-            $ban->delete();
-        }
-        return redirect(request()->header('Referer'));
-    }
-    
+    }   
 
     public function render()
     {

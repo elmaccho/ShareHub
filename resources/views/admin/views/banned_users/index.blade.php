@@ -5,7 +5,7 @@
 @section('something')
 
 <div class="d-flex flex-column gap-2">
-    @foreach ($bannedUsers as $bannedUser)
+    @forelse ($bannedUsers as $bannedUser)
         <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
             <h2 class="accordion-header" id="flush-heading{{ $bannedUser->user->id }}">
@@ -35,19 +35,15 @@
                         <p>Ban date: {{ \Carbon\Carbon::parse($bannedUser->start_date)->format('d/m/Y') }}</p>
                     </div>
                     <div class="row">
-                        <form action="" wire:submit.prevent="unban">
-                            <div class="row m-0">
-                                <button class="btn btn-sm btn-danger">
-                                    Unban
-                                </button>
-                            </div>
-                        </form>
+                        @livewire('admin.unban-button', [$bannedUser->user->id])
                     </div>
                 </div>
             </div>
             </div>
         </div>
-    @endforeach
+        @empty
+            <h6>No Banned Users...</h6>
+    @endforelse
 </div>
 @endsection
 @vite('resources/css/panel/users-list.css')

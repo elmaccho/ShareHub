@@ -63,7 +63,7 @@ Route::middleware(['auth', 'verified', 'CheckIfBanned'])->group(function(){
         Route::delete('/admin/{post}', [PostController::class, 'destroy'])->name('admin.dashboard.deletepost');
 
         Route::get('/admin/post', [AdminPostController::class, 'index'])->name('admin.posts.index');
-        Route::get('/admin/banned users', [AdminBannedUsersController::class, 'index'])->name('admin.banned_users.index');
+        Route::get('/admin/banned_users', [AdminBannedUsersController::class, 'index'])->name('admin.banned_users.index');
     });
 });
 

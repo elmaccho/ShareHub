@@ -26,13 +26,8 @@
                         <p>Category: {{ $user->bans->first()->category ?? 'Unknown'}}</p>
                         <p>Reason: {{ $user->bans->first()->reason ?? 'Unknown' }}</p>
 
-                        <form action="" wire:submit.prevent="unban">
-                            <div class="row m-0">
-                                <button class="btn btn-sm btn-danger">
-                                    Unban
-                                </button>
-                            </div>
-                        </form>
+                        @livewire('admin.unban-button', [$user->id])
+
                         @else
                             <h5>Category:</h5>
                             <form action="" wire:submit.prevent="submit"">

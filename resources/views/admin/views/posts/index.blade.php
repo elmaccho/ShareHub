@@ -13,17 +13,10 @@
         
         
         <div class="action-buttons">
-            <button class="btn btn-danger btn-sm" data-bs-toggle="modal">
-                <i class="fa-solid fa-gavel"></i>
-            </button>
-            
-            <button class="btn btn-success btn-sm" data-bs-toggle="modal">
-                <i class="fa-solid fa-pencil"></i>
-            </button>
-            
-            <button class="btn btn-info btn-sm info-btn" data-bs-toggle="modal">
-                <i class="fa-solid fa-info"></i>
-            </button>
+            @if ($loggedUser->isAdmin() || $loggedUser->isModerator() || $loggedUser->isOwnerOfPost($post))
+                <a href="{{ route('post.edit', $post->id) }}"><button class="btn btn-success btn-sm"><i class="fa-solid fa-pencil"></i></button></a>
+                <button class="btn btn-danger btn-sm delete-post-btn" data-post-id={{ $post->id }}><i class="fa-regular fa-trash-can"></i></button>
+            @endif
         </div>
     </div>
     @endforeach
