@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\AdminBannedUsersController;
 use App\Http\Controllers\admin\AdminPostController;
 use App\Http\Controllers\admin\AdminUserController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
@@ -62,6 +63,7 @@ Route::middleware(['auth', 'verified', 'CheckIfBanned'])->group(function(){
         Route::delete('/admin/{post}', [PostController::class, 'destroy'])->name('admin.dashboard.deletepost');
 
         Route::get('/admin/post', [AdminPostController::class, 'index'])->name('admin.posts.index');
+        Route::get('/admin/banned users', [AdminBannedUsersController::class, 'index'])->name('admin.banned_users.index');
     });
 });
 

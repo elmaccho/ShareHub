@@ -28,11 +28,15 @@
           Reports
         </button>
         <div class="collapse ms-4" id="reportsCollapse">
-          Content for Reports
+          <div class="d-flex flex-column">
+            <a href="#" class="text-light text-decoration-none" id="postsCollapseBtn">Users</a>
+            <a href="#" class="text-light text-decoration-none" id="postsCollapseBtn">Posts</a>
+            <a href="#" class="text-light text-decoration-none" id="postsCollapseBtn">Comments</a>
+          </div>
         </div>
       </li>
       <li>
-        <a href="" id="usersCollapseBtn" class="nav-link text-white" >
+        <a href="{{ route('admin.banned_users.index') }}" id="usersCollapseBtn" class="nav-link text-white" >
           <i class="fa-solid fa-gavel"></i> Banned Users
         </a>
       </li>

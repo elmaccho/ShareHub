@@ -54,6 +54,9 @@ class UserStatus extends Component
             'start_date' => $this->startDate,
             'end_date' => $this->endDate
         ]);
+ 
+       
+        
 
         return redirect(request()->header('Referer'));
     }

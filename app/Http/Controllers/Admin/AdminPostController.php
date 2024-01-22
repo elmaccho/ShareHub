@@ -12,7 +12,8 @@ class AdminPostController extends Controller
     public function index()
     {
         $loggedUser = Auth::user();
-        $posts = Post::all();
+        $posts = Post::paginate(5);
+
 
         return view('admin.views.posts.index', compact([
             'loggedUser',

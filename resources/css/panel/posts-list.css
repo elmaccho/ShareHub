@@ -1,3 +1,7 @@
+.posts-container{
+    max-height: 530px;
+    overflow-y: scroll;
+}
 .post-card{
     display: flex;
     width: 100%;

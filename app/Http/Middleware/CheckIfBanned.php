@@ -17,6 +17,7 @@ class CheckIfBanned
     public function handle(Request $request, Closure $next): Response
     {
         if(Auth::check() && Auth::user()->isBanned()){
+            event(new \App\Events\UserBanned(Auth::user()->id));
             Auth::logout();
             return redirect()->route('login')->with('error', 'Your account has been banned');
         }
