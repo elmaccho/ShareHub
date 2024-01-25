@@ -45,6 +45,8 @@ class ReportModal extends Component
             return;
         }
 
+        
+
         switch($this->type){
             case 'user':
                 ReportsUser::create([

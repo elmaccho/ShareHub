@@ -126,6 +126,6 @@ class User extends Authenticatable
     }
     public function reportUsers(): HasMany
     {
-        return $this->hasMany(ReportUser::class);
+        return $this->hasMany(ReportsUser::class);
     }
 }

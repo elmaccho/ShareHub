@@ -35,6 +35,6 @@ class Post extends Model
     }
     public function reportPosts(): HasMany
     {
-        return $this->hasMany(ReportPost::class);
+        return $this->hasMany(ReportsPost::class);
     }
 }

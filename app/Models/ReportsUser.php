@@ -17,8 +17,13 @@ class ReportsUser extends Model
         'reason',
     ];
 
-    public function user(): BelongsTo
+    public function reporter(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'reporter_id');
     }
+    public function reportedUser(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
 }

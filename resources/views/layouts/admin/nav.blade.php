@@ -29,9 +29,9 @@
         </button>
         <div class="collapse ms-4" id="reportsCollapse">
           <div class="d-flex flex-column">
-            <a href="#" class="text-light text-decoration-none" id="postsCollapseBtn">Users</a>
-            <a href="#" class="text-light text-decoration-none" id="postsCollapseBtn">Posts</a>
-            <a href="#" class="text-light text-decoration-none" id="postsCollapseBtn">Comments</a>
+            <a href="{{ route('admin.reported_users.index') }}" class="text-light text-decoration-none" id="postsCollapseBtn">Users</a>
+            <a href="{{ route('admin.reported_posts.index') }}" class="text-light text-decoration-none" id="postsCollapseBtn">Posts</a>
+            <a href="{{ route('admin.reported_comments.index') }}" class="text-light text-decoration-none" id="postsCollapseBtn">Comments</a>
           </div>
         </div>
       </li>

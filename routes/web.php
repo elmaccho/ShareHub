@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\admin\AdminBannedUsersController;
+use App\Http\Controllers\admin\AdminCommentsReportsController;
 use App\Http\Controllers\admin\AdminPostController;
+use App\Http\Controllers\admin\AdminPostsReportsController;
 use App\Http\Controllers\admin\AdminUserController;
+use App\Http\Controllers\admin\AdminUsersReportsController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
@@ -64,6 +67,10 @@ Route::middleware(['auth', 'verified', 'CheckIfBanned'])->group(function(){
 
         Route::get('/admin/post', [AdminPostController::class, 'index'])->name('admin.posts.index');
         Route::get('/admin/banned_users', [AdminBannedUsersController::class, 'index'])->name('admin.banned_users.index');
+
+        Route::get('/admin/reported_users', [AdminUsersReportsController::class, 'index'])->name('admin.reported_users.index');
+        Route::get('/admin/reported_posts', [AdminPostsReportsController::class, 'index'])->name('admin.reported_posts.index');
+        Route::get('/admin/reported_comments', [AdminCommentsReportsController::class, 'index'])->name('admin.reported_comments.index');
     });
 });
 
