@@ -16,6 +16,7 @@
                 @endif
             </div>
         </div>
+
         <div class="user-row mb-3">
             <div class="profile-image col-3">
                 <div class="inner-layer">
@@ -50,9 +51,15 @@
             </div>
 
             <div class="user-action">
-                <button class="user-action-btn bg-transparent border-0">
+                <button class="user-action-btn btn btn-secondary bg-transparent border-0 text-dark" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fa-solid fa-ellipsis"></i>
                 </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    @livewire('report-button', [
+                        'type' => 'user',
+                        'targetId' => $user->id,
+                    ])
+                    </ul>
             </div>
         </div>
 
@@ -98,6 +105,8 @@
             </div>
         </div>
     </div>
+
+    @livewire('report-modal')
 
     <div class="modal fade" id="profileImage" tabindex="-1" aria-labelledby="profileImageLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -159,6 +168,7 @@
             </div>
         </div>
     </div>
+
 @vite('resources/css/home.css')
 @vite('resources/css/profile.css')
 @vite('resources/js/post.js')

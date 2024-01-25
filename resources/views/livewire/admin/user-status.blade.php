@@ -30,7 +30,7 @@
 
                         @else
                             <h5>Category:</h5>
-                            <form action="" wire:submit.prevent="submit"">
+                            <form action="" wire:submit.prevent="submit">
                                 <select class="form-select ban_category" name="ban_category" id="ban_category" wire:model="category" required>
                                         <option value="" selected>Select Category</option>
                                         @foreach (App\Enums\BanReason::TYPES as $role)

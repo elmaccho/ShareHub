@@ -5,7 +5,12 @@
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             @if (!$loggedUser->IsOwnerOfPost($post))
-                <li><button class="dropdown-item">Report</button></li>
+                <li>
+                    @livewire('report-button', [
+                        'type' => 'post',
+                        'targetId' => $post->id,
+                    ])
+                </li>
             @endif
           @if ($loggedUser->isAdmin() || $loggedUser->isModerator() || $loggedUser->isOwnerOfPost($post))
             <li><a href="{{ route('post.edit', $post->id) }}"><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#EditPost">Edit</button></a></li>

@@ -33,4 +33,8 @@ class Post extends Model
     {
         return $this->BelongsToMany(User::class, 'post_like')->withTimestamps();
     }
+    public function reportPosts(): HasMany
+    {
+        return $this->hasMany(ReportPost::class);
+    }
 }

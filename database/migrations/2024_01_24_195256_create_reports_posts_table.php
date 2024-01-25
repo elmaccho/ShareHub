@@ -12,11 +12,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reports', function (Blueprint $table) {
+        Schema::create('reports_posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
             $table->foreignId('post_id')->constrained();
-            $table->foreignId('comment_id')->constrained();
+            $table->foreignId('reporter_id')->constrained('users');
             $table->enum('category', BanReason::TYPES);
             $table->string('reason', 1000);
             $table->timestamps();
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reports');
+        Schema::dropIfExists('reports_posts');
     }
 };

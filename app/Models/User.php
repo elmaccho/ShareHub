@@ -124,4 +124,8 @@ class User extends Authenticatable
     {
         return $this->bans()->exists();
     }
+    public function reportUsers(): HasMany
+    {
+        return $this->hasMany(ReportUser::class);
+    }
 }

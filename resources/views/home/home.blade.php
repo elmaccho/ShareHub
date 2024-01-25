@@ -74,14 +74,16 @@
             </div>
         </div>
     </div>
+    @livewire('report-modal')
+
     @vite('resources/css/home.css')
     @vite('resources/js/side_menu.js')
     @vite('resources/js/post.js')
 @endsection
 @section('javascript')
-    const commentDeleteUrl = "{{ url('comment') }}/";
+    const commentDeleteUrl = "{{ url('comment') }}/"
     const postdeleteUrl = "{{ url('home') }}/"
 @endsection
 @section('js-files')
-    @vite('resources/js/comment.js');
+    @vite('resources/js/comment.js')
 @endsection

@@ -6,7 +6,12 @@
                     <i class="fa-solid fa-ellipsis comment-action-btn"></i>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <li><button type="button" class="dropdown-item">Report</button></li>
+                    <li>
+                        @livewire('report-button', [
+                            'type' => 'comment',
+                            'targetId' => $comment->id,
+                        ])
+                    </li>
                   <li><button type="button" class="dropdown-item">Edit</button></li>
                   <li><button type="button" class="dropdown-item delete-comment-btn" data-comment-id={{ $comment->id }}>Delete</button></li>
                 </ul>
