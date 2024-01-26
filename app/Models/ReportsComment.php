@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ReportsComment extends Model
 {
@@ -17,12 +16,12 @@ class ReportsComment extends Model
         'category',
         'reason',
     ];
-    public function post(): BelongsTo
+    public function reporter(): BelongsTo
     {
-        return $this->belongsTo(Comment::class);
+        return $this->belongsTo(User::class, 'reporter_id');
     }
-    public function reportUsers(): HasMany
+    public function reportedComment(): BelongsTo
     {
-        return $this->hasMany(ReportsComment::class);
+        return $this->belongsTo(Comment::class, 'comment_id');
     }
 }

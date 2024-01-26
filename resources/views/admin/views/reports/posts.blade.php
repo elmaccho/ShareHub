@@ -17,24 +17,24 @@
                     <p>
                         <a class="text-decoration-none" href="{{ route('profile.index', $reportedPost->reporter->id) }}">{{ $reportedPost->reporter->name }} {{ $reportedPost->reporter->surname }}</a>
                         reported 
-                        <a class="text-decoration-none" href="{{ route('profile.index', $reportedPost->reportedPost) }}">{{ $reportedPost->reportedPost->user->name }}'s {{ $reportedPost->reportedPost->user->surname }}</a>
+                        <a class="text-decoration-none" href="{{ route('profile.index', $reportedPost->reportedPost->user->id) }}">{{ $reportedPost->reportedPost->user->name }}'s {{ $reportedPost->reportedPost->user->surname }}</a>
                          post for <strong class="text-danger">{{ $reportedPost->category }}</strong>
                     </p>
                     <p class="mb-3">Reason: <strong class="text-info">{{ $reportedPost->reason ?? 'Unknown' }}</strong></p>
-
-                    <div class="row m-0 mb-4">
-                        @livewire('admin.user-report', ['reportId' => $reportedPost->id])
-                        <button type="button" class="btn btn-outline-danger mb-1" data-bs-toggle="collapse" data-bs-target="#banForm{{ $reportedPost->id }}" aria-expanded="false" aria-controls="banForm{{ $reportedPost->id }}">
-                            Ban
-                        </button>
+                    <hr>
+                    <div class="post-info">
+                        <p>Title: {{ $reportedPost->reportedPost->title }}</p>
+                        <p>Content: {{ $reportedPost->reportedPost->content ?? 'Unknown'}}</p>
                     </div>
 
-                    <div class="collapse" id="banForm{{ $reportedPost->id }}">
-                        {{-- @livewire('admin.ban-form', [
-                            'userId' => $reportedPost->reportedPost->id,
-                            'category' => $reportedPost->category,
-                            'reason' => $reportedPost->reason
-                            ]) --}}
+                    <div class="row m-0 mb-4">
+                        @livewire('admin.user-report', ['reportId' => $reportedPost->id, 'type'=> 'post'])
+                        @livewire('admin.delete-target', [
+                            'targetId' => $reportedPost->reportedPost->id, 
+                            'reportId' => $reportedPost->id,
+                            'type' => 'post'
+                            ])
+                        <a class="btn btn-success" href="{{ route('post.edit', $reportedPost->reportedPost->id) }}">Edit</a>
                     </div>
                 </div>
             </div>

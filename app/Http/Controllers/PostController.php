@@ -64,8 +64,8 @@ class PostController extends Controller
         $validatedData = $request->validated();
         $post->update($validatedData);
 
-        dd($validatedData);
 
-        return back()->with('status', 'Post updated!');
+
+        return redirect()->back()->with('success', 'Post has been updated');
     }
 }
