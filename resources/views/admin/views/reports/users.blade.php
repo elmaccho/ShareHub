@@ -22,7 +22,7 @@
                     <p class="mb-3">Reason: <strong class="text-info">{{ $reportedUser->reason ?? 'Unknown' }}</strong></p>
 
                     <div class="row m-0 mb-4">
-                        @livewire('admin.user-report', ['reportId' => $reportedUser->id])
+                        @livewire('admin.user-report', ['reportId' => $reportedUser->id, 'type' => 'user'])
                         <button type="button" class="btn btn-outline-danger mb-1" data-bs-toggle="collapse" data-bs-target="#banForm{{ $reportedUser->id }}" aria-expanded="false" aria-controls="banForm{{ $reportedUser->id }}">
                             Ban
                         </button>

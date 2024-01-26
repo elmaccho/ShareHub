@@ -36,8 +36,13 @@ class UserReport extends Component
                 $reject->delete();
             }
         }
-        
-        return redirect(request()->header('Referer'));
+        $this->dispatch(
+            'reportedPopup',
+              type : 'success',
+              title : 'Report Rejected!',
+              position : 'top-end'  
+            );
+        // return redirect(request()->header('Referer'));
     }
     public function render()
     {

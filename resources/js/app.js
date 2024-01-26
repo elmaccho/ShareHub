@@ -19,16 +19,6 @@ import './components/Example';
 
 window.addEventListener('alreadyBanned', (event) => {
     let data = event.detail;
-
-    // Swal.fire({
-    //     position: data.position,
-    //     icon: data.type,
-    //     title: data.title,
-    //     showConfirmButton: false,
-    //     timer: 3000
-    //   });
-
-
       let timerInterval;
 Swal.fire({
 title: data.title,
@@ -47,4 +37,49 @@ title: data.title,
     location.reload();
   }
 });
+});
+window.addEventListener('reportedPopup', (event) => {
+  let data = event.detail;
+    let timerInterval;
+Swal.fire({
+title: data.title,
+icon: data.type,
+timer: 1800,
+width: 400,
+position: data.position,
+timerProgressBar: true,
+didOpen: () => {
+  Swal.showLoading();
+},
+willClose: () => {
+  clearInterval(timerInterval);
+}
+}).then((result) => {
+if (result.dismiss === Swal.DismissReason.timer) {
+  location.reload();
+}
+});
+});
+window.addEventListener('reportedRejectedPopup', (event) => {
+  let data = event.detail;
+  let timerInterval;
+
+  Swal.fire({
+    title: data.title,
+    icon: data.type,
+    timer: 1000,
+    width: 400,
+    position: data.position,
+    timerProgressBar: true,
+    didOpen: () => {
+      Swal.showLoading();
+    },
+    didClose: () => {  // Dodajemy obsługę zdarzenia didClose
+      location.reload();
+    }
+  }).then((result) => {
+    if (result.dismiss === Swal.DismissReason.timer) {
+      location.reload();
+    }
+  });
 });

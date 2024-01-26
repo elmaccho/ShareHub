@@ -39,7 +39,6 @@ class ReportModal extends Component
     public function report()
     {
         $this->reason = empty($this->reason) ? null : $this->reason;
-        // dump($this->reporterId, $this->type, $this->targetId, $this->category, $this->reason);
 
         if($this->reporterId == $this->targetId){
             return;
@@ -81,5 +80,12 @@ class ReportModal extends Component
 
         $this->closeReportModal();
         $this->reset();
+
+        $this->dispatch(
+            'reportedPopup',
+              type : 'success',
+              title : 'Reported!',
+              position : 'top-end'  
+            );
     }
 }
