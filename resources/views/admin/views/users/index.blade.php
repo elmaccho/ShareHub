@@ -7,20 +7,22 @@
 
 @foreach ($users as $user)
     <div class="user-card mb-2">
-        @if (!is_null($user->profile_image_path))
-            <img class="profile-image" src="{{ asset('storage/'. $user->profile_image_path) }}" alt="">
-        @else
-            <img class="profile-image" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="">
-        @endif
-
-        <div class="user-info">
-            <div class="user-sur-name me-3">
-                {{ $user->name }}
-                {{ $user->surname }}
+        <span class="d-flex align-items-center gap-3">
+            @if (!is_null($user->profile_image_path))
+                <img class="profile-image" src="{{ asset('storage/'. $user->profile_image_path) }}" alt="">
+            @else
+                <img class="profile-image" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="">
+            @endif
+    
+            <div class="user-info">
+                <div class="user-sur-name me-3">
+                    {{ $user->name }}
+                    {{ $user->surname }}
+                </div>
+    
+                <strong>{{ $user->email }}</strong>
             </div>
-
-            <strong>{{ $user->email }}</strong>
-        </div>
+        </span>
 
         <div class="action-buttons">
             <button class="btn btn-danger btn-sm" wire:click="mount({{ $user->id }})" data-bs-toggle="modal" data-bs-target="#status-modal-{{ $user->id }}">

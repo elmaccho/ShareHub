@@ -1,5 +1,5 @@
 .posts-container{
-    max-height: 530px;
+    height: 70vh;
     overflow-y: scroll;
 }
 .post-card{
@@ -16,4 +16,14 @@
 }
 .action-buttons > button{
     width: 30px;
+}
+@media screen and (max-width: 880px) {
+    .posts-container{
+        height: unset;
+        overflow-y: unset;
+    }
+    .action-buttons{
+        position: unset;
+        right: unset;
+    }
 }

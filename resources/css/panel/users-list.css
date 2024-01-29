@@ -14,7 +14,7 @@
     border-radius: 100%;
 }
 .users-container{
-    max-height: 500px;
+    height: 70vh;
     overflow-y: scroll;
 }
 .user-sur-name{
@@ -41,4 +41,22 @@
 .modal-body{
     overflow-y: scroll;
     max-height: 600px;
+}
+@media screen and (max-width: 880px) {
+    .users-container{
+        height: unset;
+        overflow-y: unset;
+    }
+    .user-card{
+        flex-direction: column;
+        height: 120px;
+        justify-content: center;
+    }
+    .action-buttons{
+        position: unset;
+        right: unset;
+        display: flex;
+        align-items: start;
+        gap: 10px;
+    }
 }
