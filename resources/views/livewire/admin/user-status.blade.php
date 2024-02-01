@@ -38,15 +38,13 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("livewire:load", function () {
+          Livewire.hook('message.processed', (message, component) => {
+            if (message.updateQueue[0].method === 'submitFormAndCloseModal') {
+              $('#myModal').modal('hide');
+            }
+          });
+        });
+    </script>
 </div>
-<script>
-    // Dodajmy skrypt JavaScript, który będzie słuchał zdarzenia Livewire i zamykał modal po jego zakończeniu
-    document.addEventListener("livewire:load", function () {
-      Livewire.hook('message.processed', (message, component) => {
-        if (message.updateQueue[0].method === 'submitFormAndCloseModal') {
-          // Zamknij modal po zakończeniu wysyłania formularza
-          $('#myModal').modal('hide');
-        }
-      });
-    });
-  </script>
