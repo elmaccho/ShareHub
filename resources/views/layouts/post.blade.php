@@ -43,23 +43,7 @@
         {{ $post->content }}
     </div>
     <div class="post-social-actions mb-3">
-        @if (Auth::user()->likesPost($post))
-            <form action="{{ route('post.unlike', $post->id) }}" method="POST">
-                @csrf
-                <button type="submit" class="like-btn sh-post-btn">
-                    <i class="fa-solid fa-heart"></i>
-                    {{ $post->likes()->count() }} Unlike
-                </button>
-            </form>
-        @else
-            <form action="{{ route('post.like', $post->id) }}" method="POST">
-                @csrf
-                <button type="submit" class="like-btn sh-post-btn">
-                    <i class="fa-regular fa-heart"></i>
-                    {{ $post->likes()->count() }} Like
-                </button>
-            </form>
-        @endif
+        @livewire('like-button', ['post' => $post])
         <button class="comment-btn sh-post-btn">
             <i class="fa-solid fa-comment"></i> 
             {{ $post->comments->count() }} Comments

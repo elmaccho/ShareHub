@@ -53,9 +53,6 @@ Route::middleware(['auth', 'verified', 'CheckIfBanned'])->group(function(){
     
     Route::delete('comment/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
 
-    Route::post('home/post/{post}/like', [PostLikeController::class, 'like'])->name('post.like');
-    Route::post('home/post/{post}/unlike', [PostLikeController::class, 'unlike'])->name('post.unlike');
-
     Route::get('/messages', [MessagesController::class, 'index'])->name('messages.index');
 
     Route::middleware(['can:isAdmin'])->group(function(){
