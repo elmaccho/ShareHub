@@ -3,6 +3,6 @@
 @section('title', 'Banned Users')
 
 @section('something')
-    @livewire('b')
+    @livewire('admin.banned-users-list')
 @endsection
 @vite('resources/css/panel/users-list.css')
