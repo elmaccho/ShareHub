@@ -14,6 +14,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostLikeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
+use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -68,6 +69,7 @@ Route::middleware(['auth', 'verified', 'CheckIfBanned'])->group(function(){
         Route::get('/admin/reported_users', [AdminUsersReportsController::class, 'index'])->name('admin.reported_users.index');
         Route::get('/admin/reported_posts', [AdminPostsReportsController::class, 'index'])->name('admin.reported_posts.index');
         Route::get('/admin/reported_comments', [AdminCommentsReportsController::class, 'index'])->name('admin.reported_comments.index');
+
     });
 });
 
