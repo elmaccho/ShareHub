@@ -130,6 +130,7 @@ img{ max-width:100%;}
   border-bottom: 1px solid #c4c4c4;
   margin: 0;
   padding: 18px 16px 10px;
+  cursor: pointer;
 }
 .inbox_chat { height: 550px; overflow-y: scroll;}
 
@@ -180,6 +181,9 @@ img{ max-width:100%;}
 .sent_msg {
   float: right;
   width: 46%;
+}
+.input_msg_write{
+  display: flex;
 }
 .input_msg_write input {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;

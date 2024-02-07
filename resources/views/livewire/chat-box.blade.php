@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" wire:poll="refreshMessages">
     <div class="messaging">
         <div class="inbox_msg">
             <div class="inbox_people">
@@ -17,7 +17,7 @@
                 </div>
                 <div class="inbox_chat">
                     @foreach ($chats as $chat)
-                        <div class="chat_list active_chat">
+                        <div class="chat_list {{ $chat->id == $activeChat->id ? 'active_chat' : '' }}" wire:click="navigationChatClicked('{{ $chat->id }}')">
                             <div class="chat_people">
                                 <div class="chat_img">
                                      {{-- @if (!is_null($chat->chats->user->profile_image_path))
@@ -27,7 +27,7 @@
                                     @endif --}}
                                 </div>
                                 <div class="chat_ib">
-                                    <h5>
+                                    <h5 class="{{ $chat->id == $activeChat->id ? 'text-primary fw-bold' : '' }}">
                                         @if ($chat->isGroupChat())
                                             <!-- Is group chat -->
                                             {{ $chat->name }}
@@ -49,7 +49,7 @@
             </div>
             <div class="mesgs">
                 <div class="msg_history">
-                    @foreach ($chats->where('id', 2)->first()->messages()->orderBy('created_at', 'ASC')->get() as $message)
+                    @foreach ($activeChat->messages()->orderBy('created_at', 'ASC')->get() as $message)
                         @if ($message->isAuthenticatedUsers())
                             <div class="outgoing_msg">
                                 <div class="sent_msg">
@@ -77,10 +77,12 @@
                     @endforeach
                 </div>
                 <div class="type_msg">
-                    <div class="input_msg_write">
-                        <input type="text" class="form-control write_msg" placeholder="Type a message">
-                        <button class="btn msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
-                    </div>
+                    <form wire:submit.prevent="sendMessage">
+                        <div class="input_msg_write">
+                            <input type="text" class="form-control write_msg" placeholder="Type a message" wire:model="message">
+                            <button class="btn btn-primary" type="submit"><i class="fa-regular fa-paper-plane"></i></button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
