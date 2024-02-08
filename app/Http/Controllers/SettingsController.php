@@ -41,15 +41,15 @@ class SettingsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UserSettingsRequest $request, User $user)
-    {
+    // public function update(UserSettingsRequest $request, User $user)
+    // {
         
-        $dataValidated = $request->validated()['settings'];
+    //     $dataValidated = $request->validated()['settings'];
 
-        $user->update($dataValidated);
+    //     $user->update($dataValidated);
 
-        return redirect(route('profile.index', $user->id))->with('status', 'The profile has been updated!');
-    }
+    //     return redirect(route('profile.index', $user->id))->with('status', 'The profile has been updated!');
+    // }
 
     /**
      * Remove the specified resource from storage.

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    // Wyświetl wybrany obraz przed wysłaniem formularza
+
     $('#image-upload').on('change', function() {
         let input = this;
         if (input.files && input.files[0]) {

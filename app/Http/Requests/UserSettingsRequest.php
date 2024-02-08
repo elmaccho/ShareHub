@@ -22,19 +22,19 @@ class UserSettingsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'settings.name' => 'required|max:255',
-            'settings.surname' => 'required|max:255',
-            'settings.website_link' => 'nullable|max:255',
-            'settings.github_link' => 'nullable|max:255',
-            'settings.youtube_link' => 'nullable|max:255',
-            'settings.instagram_link' => 'nullable|max:255',
-            'settings.facebook_link' => 'nullable|max:255',
-            'settings.phone_number' => 'nullable|regex:/^[0-9]{9,15}$/',
-            'settings.about' => 'nullable|max:1000',
-            'settings.country' => 'nullable|max:255',
-            'settings.state' => 'nullable|max:255',
-            'settings.city' => 'nullable|max:255',
-            'settings.image' => 'nullable|image',
+            'name' => 'required|max:255',
+            'surname' => 'required|max:255',
+            'website_link' => 'nullable|max:255|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/i',
+            'github_link' => 'nullable|max:255|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/i',
+            'youtube_link' => 'nullable|max:255|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/i',
+            'instagram_link' => 'nullable|max:255|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/i',
+            'facebook_link' => 'nullable|max:255|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/i',
+            'phone_number' => 'nullable|regex:/^[0-9]{9,15}$/',
+            'about' => 'nullable|max:1000',
+            'country' => 'nullable|max:255',
+            'state' => 'nullable|max:255',
+            'city' => 'nullable|max:255',
+            'image' => 'nullable|image',
         ];
     }
 }

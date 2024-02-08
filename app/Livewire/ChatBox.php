@@ -10,7 +10,7 @@ class ChatBox extends Component
 {
     public $chats;
     public $activeChat;
-    public $message;
+    public $chatMessage = '';
     public function mount()
     {
         $this->chats = Auth::user()->chats;
@@ -24,16 +24,23 @@ class ChatBox extends Component
     {
         $chatRecord = Auth::user()->chats()->where('chats.id', $chatId)->first();
         $this->activeChat = $chatRecord;
+        $this->dispatch('scrollDown');
     }
     public function sendMessage()
     {
-        $this->activeChat->messages()->create([
-            'message' => $this->message,
-            'user_id' => Auth::user()->id,
-        ]);
-    
-        $this->reset('message');
-        $this->activeChat->refresh();
+        if($this->chatMessage == ''){
+
+        } else {
+            $this->activeChat->messages()->create([
+                'message' => $this->chatMessage,
+                'user_id' => Auth::user()->id,
+            ]);
+            
+            $this->activeChat->refresh();
+            $this->dispatch('scrollDown');
+            $this->dispatch('clearMsg');
+            $this->chatMessage = '';
+        }
     }
     public function refreshMessages()
     {

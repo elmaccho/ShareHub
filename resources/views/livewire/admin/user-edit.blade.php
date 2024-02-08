@@ -27,15 +27,15 @@
                         <p>Role: 
                             <select class="form-select" name="user_role" id="user_role" wire:model="role">
                                 @foreach (App\Enums\UserRole::TYPES as $role)
-                                <option value="{{ $role }}">{{ $role }}</option>
+                                    <option value="{{ $role }}">{{ $role }}</option>
                                 @endforeach
                             </select>
                         </p>
                         
                         <hr>
                         <h5>Address</h5>
-                        <label for="countryList_{{ $loop->index }}">Country:</label>
-                        <select name="country" class="form-select mb-2" id="countryList_{{ $loop->index }}" wire:model="country_id">
+                        <label for="countryList_">Country:</label>
+                        <select name="country" class="form-select mb-2" id="countryList_" wire:model="country_id">
                             <option value="" selected>Select Country</option>
                                 @if (!is_null($user->country))
                                     <option value="{{ $user->country->id }}" selected>{{ $user->country->name }}</option>
@@ -43,22 +43,21 @@
                                 @foreach ($countries as $country)
                                     <option value="{{ $country->id }}">{{ $country->name }}</option>
                                 @endforeach
-                            </select>
-
-                            <label for="stateList_{{ $loop->index }}">State:</label>
-                            <select name="state" class="form-select mb-2" id="stateList_{{ $loop->index }}" wire:model="state_id">
+                        </select>
+                    
+                            <label for="stateList_">State:</label>
+                        <select name="state" class="form-select mb-2" id="stateList_" wire:model="state_id">
                                 @if (!is_null($user->state))
                                     <option value="{{ $user->state->id }}" selected>{{ $user->state->name }}</option>
                                 @endif
-                            </select>
-
-                            <label for="cityList_{{ $loop->index }}">City:</label>
-                            <select name="city"class="form-select mb-2" id="cityList_{{ $loop->index }}" wire:model="city_id">
+                        </select>
+                    
+                            <label for="cityList_">City:</label>
+                        <select name="city"class="form-select mb-2" id="cityList_" wire:model="city_id">
                                 @if (!is_null($user->city))
                                     <option value="{{ $user->city->id }}" >{{ $user->city->name }}</option>
                                 @endif
-                            </select>
-
+                        </select>
                             <div class="row m-0 mt-5">
                                 <button type="submit" class="btn btn-success">Save</button>
                             </div>

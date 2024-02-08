@@ -10,7 +10,7 @@
                         <div class="input-group stylish-input-group">
                             <input type="text" class="form-control search-bar" placeholder="Search">
                             <span class="input-group-text">
-                                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i></button>
                             </span>
                         </div>
                     </div>
@@ -19,20 +19,11 @@
                     @foreach ($chats as $chat)
                         <div class="chat_list {{ $chat->id == $activeChat->id ? 'active_chat' : '' }}" wire:click="navigationChatClicked('{{ $chat->id }}')">
                             <div class="chat_people">
-                                <div class="chat_img">
-                                     {{-- @if (!is_null($chat->chats->user->profile_image_path))
-                                            <img class="user-profile-image" src="{{ asset('storage/'. $user->profile_image_path) }}" alt="{{ $user->name }} {{ $user->surname }}">
-                                        @else
-                                            <img class="user-profile-image" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="{{ $user->name }} {{ $user->surname }}">
-                                    @endif --}}
-                                </div>
                                 <div class="chat_ib">
                                     <h5 class="{{ $chat->id == $activeChat->id ? 'text-primary fw-bold' : '' }}">
                                         @if ($chat->isGroupChat())
-                                            <!-- Is group chat -->
                                             {{ $chat->name }}
                                         @else
-                                            <!-- Is not group chat -->
                                             @foreach ($chat->users()->where('users.id', '<>', Auth::user()->id)->get() as $user)
                                                 {{ $user->name }}
                                                 {{ $user->surname }}
@@ -79,7 +70,7 @@
                 <div class="type_msg">
                     <form wire:submit.prevent="sendMessage">
                         <div class="input_msg_write">
-                            <input type="text" class="form-control write_msg" placeholder="Type a message" wire:model="message">
+                            <input type="text" class="form-control write_msg" placeholder="Type a message" wire:model="chatMessage">
                             <button class="btn btn-primary" type="submit"><i class="fa-regular fa-paper-plane"></i></button>
                         </div>
                     </form>
@@ -88,3 +79,14 @@
         </div>
     </div>
 </div>
+<script>
+    window.addEventListener('scrollDown', () => {
+        let container = document.querySelector('.msg_history');
+        container.scrollTop = container.scrollHeight;
+    })
+    window.addEventListener('clearMsg', () => {
+        let input = document.querySelector('.write_msg');
+
+        input.value = '';
+    })
+</script>

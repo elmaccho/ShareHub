@@ -43,7 +43,7 @@ Route::middleware(['auth', 'verified', 'CheckIfBanned'])->group(function(){
     Route::delete('profile/{user}/profile-image', [ProfileController::class, 'deleteProfileImage'])->name('profile.deleteProfileImage');  
 
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
-    Route::post('/settings/edit/{user}', [SettingsController::class, 'update'])->name('settings.update');
+    // Route::post('/settings/edit/{user}', [SettingsController::class, 'update'])->name('settings.update');
 
     Route::post('home/posts', [PostController::class, 'store'])->name('post.store');
     Route::get('home/post/edit/{post}', [PostController::class, 'edit'])->name('post.edit');

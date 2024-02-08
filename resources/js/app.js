@@ -88,3 +88,23 @@ window.addEventListener('reportedRejectedPopup', (event) => {
     }
   });
 });
+window.addEventListener('settingsUpdated', (event) => {
+  let data = event.detail;
+  let timerInterval;
+
+  Swal.fire({
+    title: data.title,
+    icon: data.type,
+    timer: 1000,
+    width: 400,
+    position: data.position,
+    timerProgressBar: true,
+    didOpen: () => {
+      Swal.showLoading();
+    }
+  }).then((result) => {
+    if (result.dismiss === Swal.DismissReason.timer) {
+      location.reload();
+    }
+  });
+});
