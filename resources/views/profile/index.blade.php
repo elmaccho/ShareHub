@@ -42,25 +42,29 @@
                 </span>
                 @if ($user->id == Auth::user()->id)
                     <div class="user-links">
-
                         <a class="sh-link d-flex align-items-center" href="{{ route('settings.index') }}">
                             <p class="m-0">Complete your profile information</p>
                         </a>
                     </div>
                 @endif
+                @if ($user->id != Auth::user()->id)
+                    @livewire('add-friend-button', ['userId' => $user->id])
+                @endif
             </div>
 
-            <div class="user-action">
-                <button class="user-action-btn btn btn-secondary bg-transparent border-0 text-dark" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-solid fa-ellipsis"></i>
-                </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    @livewire('report-button', [
-                        'type' => 'user',
-                        'targetId' => $user->id,
-                    ])
-                    </ul>
-            </div>
+            @if ($user->id != Auth::user()->id)
+                <div class="user-action">
+                    <button class="user-action-btn btn btn-secondary bg-transparent border-0 text-dark" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        @livewire('report-button', [
+                            'type' => 'user',
+                            'targetId' => $user->id,
+                        ])
+                        </ul>
+                </div>
+            @endif
         </div>
 
         <div class="user-content">
@@ -106,7 +110,9 @@
         </div>
     </div>
 
-    @livewire('report-modal')
+    @if ($user->id != Auth::user()->id)
+        @livewire('report-modal')
+    @endif
 
     <div class="modal fade" id="profileImage" tabindex="-1" aria-labelledby="profileImageLabel" aria-hidden="true">
         <div class="modal-dialog">

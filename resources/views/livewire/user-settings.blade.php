@@ -14,10 +14,10 @@
                       <label for="image-upload" class="form-label sh-pointer">
                           <div type="button" class="btn btn-primary">Change Profile Image</div>
                       </label>
-                      <input type="file" class="form-control d-none" id="image-upload" name="image" accept="image/*">
+                      <input type="file" class="form-control d-none @error('image') is-invalid @enderror" id="image-upload" name="image" accept="image/*">
 
-                      @error('settings.image')
-                          <span class="text-danger">{{ $message }}</span>
+                      @error('image')
+                          <spastrong class="text-danger">{{ $message }}</spastrong>
                       @enderror
                   </div>
                   </div>
@@ -29,7 +29,7 @@
                       <input type="text" class="form-control @error('website_link') is-invalid @enderror" name="website_link" wire:model="website_link">
                       @error('about')
                         <div class="row d-flex justify-content-center">
-                            <p class="text-danger">{{ $message }}</p>
+                            <strong class="text-danger">{{ $message }}</strong>
                         </div>
                     @enderror
                     </li>
@@ -38,7 +38,7 @@
                       <input type="text" class="form-control @error('github_link') is-invalid @enderror" name="github_link" wire:model="github_link">
                         @error('github_link')
                             <div class="row d-flex justify-content-center">
-                                <p class="text-danger">{{ $message }}</p>
+                                <strong class="text-danger">{{ $message }}</strong>
                             </div>
                         @enderror
                     </li>
@@ -47,7 +47,7 @@
                       <input type="text" class="form-control @error('youtube_link') is-invalid @enderror" name="youtube_link" wire:model="youtube_link">
                         @error('youtube_link')
                             <div class="row d-flex justify-content-center">
-                                <p class="text-danger">{{ $message }}</p>
+                                <strong class="text-danger">{{ $message }}</strong>
                             </div>
                         @enderror
                     </li>
@@ -56,7 +56,7 @@
                       <input type="text" class="form-control @error('instagram_link') is-invalid @enderror" name="instagram_link" wire:model="instagram_link">
                         @error('instagram_link')
                             <div class="row d-flex justify-content-center">
-                                <p class="text-danger">{{ $message }}</p>
+                                <strong class="text-danger">{{ $message }}</strong>
                             </div>
                         @enderror
                     </li>
@@ -65,7 +65,7 @@
                       <input type="text" class="form-control @error('facebook_link') is-invalid @enderror" name="facebook_link" wire:model="facebook_link">
                         @error('facebook_link')
                             <div class="row d-flex justify-content-center">
-                                <p class="text-danger">{{ $message }}</p>
+                                <strong class="text-danger">{{ $message }}</strong>
                             </div>
                         @enderror
                     </li>
@@ -86,7 +86,7 @@
                           <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="" value="{{ $user->name }}" wire:model="name" required>
                             @error('name')
                                 <div class="row d-flex justify-content-center">
-                                    <p class="text-danger">{{ $message }}</p>
+                                    <strong class="text-danger">{{ $message }}</strong>
                                 </div>
                             @enderror
                         </div>
@@ -100,7 +100,7 @@
                               <input type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" id="" wire:model="surname" required>
                               @error('surname')
                                 <div class="row d-flex justify-content-center">
-                                    <p class="text-danger">{{ $message }}</p>
+                                    <strong class="text-danger">{{ $message }}</strong>
                                 </div>
                             @enderror
                           </div>
@@ -123,7 +123,7 @@
                           <input type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number"  wire:model="phone_number">
                             @error('phone_number')
                                 <div class="row d-flex justify-content-center">
-                                    <p class="text-danger">{{ $message }}</p>
+                                    <strong class="text-danger">{{ $message }}</strong>
                                 </div>
                             @enderror
                         </div>
@@ -172,7 +172,7 @@
                                 <textarea class="form-control about-bio @error('about') is-invalid @enderror" name="about" id="" cols="30" rows="10" maxlength="10000" wire:model="about"></textarea>
                                 @error('about')
                                     <div class="row d-flex justify-content-center">
-                                        <p class="text-danger">{{ $message }}</p>
+                                        <strong class="text-danger">{{ $message }}</strong>
                                     </div>
                                 @enderror
                                 <div class="length-counter">

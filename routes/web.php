@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MessagesController;
+use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostLikeController;
 use App\Http\Controllers\ProfileController;
@@ -55,6 +56,7 @@ Route::middleware(['auth', 'verified', 'CheckIfBanned'])->group(function(){
     Route::delete('comment/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
 
     Route::get('/messages', [MessagesController::class, 'index'])->name('messages.index');
+    Route::get('/notifications', [NotificationsController::class, 'index'])->name('notifications.index');
 
     Route::middleware(['can:isAdmin'])->group(function(){
         Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
