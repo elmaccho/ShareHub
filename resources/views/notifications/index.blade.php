@@ -5,34 +5,7 @@
     <h3 class="m-b-50 heading-line">Notifications <i class="fa fa-bell text-muted"></i></h3>
 
     {{-- friend requests --}}
-    <div class="notification-ui_dd-content">
-        <div class="text-center mb-3">
-            You got a Friend Request!
-        </div>
-
-        <div class="notification-list notification-list--unread">
-            <div class="notification-list_content">
-                <div class="notification-list_img">
-                    @if (!is_null(Auth::user()->profile_image_path))
-                            <img src="{{ asset('storage/'. Auth::user()->profile_image_path) }}" alt="">
-                        @else
-                            <img src="{{ asset('storage/user_profile/userDefault.png') }}" alt="">
-                    @endif 
-                </div>
-                <div class="notification-list_detail">
-                        <p>
-                            <a class="text-decoration-none text-dark" href=""><strong>John Doe</strong></a> sends you a friend request
-                        </p>
-                            <small>10 mins ago</small>
-                        </p>
-                </div>
-            </div>
-            <div class="notification-list_feature-img">
-                <button class="btn btn-success btn-sm">Accept</button>
-                <button class="btn btn-danger btn-sm">Reject</button>
-            </div>
-        </div>
-    </div>
+    @livewire('friend-request-list')
 
     {{-- activity --}}
     <div class="notification-ui_dd-content">

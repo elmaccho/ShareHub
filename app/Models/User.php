@@ -132,35 +132,22 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Chat::class, 'chat_user', 'user_id', 'chat_id');
     }
-    public function friendsTo()
+    public function sentFriendRequests()
     {
-        return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id')
-                ->withPivot('accepted')
-                ->withTimestamps();
-    }
-    public function friendsFrom()
-    {
-        return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id')
-                ->withPivot('accepted')
-                ->withTimestamps();
-    }
-    public function pendingFriendsTo()
-    {
-        return $this->friendsTo()->wherePivot('accepted', false);
+        return $this->hasMany(FriendRequest::class, 'requester_id');
     }
 
-    public function pendingFriendsFrom()
+    public function receivedFriendRequests()
     {
-        return $this->friendsFrom()->wherePivot('accepted', false);
+        return $this->hasMany(FriendRequest::class, 'requested_id');
     }
-
-    public function acceptedFriendsTo()
+    public function hasFriendRequest()
     {
-        return $this->friendsTo()->wherePivot('accepted', true);
+        return $this->receivedFriendRequests()->exists();
     }
-
-    public function acceptedFriendsFrom()
+    public function hasSentFriendRequest()
     {
-        return $this->friendsFrom()->wherePivot('accepted', true);
+        return $this->sentFriendRequests()->exists();
     }
 }
+  
