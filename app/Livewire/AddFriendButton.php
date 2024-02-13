@@ -11,6 +11,7 @@ class AddFriendButton extends Component
 {
     public $loggedUser;
     public $userId;
+    protected $listeners = ['remove'];
 
     public function mount($userId)
     {
@@ -23,26 +24,45 @@ class AddFriendButton extends Component
         ->where('status', 'pending')
         ->exists();
 
-        $existingFriendship = Friendship::where('requester_id', $this->loggedUser->id)
-        ->where('requested_id', $this->userId->id);
-
         if ($existingRequest) {
             return;
         }
 
-        if($existingFriendship)
-        {
-            // return;
-        }
         if($this->loggedUser->id != $this->userId->id){
             FriendRequest::create([
                 'requester_id' => $this->loggedUser->id,
                 'requested_id' => $this->userId->id,
                 'status' => 'pending'
             ]);
+
+            $this->dispatch(
+                'popUpTimer',
+                    type : 'success',
+                    title : 'friend request sent',
+                    position : 'top-end'  
+                );
         } else {
             return false;
         }
+    }
+    public function deleteFriend()
+    {
+        $userName = $this->userId->name;
+        $this->dispatch(
+            'popUpConfirm',
+                type : 'warning',
+                text : "Are you sure you want to delete $userName from your friends?",
+                confirmButton : "Yup!",
+                subtext : "$userName has been removed from your friends",
+                position : 'top-end'
+            );
+    }
+    public function remove(){
+        Friendship::where('user_id', $this->userId->id)
+        ->where('friend_id', $this->loggedUser->id)->delete();
+
+        Friendship::where('friend_id', $this->userId->id)
+        ->where('user_id', $this->loggedUser->id)->delete();
     }
     public function render()
     {

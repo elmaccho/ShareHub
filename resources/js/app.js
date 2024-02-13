@@ -108,3 +108,66 @@ window.addEventListener('settingsUpdated', (event) => {
     }
   });
 });
+window.addEventListener('popUpTimer', (event) => {
+  let data = event.detail;
+  let timerInterval;
+
+  Swal.fire({
+    title: data.title,
+    icon: data.type,
+    timer: 1000,
+    width: 400,
+    position: data.position,
+    timerProgressBar: true,
+    didOpen: () => {
+      Swal.showLoading();
+    }
+  }).then((result) => {
+    if (result.dismiss === Swal.DismissReason.timer) {
+
+    }
+  });
+});
+window.addEventListener('popUpTimerReload', (event) => {
+  let data = event.detail;
+  let timerInterval;
+
+  Swal.fire({
+    title: data.title,
+    icon: data.type,
+    timer: 1000,
+    width: 400,
+    position: data.position,
+    timerProgressBar: true,
+    didOpen: () => {
+      Swal.showLoading();
+    }
+  }).then((result) => {
+    if (result.dismiss === Swal.DismissReason.timer) {
+      location.reload();
+    }
+  });
+});
+window.addEventListener('popUpConfirm', (event) => {
+  let data = event.detail;
+
+  Swal.fire({
+    title: data.title,
+    text : data.text,
+    icon: data.type,
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: data.confirmButton
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Deleted!",
+        text: data.subtext,
+        icon: "success"
+      });
+
+      window.Livewire.dispatch('remove');
+    }
+  });
+});

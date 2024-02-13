@@ -1,6 +1,6 @@
 <div class="row col-5">
     @if ($loggedUser->isFriendWith($userId))
-        <button class="btn btn-primary"><i class="fa-solid fa-user-minus"></i> Delete friend</button>    
+        <button class="btn btn-primary" wire:click="deleteFriend"><i class="fa-solid fa-user-minus"></i> Delete friend</button>    
         @else
 
         @if ($loggedUser->hasFriendRequest($userId))

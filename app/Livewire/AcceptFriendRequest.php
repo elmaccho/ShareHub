@@ -37,6 +37,13 @@ class AcceptFriendRequest extends Component
 
         FriendRequest::where('requester_id', $this->requester->id)
         ->where('requested_id', $this->requested->id)->delete();
+
+        $this->dispatch(
+            'popUpTimerReload',
+                type : 'success',
+                title : 'Friend request accepted!',
+                position : 'top-end'  
+            );
     }
     public function render()
     {
