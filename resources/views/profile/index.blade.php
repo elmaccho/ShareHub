@@ -48,7 +48,7 @@
                     </div>
                 @endif
                 @if ($user->id != Auth::user()->id)
-                    @livewire('add-friend-button', ['userId' => $user->id])
+                    @livewire('add-friend-button', ['userId' => $user])
                 @endif
             </div>
 
@@ -68,7 +68,7 @@
         </div>
 
         <div class="user-content">
-            <div class="user-info-section">
+            <div class="user-info-section"  style="max-width: 500px;">
                 @if (!is_null($user->about))
                     <div class="sh-section bio-container">
                         <p class="mb-0"><strong>About Me</strong></p>
@@ -97,6 +97,7 @@
                         @endif
                     </div>
                 @endif
+                @livewire('profile-friend-list', ['user' => $user])
             </div>
             
             <div class="post-container d-flex align-items-center flex-column gap-3">

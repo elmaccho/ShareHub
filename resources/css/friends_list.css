@@ -1,0 +1,26 @@
+.friend-profile{
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
+}
+.friends-wrapper{
+    display: flex;
+}
+.friend-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    text-decoration: none;
+    color: #232323;
+    padding: 10px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+.friend-box:hover{
+    background-color: #ececec;
+}
+.friend-box > h5{
+    text-align: center;
+}

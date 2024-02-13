@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\FriendRequest;
+use App\Models\Friendship;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -16,11 +17,27 @@ class AddFriendButton extends Component
         $this->loggedUser = Auth::user();
         $this->userId = $userId;
     }
-    public function addFriend($userId){
-        if($this->loggedUser->id != $userId){
+    public function addFriend(){
+        $existingRequest = FriendRequest::where('requester_id', $this->loggedUser->id)
+        ->where('requested_id', $this->userId->id)
+        ->where('status', 'pending')
+        ->exists();
+
+        $existingFriendship = Friendship::where('requester_id', $this->loggedUser->id)
+        ->where('requested_id', $this->userId->id);
+
+        if ($existingRequest) {
+            return;
+        }
+
+        if($existingFriendship)
+        {
+            // return;
+        }
+        if($this->loggedUser->id != $this->userId->id){
             FriendRequest::create([
                 'requester_id' => $this->loggedUser->id,
-                'requested_id' => $userId,
+                'requested_id' => $this->userId->id,
                 'status' => 'pending'
             ]);
         } else {

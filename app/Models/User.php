@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Enums\UserRole as UserRoles;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -136,18 +137,33 @@ class User extends Authenticatable
     {
         return $this->hasMany(FriendRequest::class, 'requester_id');
     }
-
     public function receivedFriendRequests()
     {
         return $this->hasMany(FriendRequest::class, 'requested_id');
     }
-    public function hasFriendRequest()
+    public function hasFriendRequest(User $user)
+    {
+        return $this->receivedFriendRequests()->where('requester_id', $user->id)->exists();
+    }
+    public function receivedRequest()
     {
         return $this->receivedFriendRequests()->exists();
     }
-    public function hasSentFriendRequest()
+    public function hasSentFriendRequest(User $user)
     {
-        return $this->sentFriendRequests()->exists();
+        return $this->sentFriendRequests()->where('requested_id', $user->id)->exists();
     }
+    public function friends()
+    {
+        return $this->hasMany(Friendship::class);
+    }
+    public function isFriendWith(User $user)
+    {
+        $friendship = Friendship::where('user_id', $this->id)
+                                 ->where('friend_id', $user->id)
+                                 ->first();
+        return $friendship !== null;
+    }
+    
 }
   

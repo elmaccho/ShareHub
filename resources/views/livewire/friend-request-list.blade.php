@@ -1,5 +1,5 @@
 <div>
-    @if ($loggedUser->hasFriendRequest())
+    @if ($loggedUser->receivedRequest())
     <div class="notification-ui_dd-content">
         <div class="text-center mb-3">
             <strong>You got a Friend Request!</strong>
@@ -23,8 +23,14 @@
                     </div>
                 </div>
                 <div class="notification-list_feature-img d-flex gap-1">
-                    @livewire('accept-friend-request')
-                    @livewire('delete-friend-request')
+                    @livewire('accept-friend-request', [
+                        'requester' => $friendRequest->requester,
+                        'requested' => $friendRequest->requested
+                    ])
+                    @livewire('delete-friend-request', [
+                        'requester' => $friendRequest->requester,
+                        'requested' => $friendRequest->requested
+                    ])
                 </div>
             </div>
         @endforeach
