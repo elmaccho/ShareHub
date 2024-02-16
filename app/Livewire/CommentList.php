@@ -10,7 +10,10 @@ class CommentList extends Component
     protected $listeners = ['commentAdded' => 'refresh'];
 
     public $postId;
-
+    public function mount($postId)
+    {
+        $this->postId = $postId;
+    }
     public function refresh()
     {
         $this->render();

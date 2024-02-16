@@ -23,20 +23,4 @@ $(function(){
           });
     })
 
-    $('.commentForm').submit(function(e){
-        e.preventDewfault();
-
-        $.ajax({
-            method: "POST",
-            url: $(this).attr('action'),
-            data: $(this).serialize(),
-        })
-        .done(function( data ) {
-            // window.location.reload()
-        })
-        .fail(function (data){
-            console.error(data)
-            Swal.fire("Oops...", data.responseJSON.message, data.responseJSON.status)
-        })
-    })
 })

@@ -1,6 +1,6 @@
 <div class="post-comments-section mb-3">
     @forelse ($comments as $comment)
-        <div class="card mb-2 comment-body">
+        <div class="card mb-2 comment-body" wire:key="comment-{{ $comment->post->id }}">
             <div class="dropdown comment-action">
                 <button class="btn btn-link text-dark" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fa-solid fa-ellipsis comment-action-btn"></i>

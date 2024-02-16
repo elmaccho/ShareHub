@@ -11,18 +11,24 @@ class AddComment extends Component
 {
     public $comment;
     public $postId;
-
+    public function mount($postId)
+    {
+        $this->postId = $postId;
+    }
+    
     public function createComment()
     {
         $validated = $this->validate([
             'comment' => 'required|string',
         ]);
 
-        $addComment = new Comment();
-        $addComment->post_id = $this->postId;
-        $addComment->user_id = Auth::user()->id;
-        $addComment->content = $this->comment;
-        $addComment->save();
+        // dd($this->comment, $this->postId, Auth::user()->id);
+
+        Comment::create([
+            'content' => $this->comment,
+            'user_id' => Auth::user()->id,
+            'post_id' => $this->postId
+        ]);
 
         $this->reset(['comment']);
         $this->dispatch('commentAdded');
