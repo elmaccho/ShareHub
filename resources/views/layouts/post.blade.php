@@ -1,4 +1,4 @@
-<div class="sh-section d-flex flex-column">
+<div class="sh-section d-flex flex-column mb-5" wire:key="post-{{ $post->id }}">
     <div class="dropdown comment-action">
         <button class="btn btn-link text-dark" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa-solid fa-ellipsis comment-action-btn"></i>
@@ -9,13 +9,13 @@
                     @livewire('report-button', [
                         'type' => 'post',
                         'targetId' => $post->id,
-                    ])
+                    ], key('report-button-'. $post->id))
                 </li>
             @endif
-          @if ($loggedUser->isAdmin() || $loggedUser->isModerator() || $loggedUser->isOwnerOfPost($post))
+        @if ($loggedUser->isAdmin() || $loggedUser->isModerator() || $loggedUser->isOwnerOfPost($post))
             <li><a href="{{ route('post.edit', $post->id) }}"><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#EditPost">Edit</button></a></li>
             <li><button class="dropdown-item delete-post-btn" data-post-id={{ $post->id }}>Delete</button></li>
-          @endif
+        @endif
         </ul>
     </div>
     <div class="author-info">
@@ -53,7 +53,13 @@
             Saves
         </button>
     </div>
-        @livewire('comment-list', ['postId' => $post->id])
+    <div class="post-comments-section mb-3">
+        @forelse ($post->comments as $comment)
+            <livewire:comment-list :comment="$comment" wire:key="comment-list-{{ $post->id }}"/>
+        @empty
+            No comments found...
+        @endforelse
+    </div>
     <div class="post-add-comment d-flex align-items-center gap-2">
         <a href="{{ route('profile.index', $loggedUser->id) }}">
             @if (!is_null($loggedUser->profile_image_path))
@@ -62,7 +68,6 @@
                     <img class="user-profile-image" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="{{ $loggedUser->name }} {{ $loggedUser->surname }}">
             @endif
         </a>
-
-        @livewire('add-comment', ['postId' => $post->id])
+        <livewire:add-comment :post="$post" wire:key="add-comment-{{ $post->id }}"/>
     </div>
-</div>
+</div>  
