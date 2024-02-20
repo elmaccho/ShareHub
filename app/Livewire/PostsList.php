@@ -25,4 +25,8 @@ class PostsList extends Component
     {
         return view('livewire.posts-list');
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 54e27fd

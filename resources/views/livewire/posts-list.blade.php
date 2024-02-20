@@ -1,5 +1,9 @@
 <div class="row">
+<<<<<<< HEAD
     @foreach ($posts as $post)
+=======
+    @foreach($posts as $post)
+>>>>>>> 54e27fd
         <div class="sh-section d-flex flex-column mb-5" wire:key="post-{{ $post->id }}">
             <div class="dropdown comment-action">
                 <button class="btn btn-link text-dark" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -11,7 +15,11 @@
                             @livewire('report-button', [
                                 'type' => 'post',
                                 'targetId' => $post->id,
+<<<<<<< HEAD
                             ])
+=======
+                            ], key('report-button-'. $post->id))
+>>>>>>> 54e27fd
                         </li>
                     @endif
                 @if ($loggedUser->isAdmin() || $loggedUser->isModerator() || $loggedUser->isOwnerOfPost($post))
@@ -55,7 +63,17 @@
                     Saves
                 </button>
             </div>
+<<<<<<< HEAD
                 @livewire('comment-list', ['postId' => $post->id], key('comment-list-' . $post->id))
+=======
+            <div class="post-comments-section mb-3">
+                @forelse ($post->comments as $comment)
+                    <livewire:comment-list :comment="$comment" wire:key="comment-list-{{ $post->id }}"/>
+                @empty
+                    No comments found...
+                @endforelse
+            </div>
+>>>>>>> 54e27fd
             <div class="post-add-comment d-flex align-items-center gap-2">
                 <a href="{{ route('profile.index', $loggedUser->id) }}">
                     @if (!is_null($loggedUser->profile_image_path))
@@ -64,10 +82,16 @@
                             <img class="user-profile-image" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="{{ $loggedUser->name }} {{ $loggedUser->surname }}">
                     @endif
                 </a>
+<<<<<<< HEAD
         
                 @livewire('add-comment', ['postId' => $post->id], key('add-comment-' . $post->id))
         
             </div>
         </div>
+=======
+                <livewire:add-comment :post="$post" wire:key="add-comment-{{ $post->id }}"/>
+            </div>
+        </div>  
+>>>>>>> 54e27fd
     @endforeach
 </div>

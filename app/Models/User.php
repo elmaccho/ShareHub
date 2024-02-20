@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Enums\UserRole as UserRoles;
+use Egulias\EmailValidator\Parser\CommentStrategy\CommentStrategy;
 use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
@@ -116,7 +117,10 @@ class User extends Authenticatable
     {
         return $this->id === $post->user_id;
     }
-
+    public function isOwnerOfComment(Comment $comment)
+    {
+        return $this->id === $comment->user_id;
+    }
     public function bans(): HasMany
     {
         return $this->hasMany(Ban::class);

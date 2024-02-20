@@ -2,11 +2,13 @@
 
 namespace App\Livewire;
 
+use App\Models\Comment;
 use App\Models\Post;
 use Livewire\Component;
 
 class CommentList extends Component
 {
+<<<<<<< HEAD
     protected $listeners = ['commentAdded' => 'refresh'];
 
     public $postId;
@@ -15,15 +17,16 @@ class CommentList extends Component
         $this->postId = $postId;
     }
     public function refresh()
+=======
+    public Comment $comment;
+    public function mount(Comment $comment)
+>>>>>>> 54e27fd
     {
-        $this->render();
+        $this->comment = $comment;
     }
+
     public function render()
     {
-        $post = Post::find($this->postId);
-
-        return view('livewire.comment-list', [
-            'comments' => $post->comments,
-        ]);
+        return view('livewire.comment-list');
     }
 }
