@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <div class="sh-section d-flex flex-column mb-5" wire:key="post-{{ $post->id }}">
     <div class="dropdown comment-action">
         <button class="btn btn-link text-dark" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -73,4 +71,3 @@
         <livewire:add-comment :post="$post" wire:key="add-comment-{{ $post->id }}"/>
     </div>
 </div>  
->>>>>>> 54e27fd

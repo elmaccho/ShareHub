@@ -38,13 +38,9 @@
                 </span>
             </div>
 
-<<<<<<< HEAD
-            @livewire('posts-list')
-=======
             {{-- <livewire:posts-list/> --}}
             @livewire('posts-list')
             
->>>>>>> 54e27fd
 
         </div>
     </div>
