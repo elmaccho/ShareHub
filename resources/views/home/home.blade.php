@@ -37,10 +37,8 @@
                     <i class="fa-solid fa-comment-dots"></i>
                 </span>
             </div>
+            @livewire('posts-list', ['id' => null])
 
-            {{-- <livewire:posts-list/> --}}
-            @livewire('posts-list')
-            
 
         </div>
     </div>

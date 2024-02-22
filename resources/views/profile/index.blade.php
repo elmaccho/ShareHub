@@ -104,9 +104,7 @@
     
                 {{ $user->name }}'s Posts
 
-                @foreach ($posts as $post)
-                    @include('layouts.post')
-                @endforeach
+                @livewire('posts-list', ['id' => $user->id])
             </div>
         </div>
     </div>

@@ -1,4 +1,12 @@
-<div class="row">
+<div class="row" 
+    @scroll.window.trottle="
+    isScrolled = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight;
+
+    if(isScrolled){
+        @this.loadMorePosts();
+    }
+    "
+>
     @foreach($posts as $post)
         <div class="sh-section d-flex flex-column mb-5" wire:key="post-{{ $post->id }}">
             <div class="dropdown comment-action">
@@ -45,7 +53,6 @@
                 {{ $post->content }}
             </div>
             <div class="post-social-actions mb-3">
-                {{-- @livewire('like-button', ['post' => $post]) --}}
                 <livewire:like-button :post="$post" wire:key="like-button-{{ $post->id }}"/>
                 <button class="comment-btn sh-post-btn">
                     <i class="fa-solid fa-comment"></i> 
@@ -56,23 +63,29 @@
                     Saves
                 </button>
             </div>
-            <div class="post-comments-section mb-3">
-                @forelse ($post->comments as $comment)
-                    <livewire:comment-list :comment="$comment" wire:key="comment-list-{{ $post->id }}"/>
-                @empty
-                    No comments found...
-                @endforelse
-            </div>
-            <div class="post-add-comment d-flex align-items-center gap-2">
-                <a href="{{ route('profile.index', $loggedUser->id) }}">
-                    @if (!is_null($loggedUser->profile_image_path))
-                            <img class="user-profile-image" src="{{ asset('storage/'. $loggedUser->profile_image_path) }}" alt="{{ $loggedUser->name }} {{$loggedUser->surname}}">
-                        @else
-                            <img class="user-profile-image" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="{{ $loggedUser->name }} {{ $loggedUser->surname }}">
-                    @endif
+            <div class="row m-2">
+                <a class="row m-0 p-0 text-decoration-none" href="{{ route("postpage.index", $post->id) }}">
+                    <button class="btn btn-outline-primary">Read more</button>
                 </a>
-                <livewire:add-comment :post="$post" wire:key="add-comment-{{ $post->id }}"/>
             </div>
         </div>  
     @endforeach
+
+    @if (!$allPostsLoaded)
+        <div wire:loading wire:target="loadMorePosts">
+            @include('layouts.postplaceholder')
+        </div>
+        
+        <div class="row" wire:loading.remove wire:target="loadMorePosts">
+            <button class="btn btn-sm btn-outline-primary" wire:click="loadMorePosts">Load More</button>
+        </div>
+    @endif
+
+    @if ($allPostsLoaded)
+    <div class="row">
+        <strong class="d-flex justify-content-center">
+            No more posts for today!
+        </strong>
+    </div>
+    @endif
 </div>

@@ -13,6 +13,7 @@ use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostLikeController;
+use App\Http\Controllers\PostPageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
 use App\Models\Message;
@@ -57,6 +58,8 @@ Route::middleware(['auth', 'verified', 'CheckIfBanned'])->group(function(){
 
     Route::get('/messages', [MessagesController::class, 'index'])->name('messages.index');
     Route::get('/notifications', [NotificationsController::class, 'index'])->name('notifications.index');
+
+    Route::get('/post/{post}', [PostPageController::class, 'index'])->name('postpage.index');
 
     Route::middleware(['can:isAdmin'])->group(function(){
         Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.dashboard');

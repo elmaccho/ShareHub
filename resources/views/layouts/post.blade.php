@@ -43,7 +43,8 @@
         {{ $post->content }}
     </div>
     <div class="post-social-actions mb-3">
-        @livewire('like-button', ['post' => $post])
+        {{-- @livewire('like-button', ['post' => $post]) --}}
+        <livewire:like-button :post="$post" wire:key="like-button-{{ $post->id }}"/>
         <button class="comment-btn sh-post-btn">
             <i class="fa-solid fa-comment"></i> 
             {{ $post->comments->count() }} Comments
@@ -53,7 +54,12 @@
             Saves
         </button>
     </div>
-    <div class="post-comments-section mb-3">
+    <div class="row m-2">
+        <a class="row m-0 p-0" href="{{ route("postpage.index", $post->id) }}">
+            <button class="btn btn-outline-primary">Read more</button>
+        </a>
+    </div>
+    {{-- <div class="post-comments-section mb-3">
         @forelse ($post->comments as $comment)
             <livewire:comment-list :comment="$comment" wire:key="comment-list-{{ $post->id }}"/>
         @empty
@@ -69,5 +75,5 @@
             @endif
         </a>
         <livewire:add-comment :post="$post" wire:key="add-comment-{{ $post->id }}"/>
-    </div>
+    </div> --}}
 </div>  

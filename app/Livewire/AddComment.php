@@ -29,6 +29,7 @@ class AddComment extends Component
         // $this->reset(['comment']);
         // $this->dispatch('commentAdded');
         $this->dispatch('refreshPostsList');
+        $this->dispatch('refreshCommentsList');
         // return redirect(request()->header('Referer'));
     }
 
