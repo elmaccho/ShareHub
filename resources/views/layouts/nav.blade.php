@@ -16,7 +16,7 @@
 
     @guest
         @else
-    <div class="routes-wrapper col-4">
+    <div class="routes-wrapper">
         <a class="route-btn" href="{{ route('home') }}">
             <i class="fa-solid fa-house-chimney"></i>
         </a>

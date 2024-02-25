@@ -13,8 +13,8 @@
                 </li>
             @endif
         @if ($loggedUser->isAdmin() || $loggedUser->isModerator() || $loggedUser->isOwnerOfPost($post))
-            <li><a href="{{ route('post.edit', $post->id) }}"><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#EditPost">Edit</button></a></li>
-            <li><button class="dropdown-item delete-post-btn" data-post-id={{ $post->id }}>Delete</button></li>
+            <li><a class="text-decoration-none" href="{{ route('post.edit', $post->id) }}"><button class="dropdown-item">Edit</button></a></li>
+            <li><livewire:delete-post :post="$post" wire:key="delete-post-{{ $post->id }}"/></li>
         @endif
         </ul>
     </div>
@@ -43,7 +43,6 @@
         {{ $post->content }}
     </div>
     <div class="post-social-actions mb-3">
-        {{-- @livewire('like-button', ['post' => $post]) --}}
         <livewire:like-button :post="$post" wire:key="like-button-{{ $post->id }}"/>
         <button class="comment-btn sh-post-btn">
             <i class="fa-solid fa-comment"></i> 
@@ -55,7 +54,7 @@
         </button>
     </div>
     <div class="row m-2">
-        <a class="row m-0 p-0" href="{{ route("postpage.index", $post->id) }}">
+        <a class="row m-0 p-0 text-decoration-none" href="{{ route("postpage.index", $post->id) }}">
             <button class="btn btn-outline-primary">Read more</button>
         </a>
     </div>

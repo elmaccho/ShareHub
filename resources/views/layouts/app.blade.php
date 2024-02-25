@@ -13,15 +13,13 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-    <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/css/app.css', 'resources/js/app.js'])
-    @vite('resources/css/nav.css')
+    {{-- CSS --}}
+    @vite(['resources/css/app.css', 'resources/css/nav.css', 'resources/sass/app.scss'])
 
-    
-
+    {{-- JavaScript --}}
+    @vite(['resources/js/app.js'])
 </head>
 <body>
-
     <div id="app">
         @if(!Request::is('login') && !Request::is('register'))
             @include('layouts.nav')
@@ -32,6 +30,7 @@
     </div>
     <script type="text/javascript">
         @yield('javascript')
+
     </script>
     @yield('js-files')
 </body>

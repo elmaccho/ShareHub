@@ -40,31 +40,38 @@
                         {{ $user->surname }}
                     </p>
                 </span>
-                @if ($user->id == Auth::user()->id)
-                    <div class="user-links">
-                        <a class="sh-link d-flex align-items-center" href="{{ route('settings.index') }}">
-                            <p class="m-0">Complete your profile information</p>
-                        </a>
-                    </div>
+                @if (!$user->hasSocialLinks())
+                    @if ($user->id == Auth::user()->id)
+                        <div class="user-links">
+                            <a class="sh-link d-flex align-items-center" href="{{ route('settings.index') }}">
+                                <p class="m-0">Complete your profile information</p>
+                            </a>
+                        </div>
+                    @endif
                 @endif
                 @if ($user->id != Auth::user()->id)
                     @livewire('add-friend-button', ['userId' => $user])
                 @endif
             </div>
 
-            @if ($user->id != Auth::user()->id)
-                <div class="user-action">
-                    <button class="user-action-btn btn btn-secondary bg-transparent border-0 text-dark" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-ellipsis"></i>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <div class="user-action">
+                <button class="user-action-btn btn btn-secondary bg-transparent border-0 text-dark" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-ellipsis"></i>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    @if ($user->id != Auth::user()->id)
                         @livewire('report-button', [
                             'type' => 'user',
                             'targetId' => $user->id,
                         ])
-                        </ul>
-                </div>
-            @endif
+                    @endif
+                    @if (Auth::user())
+                        <button class="dropdown-item">
+                            <a class="text-dark text-decoration-none" href="{{ route('settings.index') }}">Settings</a>
+                        </button>
+                    @endif
+                </ul>
+            </div>
         </div>
 
         <div class="user-content">

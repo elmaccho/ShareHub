@@ -45,7 +45,7 @@ class PostsList extends Component
     }
     public function refreshPostsList()
     {
-        $this->posts = Post::orderBy('created_at', 'desc')->get();
+        $this->posts = Post::latest()->take(5)->get();
     }
     public function render()
     {

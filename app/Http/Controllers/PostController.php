@@ -25,28 +25,28 @@ class PostController extends Controller
 
         return back()->with('status', 'Post created!');
     }
-    public function destroy(Post $post)
-    {
-        $user = Auth::user();
+    // public function destroy(Post $post)
+    // {
+    //     $user = Auth::user();
 
-        if($user->isAdmin() || $user->isModerator() || $user->isOwnerOfPost($post)){
-            try{
-                $post->comments()->delete();
-                $post->delete();
-                Session::flash('status', 'Post has been deleted');
-                return response()->json([
-                    'status' => 'success'
-                ]);
-            } catch(Exception $e){
-                return response()->json([
-                    'status' => 'error',
-                    'message' => 'Something went wrong...'
-                ])->setStatusCode(500);
-            }
-        } else {
-            abort(401, 'Unauthorized action.');
-        }
-    }
+    //     if($user->isAdmin() || $user->isModerator() || $user->isOwnerOfPost($post)){
+    //         try{
+    //             $post->comments()->delete();
+    //             $post->delete();
+    //             Session::flash('status', 'Post has been deleted');
+    //             return response()->json([
+    //                 'status' => 'success'
+    //             ]);
+    //         } catch(Exception $e){
+    //             return response()->json([
+    //                 'status' => 'error',
+    //                 'message' => 'Something went wrong...'
+    //             ])->setStatusCode(500);
+    //         }
+    //     } else {
+    //         abort(401, 'Unauthorized action.');
+    //     }
+    // }
     public function edit(Post $post)
     {
         $user = Auth::user();
@@ -59,13 +59,13 @@ class PostController extends Controller
             abort(401, 'Unauthorized action.');
         }
     }
-    public function update(PostRequest $request, Post $post)
-    {
-        $validatedData = $request->validated();
-        $post->update($validatedData);
+    // public function update(PostRequest $request, Post $post)
+    // {
+    //     $validatedData = $request->validated();
+    //     $post->update($validatedData);
 
 
 
-        return redirect()->back()->with('success', 'Post has been updated');
-    }
+    //     return redirect()->back()->with('success', 'Post has been updated');
+    // }
 }
