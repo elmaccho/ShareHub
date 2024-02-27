@@ -18,6 +18,9 @@
 
     {{-- JavaScript --}}
     @vite(['resources/js/app.js'])
+
+    <link rel="stylesheet" href="{{ asset('lightbox2/dist/css/lightbox.min.css') }}">
+
 </head>
 <body>
     <div id="app">
@@ -33,5 +36,7 @@
 
     </script>
     @yield('js-files')
+
+    <script src="{{ asset('lightbox2/dist/js/lightbox.js') }}"></script>
 </body>
 </html>

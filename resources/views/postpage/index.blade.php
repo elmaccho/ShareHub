@@ -46,9 +46,13 @@
                     <h3><strong>{{ $post->title }}</strong></h3>
                     <p>{{ $post->content }}</p>
                     <div class="img-post">
-                        @foreach ($postImages as $image)
-                            <img class="post-image" src="{{ asset('storage/'.$image->file_path) }}" alt="">
-                        @endforeach
+                        @if ($post->hasImage())
+                            @foreach($post->postImage as $image)
+                            <a href="{{ asset('storage/'. $image->file_path) }}" data-lightbox="post-{{ $post->id }}">
+                                <img class="post-image-thumbnail" src="{{ asset('storage/'. $image->file_path) }}" alt="">
+                            </a>
+                            @endforeach
+                        @endif
                     </div>
                 </div> 
                    
