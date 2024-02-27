@@ -43,12 +43,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="img-post">
-                        <img class="d-block img-fluid" src="https://www.bootdey.com/image/1000x280/87CEFA/000000" alt="First slide">
-                    </div>
                     <h3><strong>{{ $post->title }}</strong></h3>
                     <p>{{ $post->content }}</p>
-                </div>    
+                    <div class="img-post">
+                        @foreach ($postImages as $image)
+                            <img class="post-image" src="{{ asset('storage/'.$image->file_path) }}" alt="">
+                        @endforeach
+                    </div>
+                </div> 
+                   
                 <div class="mb-3 d-flex">
                     <livewire:like-button :post="$post" wire:key="like-button-{{ $post->id }}"/>
                     <button class="comment-btn sh-post-btn">
@@ -66,7 +69,10 @@
                     <h2>Comments {{ $post->comments()->count() }}</h2>
                 </div> 
                 <div class="card-body">
-                    <livewire:add-comment :post="$post" wire:key="add-comment-{{ $post->id }}"/>
+                    <form wire:submit.prevent="createComment" class="commentForm" >
+                        <input wire:model="comment" class="sh-input" type="text" name="comment" placeholder="Write your comment...">
+                        @error('comment') <span class="text-danger">{{ $message }}</span> @enderror
+                    </form>
                     <div class="row mt-3">
                         @forelse ($post->comments as $comment)
                             <ul class="comment-reply list-unstyled">

@@ -236,6 +236,10 @@
 .text-box{
     width: 100%;
 }
+.post-image{
+    width: 500px;
+    max-height: 500px;
+}
 @media (max-width: 640px) {
     .blog-page .left-box .single-comment-box>ul>li {
         padding: 25px 0

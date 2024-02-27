@@ -12,10 +12,10 @@
                     ], key('report-button-'. $post->id))
                 </li>
             @endif
-        @if ($loggedUser->isAdmin() || $loggedUser->isModerator() || $loggedUser->isOwnerOfPost($post))
-            <li><a class="text-decoration-none" href="{{ route('post.edit', $post->id) }}"><button class="dropdown-item">Edit</button></a></li>
-            <li><livewire:delete-post :post="$post" wire:key="delete-post-{{ $post->id }}"/></li>
-        @endif
+            @if ($loggedUser->isAdmin() || $loggedUser->isModerator() || $loggedUser->isOwnerOfPost($post))
+                <li><a class="text-decoration-none" href="{{ route('post.edit', $post->id) }}"><button class="dropdown-item">Edit</button></a></li>
+                <li><livewire:delete-post :post="$post" wire:key="delete-post-{{ $post->id }}"/></li>
+            @endif
         </ul>
     </div>
     <div class="author-info">
@@ -38,6 +38,14 @@
     </div>
     <div class="post-title">
         {{ $post->title }}
+    </div>
+    <div class="post-image-thumbnail-wrapper">
+        @if ($post->hasImage())
+            @foreach($post->postImage as $image)
+                <img class="post-image-thumbnail" src="{{ asset('storage/'. $image->file_path) }}" alt="">
+            @endforeach
+        @endif
+    
     </div>
     <div class="post-description mb-3">
         {{ $post->content }}

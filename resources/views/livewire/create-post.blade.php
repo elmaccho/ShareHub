@@ -11,7 +11,16 @@
             <label for="image-upload" id="upload-icon" class="form-label sh-pointer">
                 <i class="fa-solid fa-image"></i>
             </label>
-            <input type="file" class="form-control d-none" id="image-upload" name="image" accept="image/*" wire:model="image">
+            <input type="file" class="form-control d-none" id="image-upload" accept="image/*" wire:model="images" multiple>
+
+
         </div>
     </form>
+    <div class="d-flex">
+        @foreach ($images as $image)
+            <div class="thumbnail-wrapper me-2">
+                <img class="thumbnail-image" src="{{ $image->temporaryUrl() }}" alt="">
+            </div>
+        @endforeach
+    </div>
 </div>
