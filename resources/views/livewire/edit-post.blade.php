@@ -16,8 +16,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="img mb-3">
-                    <img class="d-block img-fluid" src="https://www.bootdey.com/image/1000x280/87CEFA/000000" alt="First slide">
+                <div class="mb-3 d-flex gap-3">
+                    @if ($post->hasImage())
+                        @foreach($post->postImage as $image)
+                            <div class="post-image-wrapper">
+                                <a class="text-decoration-none" href="{{ asset('storage/'. $image->file_path) }}" data-lightbox="post-{{ $post->id }}">
+                                    <img class="post-image-edit" src="{{ asset('storage/'. $image->file_path) }}" alt="">
+                                </a>
+                                <button type="button" class="btn btn-danger deleteImgBtn" wire:click="deletePhoto({{ $image->id }})"><i class="fa-solid fa-trash-can"></i></button>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
                 <input type="text" class="form-control mb-2" id="title" name="title" placeholder="Title..." required value="{{ $post->title }}" wire:model="postTitle">
                 <textarea class="form-control" id="content" name="content" rows="4" placeholder="Content..." wire:model="postContent">{{ $post->content }}</textarea>

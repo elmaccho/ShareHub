@@ -240,6 +240,28 @@
     width: 500px;
     max-height: 500px;
 }
+.post-image-wrapper{
+    width: 180px;
+    height: 180px;
+    position: relative;
+}
+.post-image-edit{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.deleteImgBtn{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border-radius: 5px;
+    width: 35px;
+    display: flex;
+    justify-content: center;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 0;
+}
 @media (max-width: 640px) {
     .blog-page .left-box .single-comment-box>ul>li {
         padding: 25px 0

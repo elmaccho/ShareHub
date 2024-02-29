@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Post;
+use App\Models\PostImage;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -16,6 +17,11 @@ class EditPost extends Component
         $this->post = $post;
         $this->postTitle = $post->title;
         $this->postContent = $post->content;
+    }
+    public function deletePhoto($imageId)
+    {
+        // dd($imageId);
+         PostImage::where('id', $imageId)->delete();
     }
     public function updatePost()
     {
