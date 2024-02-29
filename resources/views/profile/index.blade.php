@@ -183,12 +183,4 @@
 
 @vite('resources/css/home.css')
 @vite('resources/css/profile.css')
-@vite('resources/js/post.js')
-@endsection
-@section('javascript')
-    const commentDeleteUrl = "{{ url('comment') }}/"
-    const postdeleteUrl = "{{ url('profile') }}/"
-@endsection
-@section('js-files')
-    @vite('resources/js/comment.js')
 @endsection
