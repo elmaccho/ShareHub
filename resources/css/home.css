@@ -155,6 +155,16 @@
     height: 60px;
     border-radius: 10px;
 }
+.commentForm > span{
+    display: flex;
+    position: relative;
+}
+.commentForm > span > button{
+    position: absolute;
+    right: 0;
+    border-radius: 0 8px 8px 0;
+    height: 40px;
+}
 @media screen and (max-width: 700px) {
     .side-menu{
         background: rgb(255, 255, 255);

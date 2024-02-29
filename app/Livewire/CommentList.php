@@ -10,15 +10,15 @@ class CommentList extends Component
 {
     protected $listeners = ['refreshCommentsList'];
     public $comments;
-    public Comment $comment;
-    public function mount(Comment $comment)
+    public Post $post;
+    public function mount(Post $post)
     {
-        $this->comments = Comment::all();
-        $this->comment = $comment;
+        $this->comments = $post->comments()->latest()->get();
     }
     public function refreshCommentsList()
     {
-        // $this->comments = Comment::all();
+        $this->comments = $this->post->comments()->latest()->get();
+        // $this->comments = Comment::where('post_id', $this->post->id)->latest()->get();
         // dd($this->comment);
     }
     public function render()

@@ -42,7 +42,7 @@
     <div class="post-image-thumbnail-wrapper">
         @if ($post->hasImage())
             @foreach($post->postImage as $image)
-            <a href="{{ asset('storage/'. $image->file_path) }}" data-lightbox="post-{{ $post->id }}">
+            <a class="text-decoration-none" href="{{ asset('storage/'. $image->file_path) }}" data-lightbox="post-{{ $post->id }}">
                 <img class="post-image-thumbnail" src="{{ asset('storage/'. $image->file_path) }}" alt="">
             </a>
             @endforeach

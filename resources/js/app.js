@@ -8,9 +8,9 @@ import './bootstrap';
 import Swal from 'sweetalert2';
 window.Swal = Swal;
 
-import Alpine from 'alpinejs'
-window.Alpine = Alpine
-Alpine.start()
+// import Alpine from 'alpinejs'
+// window.Alpine = Alpine
+// Alpine.start()
 
 /**
  * Next, we will create a fresh React component instance and attach it to

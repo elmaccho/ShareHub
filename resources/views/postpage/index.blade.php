@@ -48,7 +48,7 @@
                     <div class="img-post">
                         @if ($post->hasImage())
                             @foreach($post->postImage as $image)
-                            <a href="{{ asset('storage/'. $image->file_path) }}" data-lightbox="post-{{ $post->id }}">
+                            <a class="text-decoration-none" href="{{ asset('storage/'. $image->file_path) }}" data-lightbox="post-{{ $post->id }}">
                                 <img class="post-image-thumbnail" src="{{ asset('storage/'. $image->file_path) }}" alt="">
                             </a>
                             @endforeach
@@ -73,57 +73,16 @@
                     <h2>Comments {{ $post->comments()->count() }}</h2>
                 </div> 
                 <div class="card-body">
-                    <form wire:submit.prevent="createComment" class="commentForm" >
-                        <input wire:model="comment" class="sh-input" type="text" name="comment" placeholder="Write your comment...">
-                        @error('comment') <span class="text-danger">{{ $message }}</span> @enderror
-                    </form>
+                    <livewire:add-comment :post="$post" wire:key="add-comment-{{ $post->id }}"/>
                     <div class="row mt-3">
-                        @forelse ($post->comments as $comment)
-                            <ul class="comment-reply list-unstyled">
-                                <li class="d-flex gap-3">
-                                    <div class="icon-box">
-                                        @if (!is_null($comment->user->profile_image_path))
-                                                <img class="user-profile-image" src="{{ asset('storage/'. $comment->user->profile_image_path) }}" alt="{{ $comment->user->name }} {{$comment->user->surname}}">
-                                            @else
-                                                <img class="user-profile-image" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="{{ $comment->user->name }} {{ $comment->user->surname }}">
-                                        @endif
-                                    </div>
-                                    <div class="text-box">
-                                        <h5 class="m-0">{{ $comment->user->name }} {{ $comment->user->surname }}</h5>
-                                        @if ($post->user->id == $comment->user->id)
-                                            <strong>Author </strong>    
-                                        @endif
-                                        <i><i class="fa-regular fa-clock"></i> {{ $post->created_at->diffForHumans() }}</i>
-                                        <p>{{ $comment->content }}</p>
-                                    </div>
-                                    <div class="dropdown comment-action">
-                                        <button class="btn btn-link text-dark" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="fa-solid fa-ellipsis comment-action-btn"></i>
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <li>
-                                                @livewire('report-button', [
-                                                    'type' => 'comment',
-                                                    'targetId' => $comment->id,
-                                                ])
-                                            </li>
-                                            @if (Auth::user()->isAdmin() || Auth::user()->isModerator() || Auth::user()->isOwnerOfComment($comment))
-                                                <li><button type="button" class="dropdown-item">Edit</button></li>
-                                                <li><button type="button" class="dropdown-item delete-comment-btn">Delete</button></li>
-                                            @endif
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>                                        
-                            @empty
-                            <p class="mb-0">No comments yet...</p>
-                        @endforelse
+                        <livewire:comment-list :post="$post" wire:key="comment-list-{{ $post->id }}" />    
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@livewire('report-modal')
 @vite('resources/css/post_page.css')
 @vite('resources/css/home.css')
 @endsection
