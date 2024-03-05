@@ -26,4 +26,3 @@
 
 @endsection
 @vite('resources/css/panel/posts-list.css')
-@vite('resources/js/post.js')

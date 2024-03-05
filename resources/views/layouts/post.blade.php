@@ -68,21 +68,4 @@
             <button class="btn btn-outline-primary">Read more</button>
         </a>
     </div>
-    {{-- <div class="post-comments-section mb-3">
-        @forelse ($post->comments as $comment)
-            <livewire:comment-list :comment="$comment" wire:key="comment-list-{{ $post->id }}"/>
-        @empty
-            No comments found...
-        @endforelse
-    </div>
-    <div class="post-add-comment d-flex align-items-center gap-2">
-        <a href="{{ route('profile.index', $loggedUser->id) }}">
-            @if (!is_null($loggedUser->profile_image_path))
-                    <img class="user-profile-image" src="{{ asset('storage/'. $loggedUser->profile_image_path) }}" alt="{{ $loggedUser->name }} {{$loggedUser->surname}}">
-                @else
-                    <img class="user-profile-image" src="{{ asset('storage/user_profile/userDefault.png') }}" alt="{{ $loggedUser->name }} {{ $loggedUser->surname }}">
-            @endif
-        </a>
-        <livewire:add-comment :post="$post" wire:key="add-comment-{{ $post->id }}"/>
-    </div> --}}
 </div>  

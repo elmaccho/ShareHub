@@ -6,11 +6,14 @@ use App\Models\Post;
 use App\Models\PostImage;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class EditPost extends Component
 {
+    use WithFileUploads;
     public Post $post;
     public $postTitle;
+    public $images = [];
     public $postContent;
     public function mount(Post $post)
     {
@@ -27,7 +30,8 @@ class EditPost extends Component
     {
         // dd(
         //     $this->postTitle,
-        //     $this->postContent
+        //     $this->postContent,
+        //     $this->images
         // );
         $user = Auth::user();
         if($user->isAdmin() || $user->isModerator() || $user->isOwnerOfPost($this->post)){
@@ -35,6 +39,13 @@ class EditPost extends Component
                 'title' => $this->postTitle,
                 'content' => $this->postContent
             ]);
+            foreach ($this->images as $image) {
+                $imagePath = $image->store('post_images', 'public');
+                PostImage::create([
+                    'file_path' => $imagePath,
+                    'post_id' => $this->post->id
+                ]);
+            }
             return redirect()->to("/post/".$this->post->id);
         } else {
             return false;

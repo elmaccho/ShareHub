@@ -262,6 +262,20 @@
     padding-right: 0 !important;
     margin: 0;
 }
+.add-image-btn-wrapper{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 6px dashed royalblue;
+    border-radius: 12px;
+    width: 180px;
+    height: 180px;
+}
+.add-image-btn-wrapper > .fa-plus{
+    font-size: 60px;
+    color: royalblue;
+}
 @media (max-width: 640px) {
     .blog-page .left-box .single-comment-box>ul>li {
         padding: 25px 0

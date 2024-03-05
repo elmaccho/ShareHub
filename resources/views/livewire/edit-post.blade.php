@@ -1,5 +1,5 @@
 <div>
-    <form wire:submit.prevent="updatePost">
+    <form method="post" wire:submit.prevent="updatePost" enctype="multipart/form-data">
         <div class="card border-0">
             <div class="card-body">
                 <div class="row author">
@@ -27,6 +27,20 @@
                             </div>
                         @endforeach
                     @endif
+                    @foreach ($images as $image)
+                        <div class="post-image-wrapper">
+                            <img class="post-image-edit" src="{{ $image->temporaryUrl() }}" alt="">
+                        </div>
+                    @endforeach
+
+                    <label for="image-upload" id="upload-icon" class="form-label sh-pointer">
+                        <div class="add-image-btn-wrapper">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                    </label>
+                    <input type="file" class="form-control d-none" id="image-upload" accept="image/*" wire:model="images" multiple>
+
+
                 </div>
                 <input type="text" class="form-control mb-2" id="title" name="title" placeholder="Title..." required value="{{ $post->title }}" wire:model="postTitle">
                 <textarea class="form-control" id="content" name="content" rows="4" placeholder="Content..." wire:model="postContent">{{ $post->content }}</textarea>
