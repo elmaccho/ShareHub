@@ -12,13 +12,10 @@ use App\Models\Ban;
 
 class UserStatus extends Component
 {
-    public $userId;
-    public $user;
-
-    public function mount($userId)
+    public User $user;
+    public function mount(User $user)
     {
-        $this->userId = $userId;
-        $this->user = User::find($userId);
+        $this->user = $user;
     }
 
     public function render()

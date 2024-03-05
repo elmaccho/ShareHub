@@ -9,17 +9,10 @@ use Livewire\Component;
 
 class UserDetails extends Component
 {
-    public $userId;
-    public $user;
-    public $userPosts;
-    public $loggedUser;
-
-    public function mount($userId)
+    public User $user;
+    public function mount(User $user)
     {
-        $this->loggedUser = Auth::user();
-        $this->userId = $userId;
-        $this->user = User::find($userId);
-        $this->userPosts = Post::where('user_id', $userId)->get();
+        $this->user = $user;
     }
     public function render()
     {

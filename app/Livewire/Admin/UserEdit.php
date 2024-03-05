@@ -10,21 +10,16 @@ use Livewire\Component;
 
 class UserEdit extends Component
 {
-    public $userId;
-    public $user;
+    public User $user;
     public $countries, $states;
-
     public $name;
     public $surname;
     public $role;
     public $country_id, $state_id, $city_id;
 
-
-
-    public function mount($userId)
+    public function mount(User $user)
     {
-        $this->userId = $userId;
-        $this->user = User::find($userId);
+        $this->user = $user;
         $this->countries = Country::all();
         $this->name = $this->user->name;
         $this->surname = $this->user->surname;
