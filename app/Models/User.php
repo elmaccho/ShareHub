@@ -168,6 +168,9 @@ class User extends Authenticatable
                                  ->first();
         return $friendship !== null;
     }
-    
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class, 'receiver_id');
+    }
 }
   

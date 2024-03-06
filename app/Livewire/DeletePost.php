@@ -30,13 +30,18 @@ class DeletePost extends Component
     public function remove()
     {
         $user = Auth::user();
-        if($user->isAdmin() || $user->isModerator() || $user->isOwnerOfPost($this->post)){
-            if($this->currentUrl == 'http://127.0.0.1:8000/post/'.$this->post->id){
+        if ($user->isAdmin() || $user->isModerator() || $user->isOwnerOfPost($this->post)) {
+            if ($this->currentUrl == 'http://127.0.0.1:8000/post/' . $this->post->id) {
                 $this->post->comments()->delete();
                 $this->post->postImage()->delete();
                 $this->post->delete();
                 return redirect()->to('/home');
             } else {
+                // Delete related records in reports_comments table
+                $this->post->comments->each(function ($comment) {
+                    $comment->reportedComment()->delete();
+                });
+    
                 $this->post->comments()->delete();
                 $this->post->postImage()->delete();
                 $this->post->delete();
@@ -46,6 +51,7 @@ class DeletePost extends Component
             return false;
         }
     }
+    
     public function render()
     {
         return view('livewire.delete-post');

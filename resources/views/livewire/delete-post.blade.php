@@ -1,3 +1,3 @@
 <span>
-    <button class="dropdown-item" wire:click="deletePost">Delete</button>
+    <button class=" btn btn-danger btn-sm w-100" wire:click="deletePost">Delete</button>
 </span>
