@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\FriendRequest;
+use App\Models\Notification;
 use Livewire\Component;
 
 class DeleteFriendRequest extends Component
@@ -25,6 +26,7 @@ class DeleteFriendRequest extends Component
         // );
         FriendRequest::where('requester_id', $this->requester->id)
                         ->where('requested_id', $this->requested->id)->delete();
+
 
         $this->dispatch(
             'settingsUpdated',

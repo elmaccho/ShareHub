@@ -65,6 +65,25 @@
     width: 100%;
     height: 100%;
 }
+.notifications-count-wrapper{
+    background-color: red;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.notifications-count-wrapper > p{
+    font-size: 18px;
+    color: white;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+}
 @media screen and (max-width: 700px) {
     .auth-user{
         display: none;

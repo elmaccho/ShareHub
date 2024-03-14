@@ -4,7 +4,7 @@ namespace App\Enums;
 
 class NotificationContent{
     const TYPES = [
-        'liked' => "liked your post",
-        'commented' => "commented on your post"
+        'liked' => "liked your",
+        'commented' => "commented on your",
     ];
 }

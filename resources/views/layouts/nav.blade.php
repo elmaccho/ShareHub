@@ -26,8 +26,9 @@
         <a class="route-btn" href="{{ route('post.create') }}">
             <i class="fa-solid fa-plus"></i>
         </a>
-        <a class="route-btn" href="{{ route('notifications.index') }}">
+        <a class="route-btn position-relative p-2" href="{{ route('notifications.index') }}">
             <i class="fa-solid fa-bell"></i>
+            <livewire:notification-counter />
         </a>
         <a class="route-btn" href="{{ route('profile.index', Auth::user()->id) }}">
             <i class="fa-solid fa-user"></i>

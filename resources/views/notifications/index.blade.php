@@ -5,13 +5,13 @@
     <h3 class="m-b-50 heading-line">Notifications <i class="fa fa-bell text-muted"></i></h3>
 
     {{-- friend requests --}}
-    @livewire('friend-request-list')
+        @livewire('friend-request-list')
 
-    {{-- activity --}}
-    <div class="notification-ui_dd-content">
-        <div class="text-center mb-3">
-            Activity
-        </div>
+        {{-- activity --}}
+        <div class="notification-ui_dd-content">
+            <div class="text-center mb-3">
+                Activity
+            </div>
 
         @livewire('notifications-list')
     </div>

@@ -2,8 +2,10 @@
 
 namespace App\Livewire;
 
+use App\Enums\NotificationContent;
 use App\Models\FriendRequest;
 use App\Models\Friendship;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -34,6 +36,7 @@ class AddFriendButton extends Component
                 'requested_id' => $this->userId->id,
                 'status' => 'pending'
             ]);
+
 
             $this->dispatch(
                 'popUpTimer',
