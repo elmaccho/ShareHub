@@ -13,7 +13,10 @@ class Notification extends Model
         'receiver_id',
         'sender_id',
         'type',
-        'content'
+        'content',
+        'is_read',
+        'target_id',
+        'target_type'
     ];
 
     public function sender()

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('notifications', function (Blueprint $table) {
-            $table->boolean('is_read')->default(0);
+            $table->boolean('is_read')->default(false)->after('content');
         });
     }
 
