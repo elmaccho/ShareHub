@@ -5,17 +5,23 @@ namespace App\Livewire;
 use App\Http\Requests\UserSettingsRequest;
 use App\Models\Country;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Rule;
 use Livewire\Component;
 
 class UserSettings extends Component
 {
     public $user;
+    #[Rule('required|max:255')]
     public $name;
+    #[Rule('required|max:255')]
     public $surname;
+    #[Rule('nullable|regex:/^[0-9]{9,15}$/')]
     public $phone_number;
+    #[Rule('nullable|max:1000')]
     public $about;
     public $countries, $states;
     public $country_id, $state_id, $city_id;
+    #[Rule('nullable|max:255|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/i')]
     public $website_link, $github_link, $youtube_link, $instagram_link, $facebook_link;
     public function mount()
     {
@@ -40,25 +46,12 @@ class UserSettings extends Component
     {
         return view('livewire.user-settings');
     }
-    public function submit(UserSettingsRequest $request)
+    public function submit()
     {
-        // dd(
-        //     $this->country_id,
-        //     $this->state_id,
-        //     $this->city_id,
-        //     $this->website_link,
-        //     $this->github_link,
-        //     $this->youtube_link,
-        //     $this->instagram_link,
-        //     $this->facebook_link,
-        //     $this->name,
-        //     $this->surname,
-        //     $this->phone_number,
-        //     $this->about,
-        // );
-        $validatedData = $request->validated();
+        $validated = $this->validate();
+
         try {
-            $this->user->update($validatedData);
+            $this->user->update($validated);
     
             $this->dispatch(
                 'settingsUpdated',
