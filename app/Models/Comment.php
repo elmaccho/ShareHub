@@ -29,5 +29,9 @@ class Comment extends Model
     public function reportedComment(): HasMany
     {
         return $this->hasMany(ReportsComment::class);
+    }
+    public function notification()
+    {
+        return $this->hasMany(Notification::class);
     }   
 }

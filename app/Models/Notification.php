@@ -15,8 +15,8 @@ class Notification extends Model
         'type',
         'content',
         'is_read',
-        'target_id',
-        'target_type'
+        'post_id',
+        'comment_id'
     ];
 
     public function sender()
@@ -30,5 +30,13 @@ class Notification extends Model
     public function isReaded()
     {
         return $this->is_read == 1;
+    }
+    public function post()
+    {
+        return $this->belongsTo(Post::class, 'post_id');
+    }
+    public function comment()
+    {
+        return $this->belongsTo(Comment::class, 'comment_id');
     }
 }

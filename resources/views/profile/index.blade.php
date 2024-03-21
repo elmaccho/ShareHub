@@ -65,7 +65,7 @@
                             'targetId' => $user->id,
                         ])
                     @endif
-                    @if (Auth::user())
+                    @if (Auth::user()->id == $user->id)
                         <button class="dropdown-item">
                             <a class="text-dark text-decoration-none" href="{{ route('settings.index') }}">Settings</a>
                         </button>

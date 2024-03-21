@@ -28,14 +28,14 @@ class AddComment extends Component
             'post_id' => $this->post->id
         ]);
 
-        // Notification::create([
-        //     'receiver_id' => $this->post->user_id,
-        //     'sender_id' => Auth::user()->id,
-        //     'type' => 'comment',
-        //     'content' => NotificationContent::TYPES['commented'],
-        //     'target_id' => $comment->id,
-        //     'target_type' => "comment"
-        // ]);
+        Notification::create([
+            'receiver_id' => $this->post->user_id,
+            'sender_id' => Auth::user()->id,
+            'type' => 'comment',
+            'content' => NotificationContent::TYPES['commented'],
+            'post_id' => $this->post->id,
+            'comment_id' => $comment->id
+        ]);
         $this->dispatch('refreshCommentsList');
         $this->reset('comment');
     }

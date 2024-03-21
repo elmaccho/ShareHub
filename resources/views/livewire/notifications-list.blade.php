@@ -15,11 +15,20 @@
                         <a class="text-decoration-none text-dark" href="{{ route('profile.index', $notification->sender->id) }}">
                             <strong>{{ $notification->sender->name }} {{ $notification->sender->surname }}</strong>
                         </a> {{ $notification->content }} 
-                        <a class="text-decoration-none" href="{{ route('postpage.index', $notification->receiver->post->first()->id ) }}">
+                        <a class="text-decoration-none" href="{{ route('postpage.index', $notification->post->id ) }}">
                             <strong>post</strong>
                         </a>
                     </p>
-                    <p class="text-muted"></p>
+                    <p class="text-muted">
+                        @if ($notification->comment)
+                            {{ optional($notification->comment)->content ? '"' . $notification->comment->content . '"' : '' }}
+                        @else
+                            <strong>
+                                {{ $notification->post?->title }}
+                            </strong>
+                                {{ $notification->post?->content }}
+                            @endif
+                    </p>
                     <p class="text-muted"><small>{{ $notification->created_at->diffForHumans() }}</small></p>
                 </div>
             </div>

@@ -40,8 +40,7 @@ class LikeButton extends Component
                 'sender_id' => Auth::user()->id,
                 'type' => 'like',
                 'content' => NotificationContent::TYPES['liked'],
-                // 'target_id' => $this->post->id,
-                // 'target_type' => "post",
+                'post_id' => $this->post->id
             ]);
         }
         

@@ -45,4 +45,8 @@ class Post extends Model
     {
         return $this->postImage()->exists();
     }
+    public function notification()
+    {
+        return $this->hasMany(Notification::class);
+    }
 }
