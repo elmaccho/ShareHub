@@ -8,6 +8,8 @@ import './bootstrap';
 import Swal from 'sweetalert2';
 window.Swal = Swal;
 
+import TypeIt from 'typeit';
+window.TypeIt = TypeIt;
 // import Alpine from 'alpinejs'
 // window.Alpine = Alpine
 // Alpine.start()
@@ -31,6 +33,38 @@ window.Swal = Swal;
 // });
 // lightbox.init();
 
+document.addEventListener("DOMContentLoaded", function () {
+    new TypeIt('#typing1', {
+      startDelay: 200,
+      speed: 0,
+      cursorChar: "",
+    })
+    .type("<div class='dot-flashing'></div>", { delay: 2000 })
+    .delete(1)
+    .type("Our community is a place where passions meet opportunities and ideas take wings. Whether you're an expert in your field or just looking for inspiration, you'll find your place on ShareHub.")
+    .go();
+
+
+  new TypeIt('#typing2', {
+    startDelay: 2200,
+    speed: 0,
+    cursorChar: "",
+  })
+  .type("1 seconds ago")
+  .go();
+
+
+  new TypeIt('#typing3', {
+    startDelay: 2500,
+    speed: 20,
+    strings: "Join us today to share, inspire and make new, valuable connections!",
+    waitUntilVisible: true,
+  }).go();
+
+  setTimeout(() => {
+    document.querySelector('.input-btn').disabled = false
+  }, 4500);
+});
 
 window.addEventListener('alreadyBanned', (event) => {
     let data = event.detail;

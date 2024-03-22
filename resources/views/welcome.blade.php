@@ -9,7 +9,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-        @vite(['resources/sass/app.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/css/welcome.css'])
+        @vite(['resources/sass/app.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/css/welcome.css', 'resources/css/three-dots.css', 'resources/js/aboutButtonClick.js'])
     </head>
     <body class="antialiased">
         <nav class="navbar">
@@ -63,24 +63,21 @@
                 </div>
                 <span>
                     <div class="card card-left">
-                        <p>
-                            Our community is a place where passions meet opportunities and ideas take wings.
-                            Whether you're an expert in your field or just looking for inspiration, you'll find your place on ShareHub.
-                        </p>
+                        <p id="typing1"></p>
                     </div>
-                    <span class="created-at-text">2 minutes ago</span>
+                    <span id="typing2" class="created-at-text"></span>
                 </span>
             </div>
-            <div class="row row-right">
-                <span>
-                    <div class="card card-right">
-                        <p>
-                            Join us today to share, inspire and make new, valuable connections!
-                        </p>
-                    </div>
-                    <span class="created-at-text">11 seconds ago</span>
-                </span>
+            <div class="row row-right send-message-here">
+
             </div>
+            <div class="row-input-wrapper">
+                <textarea class="form-control row-input" type="text" name="" id="typing3" disabled></textarea>
+                <button class="btn btn-primary btn-lg input-btn" disabled><i class="fa-regular fa-paper-plane"></i></button>
+            </div>
+        </section>
+        <section id="popular-categories">
+
         </section>
     </body>
     </html>
