@@ -18,6 +18,9 @@ import Aos from 'aos';
 window.Aos = Aos;
 Aos.init();
 
+import { CountUp } from 'countup.js';
+window.CountUp = CountUp;
+
 // import Alpine from 'alpinejs'
 // window.Alpine = Alpine
 // Alpine.start()
@@ -73,7 +76,7 @@ Aos.init();
 //     document.querySelector('.input-btn').disabled = false
 //   }, 4500);
 // });
-var controller = new ScrollMagic.Controller();
+var aboutController = new ScrollMagic.Controller();
 
 new ScrollMagic.Scene({
   triggerElement: '#about',
@@ -111,7 +114,28 @@ new ScrollMagic.Scene({
     document.querySelector('.input-btn').disabled = false
   }, 4500);
 })
-.addTo(controller);
+.addTo(aboutController);
+
+var popularCategoriesController = new ScrollMagic.Controller();
+
+new ScrollMagic.Scene({
+  triggerElement: '#popular-categories',
+  triggerHook: 0.8,
+  reverse: false
+})
+.on("enter", function () {
+    var options = {
+      duration: 3,
+  };
+    var postCountElements = document.querySelectorAll('.postCount');
+      
+    postCountElements.forEach(function(element) {
+      var target = parseInt(element.getAttribute('data-target'));
+      var countUp = new CountUp(element, target, options);
+      countUp.start();
+    });
+})
+.addTo(popularCategoriesController)
 
 window.addEventListener('alreadyBanned', (event) => {
     let data = event.detail;

@@ -81,7 +81,114 @@
             </div>
         </section>
         <section id="popular-categories">
+            <h2>Popular Categories</h2>
+            <div class="categories-wrapper">
+                <div class="cat-card" data-aos="zoom-in-up" data-aos-once="true" data-aos-delay="50">
+                    <div class="card-header">
+                        <i class="card-icon fa-solid fa-code"></i>
+                    </div>
+                    <div class="card-footer">
+                        <h3>
+                            <strong>
+                                Programming
+                            </strong>
+                        </h3>
+                        <h4><span class="postCount" data-target="15928">0 posts</span> posts</h4>
+                    </div>
+                </div>
+                <div class="cat-card" data-aos="zoom-in-up" data-aos-once="true" data-aos-delay="150">
+                    <div class="card-header">
+                        <i class="card-icon fa-solid fa-brush"></i>
+                    </div>
+                    <div class="card-footer">
+                        <h3>
+                            <strong>
+                                Design
+                            </strong>
+                        </h3>
+                        <h4><span class="postCount" data-target="1978">0 posts</span> posts </h4>
+                    </div>
+                </div>
+                <div class="cat-card" data-aos="zoom-in-up" data-aos-once="true" data-aos-delay="250">
+                    <div class="card-header">
+                        <i class="card-icon fa-solid fa-car"></i>
+                    </div>
+                    <div class="card-footer">
+                        <h3>
+                            <strong>
+                                Cars
+                            </strong>
+                        </h3>
+                        <h4><span class="postCount" data-target="5818">0 posts</span> posts </h4>
+                    </div>
+                </div>
+                <div class="cat-card" data-aos="zoom-in-up" data-aos-once="true" data-aos-delay="350">
+                    <div class="card-header">
+                        <i class="card-icon fa-solid fa-burger"></i>
+                    </div>
+                    <div class="card-footer">
+                        <h3>
+                            <strong>
+                                Cooking
+                            </strong>
+                        </h3>
+                        <h4><span class="postCount" data-target="593">0 posts</span> posts </h4>
+                    </div>
+                </div>
 
+                <div class="cat-card" data-aos="zoom-in-up" data-aos-once="true" data-aos-delay="450">
+                    <div class="card-header">
+                        <i class="card-icon fa-solid fa-dumbbell"></i>
+                    </div>
+                    <div class="card-footer">
+                        <h3>
+                            <strong>
+                                Programming
+                            </strong>
+                        </h3>
+                        <h4><span class="postCount" data-target="4928">0 posts</span> posts </h4>
+                    </div>
+                </div>
+                <div class="cat-card" data-aos="zoom-in-up" data-aos-once="true" data-aos-delay="550">
+                    <div class="card-header">
+                        <i class="card-icon fa-solid fa-book"></i>
+                    </div>
+                    <div class="card-footer">
+                        <h3>
+                            <strong>
+                                Marketing
+                            </strong>
+                        </h3>
+                        <h4><span class="postCount" data-target="2158">0 posts</span> posts </h4>
+                    </div>
+                </div>
+                <div class="cat-card" data-aos="zoom-in-up" data-aos-once="true" data-aos-delay="650">
+                    <div class="card-header">
+                        <i class="card-icon fa-brands fa-react"></i>
+                    </div>
+                    <div class="card-footer">
+                        <h3>
+                            <strong>
+                                Science
+                            </strong>
+                        </h3>
+                        <h4><span class="postCount" data-target="6418">0 posts</span> posts </h4>
+                    </div>
+                </div>
+                <div class="cat-card" data-aos="zoom-in-up" data-aos-once="true" data-aos-delay="750">
+                    <div class="card-header">
+                        <i class="card-icon fa-solid fa-plane"></i>
+                    </div>
+                    <div class="card-footer">
+                        <h3>
+                            <strong>
+                                Travelling
+                            </strong>
+                        </h3>
+                        <h4><span class="postCount" data-target="213">0 posts</span> posts </h4>
+                    </div>
+                </div>
+            </div>
         </section>
         <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     </body>
