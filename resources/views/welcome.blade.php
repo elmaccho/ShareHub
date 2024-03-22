@@ -9,6 +9,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         @vite(['resources/sass/app.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/css/welcome.css', 'resources/css/three-dots.css', 'resources/js/aboutButtonClick.js'])
     </head>
     <body class="antialiased">
@@ -35,17 +36,20 @@
             
         </nav>
         <section id="header">
-            <video id="background-video" autoplay muted loop>
+            <video id="background-video" autoplay muted loop 
+                data-aos="fade-right"
+                data-aos-duration="1000" 
+                >
                 <source src="{{ asset('images/0001-0230.mp4') }}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <div class="background-gradient"></div>
             <div class="header-content">
-                <h1>ShareHub</h1>
-                <h2>Share Inspire Connect</h2>
+                <h1 data-aos="fade-left">ShareHub</h1>
+                <h2 data-aos="fade-left">Share Inspire Connect</h2>
             </div>
         </section>
-        <section id="about">
+        <section id="about" data-aos="fade-in" data-aos-once="true">
             <div class="row row-right">
                 <span>
                     <div class="card card-right">
@@ -79,6 +83,7 @@
         <section id="popular-categories">
 
         </section>
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     </body>
     </html>
     
