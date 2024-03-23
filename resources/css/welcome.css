@@ -194,15 +194,59 @@
     color: #0076FF;
     margin: 0;
 }
+
+#how-to-start{
+    padding: 40px 25px;
+    /* height: 60vw; */
+    position: relative;
+}
+#how-to-start > h2{
+    font-weight: 600;
+    font-size: 65px;
+}
+#how-to-start > p{
+    font-size: 20px;
+    width: 60%;
+    min-width: 610px;
+}
+.hts-card{
+    max-width: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+}
+.hts-header{
+    background-color: white;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hts-header > .fa-solid {
+    font-size: 50px;
+    color: #285599;
+}
+.hts-body{
+    text-align: center;
+    font-weight: 600;
+    font-size: 25px;
+}
+.hts-row{
+    display: flex;
+    justify-content: space-around;
+}
+.line{
+    position: absolute;
+    width: 70%;
+    top: 50%;
+    transform: translateY(-50%);
+}
 @media screen and (max-width: 925px) {
     .categories-wrapper{
         grid-template-columns: repeat(3, 1fr); 
-        gap: 25px;
-    }
-}
-@media screen and (max-width: 665px) {
-    .categories-wrapper{
-        grid-template-columns: repeat(2, 1fr); 
         gap: 25px;
     }
 }
@@ -225,7 +269,39 @@
     .card > p{
         font-size: 18px;
     }
-
+    #how-to-start{
+        height: unset;
+    }
+    .hts-path{
+        display: none;
+    }
+}
+@media screen and (max-width: 665px) {
+    .categories-wrapper{
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 25px;
+    }
+}
+@media screen and (max-width: 650px) {
+    #how-to-start > p{
+        width: 100%;
+        min-width: unset;
+    }
+}
+@media screen and (max-width: 475px) {
+    #how-to-start > h2 {
+        text-align: center;
+        font-size: 45px;
+    }
+    #how-to-start > p {
+        text-align: justify;
+        font-size: 18px;
+        margin-top: 15px;
+    }
+    #how-to-start > a {
+        width: 100%;
+        margin-top: 15px;
+    }
 }
 @media screen and (max-width: 445px) {
     .categories-wrapper{

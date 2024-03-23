@@ -10,15 +10,12 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-        @vite(['resources/sass/app.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/css/welcome.css', 'resources/css/three-dots.css', 'resources/js/aboutButtonClick.js'])
+        @vite(['resources/sass/app.scss', 'resources/css/app.css', 'resources/js/app.js', 'resources/css/welcome.css', 'resources/css/three-dots.css', 'resources/js/welcomePage.js'])
     </head>
     <body class="antialiased">
         <nav class="navbar">
             <div class="brand-name">
                 <a href="/" class="navbar-brand">ShareHub</a>
-            </div>
-            <div class="nav-links">
-                {{-- <a href="">Home</a> --}}
             </div>
             @if (Route::has('login'))
                 <div class="d-flex gap-3">
@@ -36,20 +33,16 @@
             
         </nav>
         <section id="header">
-            <video id="background-video" autoplay muted loop 
-                data-aos="fade-right"
-                data-aos-duration="1000" 
-                >
-                <source src="{{ asset('images/0001-0230.mp4') }}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+            <img id="background-video" src="{{ asset('images/0001-0230.gif') }}" alt="ShareHub logo"                 
+            data-aos="fade-right"
+            data-aos-duration="1000" >
             <div class="background-gradient"></div>
             <div class="header-content">
                 <h1 data-aos="fade-left">ShareHub</h1>
                 <h2 data-aos="fade-left">Share Inspire Connect</h2>
             </div>
         </section>
-        <section id="about" data-aos="fade-in" data-aos-once="true">
+        <section id="about" data-aos="fade-in" data-aos-once="true" class="mb-3">
             <div class="row row-right">
                 <span>
                     <div class="card card-right">
@@ -80,7 +73,7 @@
                 <button class="btn btn-primary btn-lg input-btn" disabled><i class="fa-regular fa-paper-plane"></i></button>
             </div>
         </section>
-        <section id="popular-categories">
+        <section id="popular-categories" class="mb-4">
             <h2>Popular Categories</h2>
             <div class="categories-wrapper">
                 <div class="cat-card" data-aos="zoom-in-up" data-aos-once="true" data-aos-delay="50">
@@ -189,6 +182,48 @@
                     </div>
                 </div>
             </div>
+        </section>
+        <section id="how-to-start">
+                <h2 class="">How It Works?</h2>
+                <p>
+                    On ShareHub, you can create groups, receive rewards and badges for your activity, and earn medals for the most liked posts.
+                    Users are rewarded for participating in discussions and sharing knowledge, creating an active and engaging community.
+                </p>
+                <a href="{{ route('register') }}" class="btn btn-primary btn-lg rounded px-5">Register Now!</a> 
+                <div class="hts-row mt-5">
+                    <div class="hts-card CFA" data-aos="zoom-in" data-aos-once="true" data-aos-delay="50">
+                        <div class="hts-header">
+                            <i class="fa-solid fa-user-plus"></i>
+                        </div>
+                        <div class="hts-body">
+                            Create Free Account
+                        </div>
+                    </div>
+                    <div class="hts-card GL" data-aos="zoom-in" data-aos-once="true" data-aos-delay="150">
+                        <div class="hts-header">
+                            <i class="fa-solid fa-thumbs-up"></i>
+                        </div>
+                        <div class="hts-body">
+                            Get Likes
+                        </div>
+                    </div>
+                    <div class="hts-card CIG" data-aos="zoom-in" data-aos-once="true" data-aos-delay="250">
+                        <div class="hts-header">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div class="hts-body">
+                            Create Interest Groups
+                        </div>
+                    </div>
+                    <div class="hts-card EM" data-aos="zoom-in" data-aos-once="true" data-aos-delay="350">
+                        <div class="hts-header">
+                            <i class="fa-solid fa-medal"></i>
+                        </div>
+                        <div class="hts-body">
+                            Earn Medals
+                        </div>
+                    </div>                     
+                </div>  
         </section>
         <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     </body>
