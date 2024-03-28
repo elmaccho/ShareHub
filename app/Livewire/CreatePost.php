@@ -22,8 +22,20 @@ class CreatePost extends Component
     {
         $this->currentUrl = $request->url();
     }
+    public function deleteTmpImage($index){
+        array_splice($this->images, $index, 1);
+    }
     public function submit()
     {
+        if(count($this->images) > 4){
+            $this->dispatch(
+                'popUpTimer',
+                type: 'error',
+                title: 'You can only add 4 photos!',
+                position: 'top-end'
+            );
+            return;
+        }
         if ($this->title == null || $this->title == '') {
             $this->dispatch(
                 'popUpTimer',
