@@ -184,7 +184,8 @@
             </div>
         </section>
         <section id="how-to-start">
-                <h2 class="">How It Works?</h2>
+            <div class="hts-wrapper">
+                <h2>How It Works?</h2>
                 <p>
                     On ShareHub, you can create groups, receive rewards and badges for your activity, and earn medals for the most liked posts.
                     Users are rewarded for participating in discussions and sharing knowledge, creating an active and engaging community.
@@ -224,6 +225,12 @@
                         </div>
                     </div>                     
                 </div>  
+            </div>
+            <span class="question-mark-wrapper">
+                <i class="fa-solid fa-question qm-1 qm" data-aos="zoom-in-up" data-aos-delay="100" data-aos-once="true"></i>
+                <i class="fa-solid fa-question qm-2 qm" data-aos="zoom-in-up" data-aos-delay="200" data-aos-once="true"></i>
+                <i class="fa-solid fa-question qm-3 qm" data-aos="zoom-in-up" data-aos-delay="300" data-aos-once="true"></i>
+            </span>
         </section>
         <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     </body>

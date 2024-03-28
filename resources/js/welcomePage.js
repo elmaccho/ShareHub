@@ -19,6 +19,14 @@ const sendMessage = () => {
 `;
 
 sendMessageHere.insertAdjacentHTML('beforeend', htmlContent);
+setTimeout(() => {
+  inputBtn.style.transform = "scaleY(0)";
+  textArea.style.transform = "scaleY(0)";
+}, 200);
+setTimeout(() => {
+  inputBtn.style.display = "none";
+  textArea.style.display = "none";
+}, 500);
 }
 
 inputBtn.addEventListener('click', sendMessage)
