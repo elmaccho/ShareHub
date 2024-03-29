@@ -29,24 +29,13 @@ class DeletePost extends Component
     }
     public function remove()
     {
+        $post = Post::where('id', $this->post->id)->first();
         $user = Auth::user();
         if ($user->isAdmin() || $user->isModerator() || $user->isOwnerOfPost($this->post)) {
-            if ($this->currentUrl == 'http://127.0.0.1:8000/post/' . $this->post->id) {
-                $this->post->comments()->delete();
-                $this->post->postImage()->delete();
-                $this->post->delete();
-                return redirect()->to('/home');
-            } else {
-                // Delete related records in reports_comments table
-                $this->post->comments->each(function ($comment) {
-                    $comment->reportedComment()->delete();
-                });
-    
-                $this->post->comments()->delete();
-                $this->post->postImage()->delete();
-                $this->post->delete();
-                $this->dispatch('refreshPostsList');
-            }
+            $post->comments()->delete();
+            $post->postImage()->delete();
+            $post->delete();
+            return redirect()->to('/home');
         } else {
             return false;
         }

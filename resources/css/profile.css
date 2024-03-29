@@ -110,9 +110,19 @@
 }
 .user-info-section{
     width: 80%;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+@media screen and (max-width: 1055px) {
+    .user-content{
+        flex-direction: column;
+    }
+    .user-info-section{
+        width: 100%;
+        max-width: unset;
+    }
 }
 @media screen and (max-width: 750px){
     .user-row{

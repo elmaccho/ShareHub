@@ -39,7 +39,7 @@
                             <div class="text-box">
                                 <h5 class="m-0">{{ $post->user->name }} {{ $post->user->surname }}</h5>
                                 <strong>Author </strong>
-                                <i><i class="fa-regular fa-clock"></i> {{ $post->created_at->diffForHumans() }}</i>
+                                <i><i class="fa-regular fa-clock"></i> {{ $post->created_at?->diffForHumans() }}</i>
                             </div>
                         </div>
                     </div>

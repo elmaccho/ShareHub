@@ -1,23 +1,4 @@
-<div class="sh-section d-flex flex-column mb-5" wire:key="post-{{ $post->id }}">
-    <div class="dropdown comment-action">
-        <button class="btn btn-link text-dark" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa-solid fa-ellipsis comment-action-btn"></i>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            @if (!$loggedUser->IsOwnerOfPost($post))
-                <li>
-                    @livewire('report-button', [
-                        'type' => 'post',
-                        'targetId' => $post->id,
-                    ], key('report-button-'. $post->id))
-                </li>
-            @endif
-            @if ($loggedUser->isAdmin() || $loggedUser->isModerator() || $loggedUser->isOwnerOfPost($post))
-                <li><a class="text-decoration-none" href="{{ route('post.edit', $post->id) }}"><button class="dropdown-item">Edit</button></a></li>
-                <li><livewire:delete-post :post="$post" wire:key="delete-post-{{ $post->id }}"/></li>
-            @endif
-        </ul>
-    </div>
+<div class="sh-section d-flex flex-column mb-5 w-100" wire:key="post-{{ $post->id }}">
     <div class="author-info">
         <a href="{{ route('profile.index', $post->user->id) }}">
             @if (!is_null($post->user->profile_image_path))

@@ -75,7 +75,7 @@
         </div>
 
         <div class="user-content">
-            <div class="user-info-section"  style="max-width: 500px;">
+            <div class="user-info-section">
                 @if (!is_null($user->about))
                     <div class="sh-section bio-container">
                         <p class="mb-0"><strong>About Me</strong></p>

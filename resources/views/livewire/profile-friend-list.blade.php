@@ -1,4 +1,4 @@
-<div class="sh-section" style="max-width: 500px;">
+<div class="sh-section w-100">
     <strong>Friends: {{ $user->friends->count() }}</strong>    
     <hr class="m-0 mb-3">
     <div class="friends-wrapper">

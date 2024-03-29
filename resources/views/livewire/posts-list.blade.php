@@ -1,4 +1,4 @@
-<div class="row" 
+<div class="row w-100" 
     @scroll.window.trottle="
     isScrolled = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight;
 
