@@ -19,6 +19,7 @@ class Post extends Model
         'comments',
         'saves',
         'user_id',
+        'category_id'
     ];
 
     public function user(): BelongsTo
@@ -48,5 +49,9 @@ class Post extends Model
     public function notification()
     {
         return $this->hasMany(Notification::class);
+    }
+    public function category()
+    {
+        return $this->belongsTo(Categories::class);
     }
 }

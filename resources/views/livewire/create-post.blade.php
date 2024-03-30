@@ -1,13 +1,15 @@
-<div class="create-post-wrapper">
+<div class="create-post-wrapper w-100">
     <form class="d-flex flex-column gap-5" method="POST" action="" enctype="multipart/form-data" wire:submit.prevent="submit">
         <div class="sh-section">
             <div class="mb-3">
                 <input type="text" class="form-control create-post-input-text" id="title" name="title" placeholder="Title..." wire:model="title" required>
             </div>
             <div class="mb-3">
-                <select class="form-control create-post-input-text" name="" id="" required>
+                <select class="form-control create-post-input-text" name="" id="" required wire:model="category">
                     <option value="" selected>Select Category</option>
-                    <option value="test">123</option>
+                    @foreach ($postCategories as $category)
+                        <option value="{{ $category->id }}" selected>{{ $category->category }}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="mb-3">

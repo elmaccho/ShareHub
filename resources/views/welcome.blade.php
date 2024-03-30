@@ -136,7 +136,7 @@
                     <div class="card-footer">
                         <h3>
                             <strong>
-                                Programming
+                                Gym
                             </strong>
                         </h3>
                         <h4><span class="postCount" data-target="4928">0 posts</span> posts </h4>

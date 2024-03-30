@@ -2,12 +2,11 @@
 
 namespace App\Livewire;
 
-use App\Models\Image;
+use App\Models\Categories;
 use App\Models\Post;
 use App\Models\PostImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Livewire\Attributes\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -18,8 +17,11 @@ class CreatePost extends Component
     public $content;
     public $images = [];
     public $currentUrl;
+    public $postCategories;
+    public $category;
     public function mount(Request $request)
     {
+        $this->postCategories = Categories::all();
         $this->currentUrl = $request->url();
     }
     public function deleteTmpImage($index){
@@ -49,7 +51,8 @@ class CreatePost extends Component
         $post = Post::create([
             'title' => $this->title,
             'content' => $this->content,
-            'user_id' => Auth::user()->id
+            'user_id' => Auth::user()->id,
+            'category_id' => $this->category,
         ]);
     
         foreach ($this->images as $image) {

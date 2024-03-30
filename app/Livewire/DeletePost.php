@@ -29,12 +29,12 @@ class DeletePost extends Component
     }
     public function remove()
     {
-        $post = Post::where('id', $this->post->id)->first();
         $user = Auth::user();
         if ($user->isAdmin() || $user->isModerator() || $user->isOwnerOfPost($this->post)) {
-            $post->comments()->delete();
-            $post->postImage()->delete();
-            $post->delete();
+            $this->post->comments()->delete();
+            $this->post->postImage()->delete();
+            $this->post->notification()->delete();
+            $this->post->delete();
             return redirect()->to('/home');
         } else {
             return false;
