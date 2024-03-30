@@ -17,6 +17,11 @@
             </div>
         </div>
     </div>
+    <div class="post-category">
+        <strong>
+            {{ $post->category->category }}
+        </strong>
+    </div>
     <div class="post-title">
         {{ $post->title }}
     </div>
@@ -34,9 +39,13 @@
         {{ $post->content }}
     </div>
     <div class="post-social-actions mb-3">
-        <livewire:like-button :post="$post" wire:key="like-button-{{ $post->id }}"/>
+        {{-- <livewire:like-button :post="$post" wire:key="like-button-{{ $post->id }}"/> --}}        
         <button class="comment-btn sh-post-btn">
-            <i class="fa-solid fa-comment"></i> 
+            <i class="fa-regular fa-heart"></i>
+            {{ $post->likes()->count() }} Likes
+        </button>
+        <button class="comment-btn sh-post-btn">
+            <i class="fa-regular fa-comment"></i> 
             {{ $post->comments->count() }} Comments
         </button>
         <button class="saves-btn sh-post-btn">

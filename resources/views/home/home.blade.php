@@ -4,12 +4,16 @@
     <div class="main-container d-flex justify-content-between align-items-start gap-5">
         <div class="side-menu col-4 d-flex flex-column gap-4">
             <button class="close-side-menu"><i class="fa-solid fa-xmark"></i></button>
+
             <form class="sh-section d-flex align-items-center" action="">
                 <input class="form-control" type="search" name="" id="" placeholder="Search...">
                 <button class="border-0 bg-transparent search-btn" type="submit">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </form>
+
+            <livewire:show-categories/>
+
             <div class="buttons-wrapper d-flex align-items-center flex-column gap-4">
                 <div class="sh-section d-flex flex-column">
                     <a class="menu-link" href="#"><i class="fa-solid fa-people-group"></i> Friends</a>
